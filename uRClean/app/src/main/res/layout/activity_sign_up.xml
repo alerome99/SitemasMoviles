@@ -8,13 +8,13 @@
     android:background="#2027">
 
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonRegisterFinal"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:text="Login"
+        android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
@@ -46,6 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         android:hint="User"/>
 
+
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="match_parent"
@@ -60,48 +61,9 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
         android:hint="Password"/>
 
-    <Button
-        android:id="@+id/buttonRegister"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="32dp"
-        android:text="Register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-        android:background="@drawable/button_rounded2"/>
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="69dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRegister"
-        app:srcCompat="@drawable/facebook" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="69dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRegister"
-        app:srcCompat="@drawable/twitter" />
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="69dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRegister"
-        app:srcCompat="@drawable/google" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
