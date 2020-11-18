@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1058323028709",
+    "firebase_url": "https://urclean-af15f.firebaseio.com",
+    "project_id": "urclean-af15f",
+    "storage_bucket": "urclean-af15f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058323028709:android:89707230e9028a0e5ed20c",
+        "android_client_info": {
+          "package_name": "com.example.urclean"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058323028709-8ak1c6sm9afn5tcr5r7cg4hq6j89i3jn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi2z2xajOorENkh9684Xnj0I-1OFAP6dA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058323028709-8ak1c6sm9afn5tcr5r7cg4hq6j89i3jn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
