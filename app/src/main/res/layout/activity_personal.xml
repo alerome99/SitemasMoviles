@@ -1,6 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="104dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:text="Desperf"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button6"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="104dp"
+        android:layout_height="80dp"
+        android:text="Tareas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintStart_toEndOf="@+id/button7" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="104dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="24dp"
+        android:text="Menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toEndOf="@+id/button4" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="104dp"
+        android:layout_height="80dp"
+        android:text="Notif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintStart_toEndOf="@+id/button6" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="155dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:text="Martín López, Jose"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="67dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="153dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:text="658123241"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="251dp"
+        tools:ignore="MissingConstraints"
+        />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="51dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        app:srcCompat="@drawable/ic_baseline_person_24"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="67dp"
+        tools:ignore="MissingConstraints"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="51dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        app:srcCompat="@drawable/ic_baseline_phone_24"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="251dp"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="53dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        app:srcCompat="@drawable/ic_baseline_contact_page_24"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="159dp"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="158dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:text="09123324T"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="159dp"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="304dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:text="07-Junio-1974"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="441dp"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="51dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        app:srcCompat="@drawable/ic_baseline_house_24"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="349dp"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="51dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        app:srcCompat="@drawable/ic_baseline_email_24"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="534dp"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="300dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:gravity="center_vertical"
+        android:text="jose.martin.lopez@gmail.com"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="534dp"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="50dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        app:srcCompat="@drawable/ic_baseline_calendar_today_24"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="441dp"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="296dp"
+        android:layout_height="61dp"
+        android:gravity="center_vertical"
+        android:text="Av.Murcia, 13 "
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="349dp"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="127dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:text="josemar"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="212dp"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="139dp"
+        android:layout_height="215dp"
+        app:srcCompat="@drawable/ic_baseline_person_24"
+        tools:layout_editor_absoluteX="256dp"
+        tools:layout_editor_absoluteY="36dp"
+        tools:ignore="MissingConstraints"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
