@@ -57,6 +57,7 @@ public class signUp extends AppCompatActivity {
                 String c2 = password2.getText().toString();
                 String n = name.getText().toString();
                 String g = gmail.getText().toString();
+                String t = "userCliente";
                 if(u.equals("") || c.equals("") || c2.equals("") || n.equals("") || g.equals("")){
                     faltanDatos();
                 }else{
@@ -72,6 +73,7 @@ public class signUp extends AppCompatActivity {
                             persona.setName(n);
                             persona.setPassword(c);
                             persona.setUsername(u);
+                            persona.setTipoUsuario(t);
                             databaseReference.child("Persona").child(persona.getId()).setValue(persona);
                             startActivity(new Intent(signUp.this, Login.class));
                         }

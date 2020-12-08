@@ -54,10 +54,19 @@ public class Login extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(usuarioExiste()){
-                }else{
+                if(!usuarioExiste()){
                     Snackbar.make(v, "WRONG USERNAME OR PASSWORD", Snackbar.LENGTH_SHORT).show();
                     //Toast.makeText(getBaseContext(), "wrong username or password", Toast.LENGTH_LONG).show();
+                }else{
+                    if(esAdministrador()){
+                        //startActivity(new Intent(Login.this, MenuAdministradorActivity.class));
+                    }
+                    if(esBarrendero()){
+                        startActivity(new Intent(Login.this, menuBarrendero.class));
+                    }
+                    if(esCiudadano()){
+                        startActivity(new Intent(Login.this, MenuCiudadanoActivity.class));
+                    }
                 }
             }
         });
@@ -70,6 +79,51 @@ public class Login extends AppCompatActivity {
             if(listaPersona.get(i).getUsername().equals(u)){
                 if(listaPersona.get(i).getPassword().equals(c)){
                     return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean esAdministrador() {
+        String u = username.getText().toString();
+        String c = password.getText().toString();
+        for(int i = 0; i<listaPersona.size(); i++) {
+            if (listaPersona.get(i).getUsername().equals(u)) {
+                if (listaPersona.get(i).getPassword().equals(c)) {
+                    if (listaPersona.get(i).getTipoUsuario().equals("userAdministrador")) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean esBarrendero() {
+        String u = username.getText().toString();
+        String c = password.getText().toString();
+        for(int i = 0; i<listaPersona.size(); i++) {
+            if (listaPersona.get(i).getUsername().equals(u)) {
+                if (listaPersona.get(i).getPassword().equals(c)) {
+                    if (listaPersona.get(i).getTipoUsuario().equals("userBarrendero")) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean esCiudadano() {
+        String u = username.getText().toString();
+        String c = password.getText().toString();
+        for(int i = 0; i<listaPersona.size(); i++) {
+            if (listaPersona.get(i).getUsername().equals(u)) {
+                if (listaPersona.get(i).getPassword().equals(c)) {
+                    if (listaPersona.get(i).getTipoUsuario().equals("userCliente")) {
+                        return true;
+                    }
                 }
             }
         }

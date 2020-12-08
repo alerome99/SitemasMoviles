@@ -7,12 +7,14 @@ public class userClient {
     private String gmail;
     private String password;
     private String id;
+    private String tipo;
 
     public userClient(){
         name = null;
         username = null;
         gmail = null;
         password = null;
+        tipo = null;
     }
 
     public void setName(String n){
@@ -54,4 +56,8 @@ public class userClient {
     public String getGmail(){
         return gmail;
     }
+
+    public void setTipoUsuario(String t) { tipo = t; }
+
+    public String getTipoUsuario() { return tipo; }
 }
