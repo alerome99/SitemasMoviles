@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">uRClean</string>
     <string-array name="spinner_crear_incidencia">
-    <item>Tipo de incidencia 1</item>
-    <item>Tipo de incidencia 2</item>
+        <item>Tipo de incidencia 1</item>
+        <item>Tipo de incidencia 2</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
