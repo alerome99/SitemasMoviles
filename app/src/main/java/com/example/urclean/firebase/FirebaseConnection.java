@@ -30,6 +30,7 @@ public class FirebaseConnection {
             singleton = new FirebaseConnection();
             mAuth = FirebaseAuth.getInstance();
             db = FirebaseFirestore.getInstance();
+            Log.e("SING", "CREADO");
         }
         return singleton; //Devuelve la instancia de la conexion
     }
@@ -58,11 +59,15 @@ public class FirebaseConnection {
 
     }
 
-    public void saveUser(String name,String username,String email, String telefono, final FirebaseCallback callback) {
+    public void saveUser(String name,String username,String email, String usertype, String telefono,
+                         String dni, final FirebaseCallback callback) {
         Map<String,Object> user = new HashMap<>();
         user.put("username",username);
         user.put("email",email);
+        user.put("type",usertype);
         user.put("name", name);
+        user.put("dni",dni);
+        user.put("telefono",telefono);
         user.put("idUser", mAuth.getCurrentUser().getUid());
         db.collection("Persona")
                 .add(user)
@@ -76,9 +81,30 @@ public class FirebaseConnection {
 
     }
 
+    public void getTypeUser(final FirebaseCallback callback){
+        db.collection("Persona")
+                .whereEqualTo("idUser", mAuth.getCurrentUser().getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
     public void logout(final FirebaseCallback callback) {
         mAuth.signOut();
         callback.onResponse(true);
+    }
+
+    public QuerySnapshot getResponse() {
+        return response;
     }
 
 }
