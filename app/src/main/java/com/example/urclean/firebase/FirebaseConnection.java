@@ -1,7 +1,6 @@
 package com.example.urclean.firebase;
 
 import android.app.Activity;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -9,9 +8,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -75,6 +74,32 @@ public class FirebaseConnection {
                 });
 
     }
+
+    public void getPersona(final FirebaseCallback callback) {
+        db.collection("Persona")
+                .whereEqualTo("idUser", getUser().getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public FirebaseUser getUser(){
+        return mAuth.getCurrentUser();
+    }
+
+    public QuerySnapshot getResponse() {
+        return response;
+    }
+
 
     public void logout(final FirebaseCallback callback) {
         mAuth.signOut();

@@ -11,6 +11,8 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".RegisterActivity"> </activity>
+        <activity android:name=".Perfil"> </activity>
+        <activity android:name=".tareasBarrendero"></activity>
         <activity android:name=".AccesoActivity" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

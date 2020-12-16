@@ -7,8 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.urclean.R;
+import com.example.urclean.firebase.FirebaseConnection;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +21,11 @@ import com.example.urclean.R;
  * create an instance of this fragment.
  */
 public class PerfilFragment extends Fragment {
+
+    private FirebaseConnection connection;
+    TextView textViewEmail;
+    TextView textViewName;
+    TextView textViewUsername;
 
 
     public PerfilFragment() {
@@ -27,5 +37,9 @@ public class PerfilFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_perfil, container, false);
+
     }
+
+
+
 }

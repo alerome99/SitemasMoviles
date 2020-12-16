@@ -48,6 +48,7 @@ public class AccesoActivity extends AppCompatActivity {
                         // rl.setAlpha(1);
 
                         // Si es true, get user type.
+                        //lo cambie DANI
                             startActivity(new Intent( AccesoActivity.this, menuBarrendero.class));
                        // } else {
                         //    loading.setVisibility(View.INVISIBLE);
