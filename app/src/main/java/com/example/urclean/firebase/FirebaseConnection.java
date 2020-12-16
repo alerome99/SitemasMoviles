@@ -82,7 +82,7 @@ public class FirebaseConnection {
     }
 
 
-    public void getTypeUser(final FirebaseCallback callback){
+    public void getPersona(final FirebaseCallback callback){
         db.collection("Persona")
                 .whereEqualTo("idUser", mAuth.getCurrentUser().getUid())
                 .get()
@@ -93,6 +93,25 @@ public class FirebaseConnection {
                             response = task.getResult();
                             callback.onResponse(true);
                         } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getTarea(String grupoUser,final FirebaseCallback callback){
+        db.collection("Tareas")
+                .whereEqualTo("Grupo", grupoUser)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            Log.e("TAREA", "dentro de tarea");
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            Log.e("TAREA", "no ha ido a la tarea");
                             callback.onResponse(false);
                         }
                     }

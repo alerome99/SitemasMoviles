@@ -35,7 +35,7 @@ public class Perfil extends AppCompatActivity {
         textViewUsername = findViewById(R.id.textViewUsername);
 
         connection = FirebaseConnection.getInstance();
-        connection.getTypeUser(correct -> {
+        connection.getPersona(correct -> {
             if (correct){
                 if (connection.getResponse().isEmpty() || connection.getResponse() == null){
 

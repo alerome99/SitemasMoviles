@@ -115,7 +115,7 @@ public class AccesoActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(boolean correct) {
                         if (correct) {
-                            connection.getTypeUser(new FirebaseCallback() {
+                            connection.getPersona(new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
                                     if (correct) {

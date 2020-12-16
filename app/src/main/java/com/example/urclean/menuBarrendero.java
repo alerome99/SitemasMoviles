@@ -42,10 +42,11 @@ public class menuBarrendero extends AppCompatActivity  {
         setContentView(R.layout.activity_menubarrendero);
         connection = FirebaseConnection.getInstance();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-
+        Log.e("TAREA", "antes de barra");
         navigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
+                Log.e("TAREA", "despues de barra");
                 switch(item.getItemId()){
                     case (R.id.navigation_home):
                         startActivity(new Intent(menuBarrendero.this, Perfil.class));
