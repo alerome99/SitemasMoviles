@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 
+
 import android.content.ClipData;
 import android.content.ClipData.Item;
 import android.content.Intent;
@@ -19,16 +20,27 @@ import android.widget.Toast;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+import com.example.urclean.firebase.FirebaseCallback;
+import com.example.urclean.firebase.FirebaseConnection;
 
 public class menuBarrendero extends AppCompatActivity  {
 
     BottomNavigationView navigation;
 
 
+
+    private FirebaseConnection connection;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menubarrendero);
+        connection = FirebaseConnection.getInstance();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
         navigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
@@ -56,6 +68,22 @@ public class menuBarrendero extends AppCompatActivity  {
             }
         });
 
+
+
+
+    }
+
+    public void cerrarSes(View v){
+
+        connection.logout(new FirebaseCallback() {
+            @Override
+            public void onResponse(boolean correct) {
+
+                if(correct){
+                    startActivity(new Intent(menuBarrendero.this, AccesoActivity.class));
+                }
+            }
+        });
 
     }
 }
