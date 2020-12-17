@@ -51,7 +51,8 @@ public class menuBarrendero extends AppCompatActivity  {
                         startActivity(new Intent(menuBarrendero.this, Perfil.class));
                         break;
                     case (R.id.navigation_incidencia_ciudadano):
-                        //Ir a Incidencia
+                        startActivity (new Intent(menuBarrendero.this, IncidenciaActivity.class));
+
                         break;
                     case (R.id.navigation_list_ciudadano):
                         //Ir a...?

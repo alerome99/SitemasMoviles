@@ -41,7 +41,7 @@ public class Perfil_v2 extends AppCompatActivity {
             }
         });
 
-        connection.getTypeUser(correct -> {
+        connection.getPersona(correct -> {
             if (correct){
                 if (connection.getResponse().isEmpty() || connection.getResponse() == null){
 

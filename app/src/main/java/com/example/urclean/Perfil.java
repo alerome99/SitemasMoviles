@@ -40,7 +40,7 @@ public class Perfil extends AppCompatActivity {
         textViewDni = findViewById(R.id.textViewDni);
 
         connection = FirebaseConnection.getInstance();
-        connection.getTypeUser(correct -> {
+        connection.getPersona(correct -> {
             if (correct){
                 if (connection.getResponse().isEmpty() || connection.getResponse() == null){
 

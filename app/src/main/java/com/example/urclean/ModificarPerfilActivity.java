@@ -35,7 +35,7 @@ public class ModificarPerfilActivity extends AppCompatActivity {
         editTextPhone = findViewById(R.id.editTextPhone);
         buttonConfirmar = findViewById(R.id.buttonConfirmar);
 
-        connection.getTypeUser(correct -> {
+        connection.getPersona(correct -> {
             if (correct) {
                 if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
 
