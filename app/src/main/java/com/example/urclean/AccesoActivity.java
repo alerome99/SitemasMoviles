@@ -115,7 +115,7 @@ public class AccesoActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(boolean correct) {
                         if (correct) {
-                            connection.getPersona(new FirebaseCallback() {
+                            connection.getTypeUser(new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
                                     if (correct) {
@@ -138,7 +138,7 @@ public class AccesoActivity extends AppCompatActivity {
 
                                             } else if (typeUser.equals("supervisor")){
 
-                                                // Para supervisor.
+                                                startActivity(new Intent( AccesoActivity.this, MenuSupervisorActivity.class));
 
                                             }else{
 

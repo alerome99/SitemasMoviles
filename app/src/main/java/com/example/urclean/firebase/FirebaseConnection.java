@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -24,6 +25,7 @@ public class FirebaseConnection {
     private static FirebaseAuth mAuth;
     private static FirebaseFirestore db;
     private QuerySnapshot response;
+    private DatabaseReference databaseReference;
 
     public static FirebaseConnection getInstance() {
         if (singleton == null) { // Si no existe conexion establecida
@@ -82,7 +84,7 @@ public class FirebaseConnection {
     }
 
 
-    public void getPersona(final FirebaseCallback callback){
+    public void getTypeUser(final FirebaseCallback callback){
         db.collection("Persona")
                 .whereEqualTo("idUser", mAuth.getCurrentUser().getUid())
                 .get()
@@ -99,23 +101,24 @@ public class FirebaseConnection {
                 });
     }
 
-    public void getTarea(String grupoUser,final FirebaseCallback callback){
-        db.collection("Tareas")
-                .whereEqualTo("Grupo", grupoUser)
+    public void getUsuarios(final FirebaseCallback callback){
+        db.collection("Persona")
+                .whereEqualTo("type", "ciudadano")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            Log.e("TAREA", "dentro de tarea");
                             response = task.getResult();
                             callback.onResponse(true);
                         } else {
-                            Log.e("TAREA", "no ha ido a la tarea");
                             callback.onResponse(false);
                         }
                     }
                 });
+    }
+
+    public void modificarDatos(final FirebaseCallback callback){
     }
 
 

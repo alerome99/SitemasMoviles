@@ -6,33 +6,6 @@
     android:layout_height="match_parent"
     android:background="#2027">
 
-    <TextView
-        android:id="@+id/textViewName"
-        android:layout_width="155dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="67dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView1"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-
-    <TextView
-        android:id="@+id/textViewTelefono"
-        android:layout_width="153dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="28dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDni"
-        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -73,18 +46,6 @@
         app:srcCompat="@drawable/ic_baseline_contact_page_24"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textViewDni"
-        android:layout_width="158dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="28dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName"
-        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textViewNacimiento"
@@ -130,22 +91,6 @@
         tools:ignore="MissingConstraints"
         tools:srcCompat="@drawable/ic_baseline_email_24" />
 
-    <TextView
-        android:id="@+id/textViewEmail"
-        android:layout_width="300dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="31dp"
-        android:gravity="center_vertical"
-        android:text=""
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNacimiento"
-        tools:ignore="MissingConstraints" />
-
     <ImageView
         android:id="@+id/imageView10"
         android:layout_width="50dp"
@@ -172,27 +117,13 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTelefono"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textViewUsername"
-        android:layout_width="127dp"
-        android:layout_height="48dp"
-
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center_horizontal"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
         tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageViewPhoto"
-        android:layout_width="139dp"
-        android:layout_height="215dp"
+        android:layout_width="151dp"
+        android:layout_height="227dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -221,5 +152,84 @@
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_navigation_menubarrendero" />
     </FrameLayout>
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="300dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="31dp"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNacimiento"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="153dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDni"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="155dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="67dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextDni"
+        android:layout_width="158dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/editTextName"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="127dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhoto"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonModificar"
+        android:layout_width="112dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
+        android:text="Modificar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

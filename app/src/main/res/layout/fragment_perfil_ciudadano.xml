@@ -10,7 +10,6 @@
         android:id="@+id/textViewName"
         android:layout_width="155dp"
         android:layout_height="?attr/listPreferredItemHeight"
-
         android:layout_marginStart="16dp"
         android:layout_marginTop="67dp"
         android:gravity="center_vertical"
@@ -54,7 +53,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="17dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView24"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8"
         app:srcCompat="@drawable/ic_baseline_phone_24"
@@ -67,7 +66,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView23"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView1"
         app:srcCompat="@drawable/ic_baseline_contact_page_24"
@@ -110,7 +109,6 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="34dp"
         android:layout_marginEnd="17dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/ic_baseline_house_24"
@@ -153,7 +151,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="18dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView26"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView9"
         app:srcCompat="@drawable/ic_baseline_calendar_today_24"
@@ -200,26 +198,5 @@
         app:srcCompat="@drawable/ic_baseline_person_24"
         tools:ignore="MissingConstraints" />
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="410dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <!-- Main content -->
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@android:color/holo_blue_dark"
-            app:itemIconTint="@android:color/white"
-            app:itemTextColor="@android:color/white"
-            app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_navigation_menubarrendero" />
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
