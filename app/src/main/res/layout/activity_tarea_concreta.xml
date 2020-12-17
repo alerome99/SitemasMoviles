@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/nombreTarea"
+        android:layout_width="193dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="108dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descripcionTarea"
+        android:layout_width="253dp"
+        android:layout_height="186dp"
+        android:layout_marginTop="75dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreTarea" />
+
+    <TextView
+        android:id="@+id/calleTarea"
+        android:layout_width="259dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="73dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionTarea" />
+
+    <TextView
+        android:id="@+id/distritoTarea"
+        android:layout_width="259dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="73dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calleTarea" />
+
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="410dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <!-- Main content -->
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@android:color/holo_blue_dark"
+            app:itemIconTint="@android:color/white"
+            app:itemTextColor="@android:color/white"
+            app:labelVisibilityMode="unlabeled"
+            app:menu="@menu/bottom_navigation_menubarrendero" />
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
