@@ -138,7 +138,7 @@ public class AccesoActivity extends AppCompatActivity {
 
                                             } else if (typeUser.equals("supervisor")){
 
-                                                // Para supervisor.
+                                                startActivity(new Intent( AccesoActivity.this, MenuSupervisorActivity.class));
 
                                             }else{
 
