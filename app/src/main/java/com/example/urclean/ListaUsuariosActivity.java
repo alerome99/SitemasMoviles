@@ -1,5 +1,6 @@
 package com.example.urclean;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ public class ListaUsuariosActivity extends AppCompatActivity {
 
     private ListView lvLista;
     String[] datos;
+    String[][] extra;
     String[] prueba = {"Interestelar", "Christopher Nolan"};
     private ArrayAdapter<String> adaptador;
 
@@ -35,8 +37,12 @@ public class ListaUsuariosActivity extends AppCompatActivity {
                 } else {
                     int i = 0;
                     datos = new String [connection.getResponse().size()];
+                    extra = new String [connection.getResponse().size()][3];
                     for (QueryDocumentSnapshot document : connection.getResponse()) {
                         datos[i] = (String) document.get("username");
+                        extra[i][0] = (String) document.get("name");
+                        extra[i][1] = (String) document.get("email");
+                        extra[i][2] = (String) document.get("telefono");
                         i++;
                     }
                     adaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,datos);
@@ -44,7 +50,11 @@ public class ListaUsuariosActivity extends AppCompatActivity {
                     lvLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            System.out.println("pruebaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                            Intent detalles = new Intent(view.getContext(), detallesUsuario.class);
+                            detalles.putExtra("NAME", extra[position][0]);
+                            detalles.putExtra("EMAIL", extra[position][1]);
+                            detalles.putExtra("PHONE", extra[position][2]);
+                            startActivity(detalles);
                         }
                     });
                 }
