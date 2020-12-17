@@ -1,33 +1,18 @@
 package com.example.urclean;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-
-
-import android.content.ClipData;
-import android.content.ClipData.Item;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.urclean.firebase.FirebaseCallback;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class menuBarrendero extends AppCompatActivity  {
+public class MenuSupervisorActivity extends AppCompatActivity {
 
     BottomNavigationView navigation;
 
@@ -48,7 +33,7 @@ public class menuBarrendero extends AppCompatActivity  {
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case (R.id.navigation_home):
-                        startActivity(new Intent(menuBarrendero.this, Perfil.class));
+                        startActivity(new Intent(MenuSupervisorActivity.this, Perfil_v2.class));
                         break;
                     case (R.id.navigation_incidencia_ciudadano):
                         //Ir a Incidencia
@@ -60,7 +45,7 @@ public class menuBarrendero extends AppCompatActivity  {
                         //Ir a lista de notificaciones
                         break;
                     case (R.id.navigation_tareas):
-                        startActivity (new Intent(menuBarrendero.this, tareasBarrendero.class));
+                        //Vista tareas
                         break;
 
                 }
@@ -80,7 +65,7 @@ public class menuBarrendero extends AppCompatActivity  {
             public void onResponse(boolean correct) {
 
                 if(correct){
-                    startActivity(new Intent(menuBarrendero.this, AccesoActivity.class));
+                    startActivity(new Intent(MenuSupervisorActivity.this, AccesoActivity.class));
                 }
             }
         });
