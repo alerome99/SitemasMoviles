@@ -20,10 +20,8 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".signUp" />
         <activity android:name=".MenuCiudadanoActivity" />
         <activity android:name=".menuBarrendero" />
-        <activity android:name=".Login"> </activity>
     </application>
 
 </manifest>
