@@ -13,10 +13,9 @@
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginStart="16dp"
         android:layout_marginTop="67dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/textViewName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextName"
         app:srcCompat="@drawable/ic_baseline_person_24"
         tools:ignore="MissingConstraints" />
 
@@ -25,25 +24,12 @@
         android:layout_width="51dp"
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="38dp"
         android:layout_marginEnd="17dp"
         app:layout_constraintEnd_toStartOf="@+id/textView24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        app:srcCompat="@drawable/ic_baseline_phone_24"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="53dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView23"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView1"
-        app:srcCompat="@drawable/ic_baseline_contact_page_24"
+        app:srcCompat="@drawable/ic_baseline_phone_24"
         tools:ignore="MissingConstraints" />
 
 
@@ -52,12 +38,13 @@
         android:layout_width="51dp"
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="38dp"
         android:layout_marginEnd="19dp"
         app:layout_constraintEnd_toStartOf="@+id/textViewEmail"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/ic_baseline_email_24"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="349dp"
         tools:srcCompat="@drawable/ic_baseline_email_24" />
 
     <ImageView
@@ -98,7 +85,7 @@
         android:layout_width="300dp"
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="45dp"
         android:gravity="center_vertical"
         android:text=""
         android:textColor="@color/white"
@@ -114,12 +101,12 @@
         android:layout_width="153dp"
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="45dp"
         android:gravity="center_vertical"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDni"
+        app:layout_constraintTop_toBottomOf="@+id/editTextName"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -135,42 +122,15 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editTextDni"
-        android:layout_width="158dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="28dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editTextUsername"
-        android:layout_width="300dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginTop="34dp"
-        android:gravity="center_horizontal"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.683"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
-        tools:ignore="MissingConstraints" />
-
     <Button
         android:id="@+id/buttonConfirmar"
         android:layout_width="148dp"
         android:layout_height="55dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="203dp"
         android:text="Confirmar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

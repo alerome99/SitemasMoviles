@@ -58,7 +58,6 @@ public class Perfil_v2 extends AppCompatActivity {
                         phone = (String) document.get("telefono");
                         dni = (String) document.get("dni");
                     }
-                    System.out.println(username);
                     editTextEmail.setText(email);
                     editTextName.setText(name);
                     editTextUsername.setText(username);
