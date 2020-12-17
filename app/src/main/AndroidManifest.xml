@@ -13,6 +13,7 @@
         <activity android:name=".RegisterActivity"> </activity>
         <activity android:name=".Perfil"> </activity>
         <activity android:name=".tareasBarrendero"></activity>
+        <activity android:name=".IncidenciaActivity"> </activity>
         <activity android:name=".AccesoActivity" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
