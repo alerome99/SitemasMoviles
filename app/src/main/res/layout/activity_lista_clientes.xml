@@ -16,7 +16,7 @@
         app:itemTextColor="@android:color/white"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="@+id/lvLista"
-        app:menu="@menu/bottom_navigation_menubarrendero"
+        app:menu="@menu/bottom_navigation_menu"
         tools:ignore="MissingConstraints" />
 
     <ListView

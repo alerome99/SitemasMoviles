@@ -2,20 +2,24 @@ package com.example.urclean;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.urclean.firebase.FirebaseConnection;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.List;
 
 public class ListaUsuariosActivity extends AppCompatActivity {
 
+    BottomNavigationView navigation;
     private ListView lvLista;
     String[] datos;
     String[][] extra;
@@ -29,6 +33,7 @@ public class ListaUsuariosActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_clientes);
+        navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         lvLista = findViewById(R.id.lvLista);
         connection = FirebaseConnection.getInstance();
         connection.getUsuarios(correct -> {
@@ -57,6 +62,26 @@ public class ListaUsuariosActivity extends AppCompatActivity {
                             startActivity(detalles);
                         }
                     });
+                }
+            }
+        });
+        navigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case (R.id.navigation_home):
+                        startActivity(new Intent(ListaUsuariosActivity.this, Perfil_v2.class));
+                        break;
+                    case (R.id.navigation_incidencia_ciudadano):
+                        startActivity(new Intent(ListaUsuariosActivity.this, ListaUsuariosActivity.class));
+                        //Ir a Incidencia
+                        break;
+                    case (R.id.navigation_list_ciudadano):
+                        //Ir a...?
+                        break;
+                    case (R.id.navigation_notifications):
+                        //Ir a lista de notificaciones
+                        break;
                 }
             }
         });
