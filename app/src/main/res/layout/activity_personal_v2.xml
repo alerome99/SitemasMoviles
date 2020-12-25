@@ -150,7 +150,7 @@
             app:itemIconTint="@android:color/white"
             app:itemTextColor="@android:color/white"
             app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_navigation_menubarrendero" />
+            app:menu="@menu/bottom_navigation_menu" />
     </FrameLayout>
 
     <EditText

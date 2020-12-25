@@ -24,11 +24,11 @@ public class MenuSupervisorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menubarrendero);
+        setContentView(R.layout.activity_menusupervisor);
         connection = FirebaseConnection.getInstance();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         Logoutsupervisor = findViewById(R.id.Logoutsupervisor);
+        navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
         navigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
@@ -46,9 +46,6 @@ public class MenuSupervisorActivity extends AppCompatActivity {
                         break;
                     case (R.id.navigation_notifications):
                         //Ir a lista de notificaciones
-                        break;
-                    case (R.id.navigation_tareas):
-                        //Vista tareas
                         break;
                 }
             }
