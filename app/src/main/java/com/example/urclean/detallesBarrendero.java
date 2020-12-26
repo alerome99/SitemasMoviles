@@ -12,15 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class detallesUsuario extends AppCompatActivity {
-    Button buttonRegistrarBarrendero;
+public class detallesBarrendero extends AppCompatActivity {
+    Button buttonGrupo;
     BottomNavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_muestra_informacion_usuario);
-        buttonRegistrarBarrendero = findViewById(R.id.buttonGrupo);
+        setContentView(R.layout.activity_muestra_informacion_barrendero);
+        buttonGrupo = findViewById(R.id.buttonGrupo);
         Intent intent = getIntent();
         Bundle bu = intent.getExtras();
         EditText editTextName = findViewById(R.id.editTextName);
@@ -39,14 +39,14 @@ public class detallesUsuario extends AppCompatActivity {
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case (R.id.navigation_home):
-                        startActivity(new Intent(detallesUsuario.this, Perfil_v2.class));
+                        startActivity(new Intent(detallesBarrendero.this, Perfil_v2.class));
                         break;
                     case (R.id.navigation_incidencia_ciudadano):
-                        startActivity(new Intent(detallesUsuario.this, ListaUsuariosActivity.class));
+                        startActivity(new Intent(detallesBarrendero.this, ListaUsuariosActivity.class));
                         //Ir a Incidencia
                         break;
                     case (R.id.navigation_list_ciudadano):
-                        startActivity(new Intent(detallesUsuario.this, ListaBarrenderosActivity.class));
+                        startActivity(new Intent(detallesBarrendero.this, ListaBarrenderosActivity.class));
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):
@@ -56,10 +56,10 @@ public class detallesUsuario extends AppCompatActivity {
             }
         });
 
-        buttonRegistrarBarrendero.setOnClickListener(new View.OnClickListener() {
+        buttonGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //modificar el campo tipo del usuario a barrendero
+                //mostrar toodos los grupos para que se pueda añadir a uno
             }
         });
     }

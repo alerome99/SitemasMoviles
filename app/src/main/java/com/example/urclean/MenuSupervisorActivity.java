@@ -42,6 +42,7 @@ public class MenuSupervisorActivity extends AppCompatActivity {
                         //Ir a Incidencia
                         break;
                     case (R.id.navigation_list_ciudadano):
+                        startActivity(new Intent(MenuSupervisorActivity.this, ListaBarrenderosActivity.class));
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):

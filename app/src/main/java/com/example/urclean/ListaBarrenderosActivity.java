@@ -17,7 +17,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.List;
 
-public class ListaUsuariosActivity extends AppCompatActivity {
+public class ListaBarrenderosActivity extends AppCompatActivity {
 
     BottomNavigationView navigation;
     private ListView lvLista;
@@ -36,7 +36,7 @@ public class ListaUsuariosActivity extends AppCompatActivity {
         navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         lvLista = findViewById(R.id.lvLista);
         connection = FirebaseConnection.getInstance();
-        connection.getUsuarios(correct -> {
+        connection.getBarrenderos(correct -> {
             if (correct) {
                 if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
                 } else {
@@ -55,7 +55,7 @@ public class ListaUsuariosActivity extends AppCompatActivity {
                     lvLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent detalles = new Intent(view.getContext(), detallesUsuario.class);
+                            Intent detalles = new Intent(view.getContext(), detallesBarrendero.class);
                             detalles.putExtra("NAME", extra[position][0]);
                             detalles.putExtra("EMAIL", extra[position][1]);
                             detalles.putExtra("PHONE", extra[position][2]);
@@ -70,14 +70,14 @@ public class ListaUsuariosActivity extends AppCompatActivity {
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case (R.id.navigation_home):
-                        startActivity(new Intent(ListaUsuariosActivity.this, Perfil_v2.class));
+                        startActivity(new Intent(ListaBarrenderosActivity.this, Perfil_v2.class));
                         break;
                     case (R.id.navigation_incidencia_ciudadano):
-                        startActivity(new Intent(ListaUsuariosActivity.this, ListaUsuariosActivity.class));
+                        startActivity(new Intent(ListaBarrenderosActivity.this, ListaUsuariosActivity.class));
                         //Ir a Incidencia
                         break;
                     case (R.id.navigation_list_ciudadano):
-                        startActivity(new Intent(ListaUsuariosActivity.this, ListaBarrenderosActivity.class));
+                        startActivity(new Intent(ListaBarrenderosActivity.this, ListaBarrenderosActivity.class));
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):
