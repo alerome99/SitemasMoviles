@@ -204,7 +204,7 @@ public class RegisterActivity extends AppCompatActivity {
             connection.register(RegisterActivity.this, email.getText().toString().trim(), password.getText().toString().trim(), correct -> {
                 if (correct) {
                     connection.saveUser(name.getText().toString(), username.getText().toString().trim(), email.getText().toString().trim(),
-                            "barrendero", telefono.getText().toString().trim(), dni.getText().toString(), new FirebaseCallback() {
+                            "ciudadano", telefono.getText().toString().trim(), dni.getText().toString(), new FirebaseCallback() {
                         @Override
                         public void onResponse(boolean correct) {
                             if (correct) {
