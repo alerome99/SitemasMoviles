@@ -118,6 +118,23 @@ public class FirebaseConnection {
                 });
     }
 
+    public void getBarrenderos(final FirebaseCallback callback){
+        db.collection("Persona")
+                .whereEqualTo("type", "barrendero")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
     public void getTarea(String grupoUser,final FirebaseCallback callback){
         db.collection("Tareas")
                 .whereEqualTo("Grupo", grupoUser)

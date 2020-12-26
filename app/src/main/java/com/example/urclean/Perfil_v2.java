@@ -52,6 +52,7 @@ public class Perfil_v2 extends AppCompatActivity {
                         //Ir a Incidencia
                         break;
                     case (R.id.navigation_list_ciudadano):
+                        startActivity(new Intent(Perfil_v2.this, ListaBarrenderosActivity.class));
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):

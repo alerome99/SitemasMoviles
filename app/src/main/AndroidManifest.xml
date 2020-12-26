@@ -18,6 +18,8 @@
         <activity android:name=".ModificarPerfilActivity"></activity>
         <activity android:name=".ListaUsuariosActivity"></activity>
         <activity android:name=".detallesUsuario"></activity>
+        <activity android:name=".ListaBarrenderosActivity"></activity>
+        <activity android:name=".detallesBarrendero"></activity>
         <activity android:name=".AccesoActivity" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
