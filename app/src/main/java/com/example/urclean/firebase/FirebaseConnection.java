@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -138,6 +137,32 @@ public class FirebaseConnection {
     }
 
     public void modificarDatos(final FirebaseCallback callback){
+
+    }
+
+    public void modificarPersona(String username, String name, String dni, String tlf, String email){
+        Map<String,Object> user = new HashMap<>();
+        user.put("username", username);
+        user.put("email",email);
+        user.put("name", name);
+        user.put("dni",dni);
+        user.put("telefono",tlf);
+
+
+        //db.collection("Persona").document(mAuth.getCurrentUser().getUid()).update(user);
+
+        db.collection("Persona")
+                .whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot doc = task.getResult().getDocuments().get(0);
+                            db.collection("Persona").document(doc.getId()).update(user);
+                        }
+                    }
+                });
     }
 
 
