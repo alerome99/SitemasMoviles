@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".ResponsbleActivity"></activity>
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".MenuSupervisorActivity"></activity>
@@ -27,6 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddGrupoActivity"></activity>
+        <activity android:name=".ListaBarrenderosActivity"></activity>
+        <activity android:name=".detallesBarrendero"></activity>
         <activity android:name=".MenuCiudadanoActivity" />
         <activity android:name=".menuBarrendero" />
     </application>

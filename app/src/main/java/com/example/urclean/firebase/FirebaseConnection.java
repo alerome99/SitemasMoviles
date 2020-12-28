@@ -103,9 +103,42 @@ public class FirebaseConnection {
                 });
     }
 
+    public void getGrupos(final FirebaseCallback callback){
+        db.collection("Grupo")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
     public void getUsuarios(final FirebaseCallback callback){
         db.collection("Persona")
                 .whereEqualTo("type", "ciudadano")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getBarrenderos(final FirebaseCallback callback){
+        db.collection("Persona")
+                .whereEqualTo("type", "barrendero")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

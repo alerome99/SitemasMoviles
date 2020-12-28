@@ -2,14 +2,17 @@ package com.example.urclean;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.urclean.firebase.FirebaseConnection;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class Perfil_v2 extends AppCompatActivity {
@@ -20,6 +23,7 @@ public class Perfil_v2 extends AppCompatActivity {
     EditText editTextEmail;
     EditText editTextUsername;
     Button buttonModificar;
+    BottomNavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,31 @@ public class Perfil_v2 extends AppCompatActivity {
         buttonModificar = findViewById(R.id.buttonModificar);
 
         connection = FirebaseConnection.getInstance();
+
+        navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
+        navigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case (R.id.navigation_home):
+                        startActivity(new Intent(Perfil_v2.this, Perfil_v2.class));
+                        break;
+                    case (R.id.navigation_incidencia_ciudadano):
+                        startActivity(new Intent(Perfil_v2.this, ListaUsuariosActivity.class));
+                        //Ir a Incidencia
+                        break;
+                    case (R.id.navigation_list_ciudadano):
+                        startActivity(new Intent(Perfil_v2.this, ListaBarrenderosActivity.class));
+                        //Ir a...?
+                        break;
+                    case (R.id.navigation_notifications):
+                        startActivity(new Intent(Perfil_v2.this, AddGrupoActivity.class));
+                        //Ir a lista de notificaciones
+                        break;
+                }
+            }
+        });
 
         buttonModificar.setOnClickListener(new View.OnClickListener() {
             @Override
