@@ -81,7 +81,7 @@ public class ListaBarrenderosActivity extends AppCompatActivity {
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):
-                        //Ir a lista de notificaciones
+                        startActivity(new Intent(ListaBarrenderosActivity.this, AddGrupoActivity.class));
                         break;
                 }
             }

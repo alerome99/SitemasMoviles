@@ -46,6 +46,7 @@ public class MenuSupervisorActivity extends AppCompatActivity {
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):
+                        startActivity(new Intent(MenuSupervisorActivity.this, AddGrupoActivity.class));
                         //Ir a lista de notificaciones
                         break;
                 }

@@ -4,17 +4,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.urclean.firebase.FirebaseConnection;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class detallesBarrendero extends AppCompatActivity {
     Button buttonGrupo;
     BottomNavigationView navigation;
+    Spinner spinner;
+    private FirebaseConnection connection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +36,22 @@ public class detallesBarrendero extends AppCompatActivity {
         EditText editTextPhone = findViewById(R.id.editTextPhone);
         EditText editTextEmail = findViewById(R.id.editTextEmail);
         navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-
+        spinner = (Spinner)findViewById(R.id.spinner);
+        ArrayList<String> listaGrupos = new ArrayList<>();
+        connection.getGrupos(correct -> {
+            if (correct) {
+                if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                } else {
+                    int i = 0;
+                    for (QueryDocumentSnapshot document : connection.getResponse()) {
+                        listaGrupos.add((String) document.get("numero"));
+                    }
+                    ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this,
+                            android.R.layout.simple_spinner_dropdown_item, listaGrupos);
+                    spinner.setAdapter(adaptador);
+                }
+            }
+        });
         if(bu!=null) {
             editTextName.setText(bu.getString("NAME"));
             editTextEmail.setText(bu.getString("EMAIL"));
@@ -59,7 +83,8 @@ public class detallesBarrendero extends AppCompatActivity {
         buttonGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //mostrar toodos los grupos para que se pueda añadir a uno
+                //añadir una persona al grupo que este
+                spinner.getSelectedItem().toString();
             }
         });
     }
