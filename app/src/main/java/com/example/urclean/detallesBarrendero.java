@@ -31,6 +31,7 @@ public class detallesBarrendero extends AppCompatActivity {
         setContentView(R.layout.activity_muestra_informacion_barrendero);
         buttonGrupo = findViewById(R.id.buttonGrupo);
         Intent intent = getIntent();
+        connection = FirebaseConnection.getInstance();
         Bundle bu = intent.getExtras();
         EditText editTextName = findViewById(R.id.editTextName);
         EditText editTextPhone = findViewById(R.id.editTextPhone);
@@ -74,6 +75,7 @@ public class detallesBarrendero extends AppCompatActivity {
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):
+                        startActivity(new Intent(detallesBarrendero.this, AddGrupoActivity.class));
                         //Ir a lista de notificaciones
                         break;
                 }

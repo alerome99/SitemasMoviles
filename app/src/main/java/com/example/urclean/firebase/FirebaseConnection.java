@@ -1,6 +1,7 @@
 package com.example.urclean.firebase;
 
 import android.app.Activity;
+import android.text.Editable;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -83,6 +84,21 @@ public class FirebaseConnection {
                     }
                 });
 
+    }
+
+    public void saveGrupo(String numero, final FirebaseCallback callback) {
+        Map<String,Object> grupo = new HashMap<>();
+        grupo.put("numero",numero);
+        grupo.put("idUser", mAuth.getCurrentUser().getUid());
+        db.collection("Grupo")
+                .add(grupo)
+                .addOnSuccessListener(documentReference -> callback.onResponse(true))
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });
     }
 
 

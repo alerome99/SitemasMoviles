@@ -1,17 +1,17 @@
 package com.example.urclean.model;
 
 public class Grupo {
-    private int numero;
+    private String numero;
 
-    public Grupo(int numero) {
+    public Grupo(String numero) {
         this.numero = numero;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 }
