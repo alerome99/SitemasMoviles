@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.urclean.model.Tarea;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -12,6 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -119,6 +121,7 @@ public class FirebaseConnection {
     }
 
     public void getTarea(String grupoUser,final FirebaseCallback callback){
+
         db.collection("Tareas")
                 .whereEqualTo("Grupo", grupoUser)
                 .get()
@@ -135,6 +138,33 @@ public class FirebaseConnection {
                         }
                     }
                 });
+    }
+
+    public void asignarResponsable(String id, FirebaseCallback callback){
+
+        Map<String,Object> responsable = new HashMap<>();
+        responsable.put("Responsable",""+mAuth.getUid());
+        responsable.put("Estado","EnCurso");
+
+        Log.e("ASIGNAR","dentro de asignar");
+        Log.e("IDUSER",""+mAuth.getUid());
+        Log.e("ASIGNAR2","Fin asignar");
+
+        DocumentReference ref = db.collection("Tareas").document(id);
+        ref.update(responsable)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void documentReference)  {
+                        callback.onResponse(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });
+
     }
 
     public void modificarDatos(final FirebaseCallback callback){

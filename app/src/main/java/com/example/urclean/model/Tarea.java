@@ -10,13 +10,15 @@ public class Tarea implements Serializable {
     private String estado;
     private String responsable;
     private String calle;
+    private String id;
 
-    public Tarea(String name, String descripcion, String estado, String responsable,String calle) {
+    public Tarea(String name, String descripcion, String estado, String responsable,String calle,String id) {
         this.name = name;
         this.descripcion = descripcion;
         this.estado = estado;
         this.responsable = responsable;
-       this.calle=calle;
+        this.calle=calle;
+        this.id=id;
     }
 
     public String getCalle() {
@@ -56,6 +58,14 @@ public class Tarea implements Serializable {
 
     public void setResponsable(String responsable) {
         this.responsable = responsable;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 
