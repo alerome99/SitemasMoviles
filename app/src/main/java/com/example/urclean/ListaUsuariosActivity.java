@@ -81,6 +81,7 @@ public class ListaUsuariosActivity extends AppCompatActivity {
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):
+                        startActivity(new Intent(ListaUsuariosActivity.this, AddGrupoActivity.class));
                         //Ir a lista de notificaciones
                         break;
                 }

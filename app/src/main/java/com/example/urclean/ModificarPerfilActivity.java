@@ -57,6 +57,7 @@ public class ModificarPerfilActivity extends AppCompatActivity {
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):
+                        startActivity(new Intent(ModificarPerfilActivity.this, AddGrupoActivity.class));
                         //Ir a lista de notificaciones
                         break;
                 }
@@ -91,7 +92,7 @@ public class ModificarPerfilActivity extends AppCompatActivity {
         buttonConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    System.out.println(editTextEmail.getText());
+                    //Que modifique los datos
             }
         });
     }

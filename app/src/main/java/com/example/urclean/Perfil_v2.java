@@ -56,6 +56,7 @@ public class Perfil_v2 extends AppCompatActivity {
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):
+                        startActivity(new Intent(Perfil_v2.this, AddGrupoActivity.class));
                         //Ir a lista de notificaciones
                         break;
                 }
