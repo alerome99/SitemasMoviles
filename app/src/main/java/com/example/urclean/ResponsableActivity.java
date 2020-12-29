@@ -1,5 +1,7 @@
 package com.example.urclean;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,14 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.example.urclean.model.Tarea;
 import com.google.android.material.snackbar.Snackbar;
 
-public class Tarea_Concreta extends AppCompatActivity {
+public class ResponsableActivity extends AppCompatActivity {
 
     private Button tratarTarea;
     private TextView descripcion,calle,distrito,nombre;
@@ -24,42 +24,36 @@ public class Tarea_Concreta extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tarea_concreta);
+        setContentView(R.layout.activity_responsable);
+
 
         tarea = (Tarea) getIntent().getSerializableExtra("ObjetoTarea");
-        tratarTarea = findViewById(R.id.botonTratarTarea);
-        descripcion = findViewById(R.id.descripcionTarea);
-        calle = findViewById(R.id.calleTarea);
-        distrito = findViewById(R.id.distritoTarea);
-        nombre = findViewById(R.id.nombreTarea);
+        tratarTarea = findViewById(R.id.botonCompletadoTarea);
+        descripcion = findViewById(R.id.descripcionResp);
+        calle = findViewById(R.id.nombreCalleResp);
         connection = FirebaseConnection.getInstance();
 
         descripcion.setText(tarea.getDescripcion());
         calle.setText(tarea.getCalle());
-        //distrito.setText(tarea.getDistrito());
-        nombre.setText(tarea.getName());
-        //estado.setText(tarea.getEstado();
         Log.e("ASIGNAR",tarea.getId());
 
         tratarTarea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("ASIGNAR",tarea.getId());
-                connection.asignarResponsable(tarea.getId(), new FirebaseCallback() {
+                Log.e("COMPLETAR",tarea.getId());
+                connection.marcarCompletadaTarea(tarea.getId(), new FirebaseCallback() {
                     @Override
                     public void onResponse(boolean correct) {
                         if (correct) {
-                            Snackbar.make(v, "Tarea asignada a ti", Snackbar.LENGTH_LONG).show();
-                            startActivity(new Intent(Tarea_Concreta.this, menuBarrendero.class));
+                            Snackbar.make(v, "Marcada como completada", Snackbar.LENGTH_LONG).show();
+                            startActivity(new Intent(ResponsableActivity.this, menuBarrendero.class));
                         } else {
-                            Snackbar.make(v, "No se ha podido asignar a ti la tarea", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(v, "Pues eso que no va", Snackbar.LENGTH_LONG).show();
                         }
                     }
                 });
 
             }
         });
-
     }
-
 }

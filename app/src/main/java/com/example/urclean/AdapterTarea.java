@@ -63,7 +63,7 @@ public class AdapterTarea extends BaseAdapter {
 
             // DEBE SER LA DEL USUARIO...
 
-        } else if(condicion.equals("Terminada")){
+        } else if(condicion.equals("Completada")){
 
             Log.e("TERMINADA","TAREA ESTA TERMINADA..");
 

@@ -1,23 +1,32 @@
-package com.example.urclean;
+package com.example.urclean.fragments;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.urclean.AdapterTarea;
+import com.example.urclean.R;
+import com.example.urclean.ResponsableActivity;
+import com.example.urclean.Tarea_Concreta;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.example.urclean.model.Tarea;
+import com.example.urclean.tareasBarrendero;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
-public class tareasBarrendero extends AppCompatActivity  {
+
+public class ListaTareasFragment extends Fragment {
 
     private FirebaseConnection connection;
     private String grupoUser;
@@ -26,21 +35,26 @@ public class tareasBarrendero extends AppCompatActivity  {
     private ArrayList<Tarea> tareas;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public ListaTareasFragment() {
+    }
 
-        setContentView(R.layout.activity_tareas);
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        connection = FirebaseConnection.getInstance();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+       View v = inflater.inflate(R.layout.fragment_lista_tareas, container, false);
 
         tareas = new ArrayList<Tarea>();
         grupoUser = "";
         idPersona="";
-        Context context = this;
-        lista = findViewById(R.id.listViewTaras);
-        //Context context = getApplicationContext();
-
-
-        connection = FirebaseConnection.getInstance();
+        lista = v.findViewById(R.id.listViewTaras);
 
         connection.getPersona(new FirebaseCallback() {
             @Override
@@ -105,7 +119,7 @@ public class tareasBarrendero extends AppCompatActivity  {
                                         }
 
 
-                                        AdapterTarea adaptador = new AdapterTarea(tareasBarrendero.this, tareas);
+                                        AdapterTarea adaptador = new AdapterTarea(ListaTareasFragment.this.getActivity(), tareas);
                                         lista.setAdapter(adaptador);
 
                                         lista.setOnItemClickListener( new AdapterView.OnItemClickListener(){
@@ -114,13 +128,13 @@ public class tareasBarrendero extends AppCompatActivity  {
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                                                 if(tareas.get(position).getEstado().equals("SinRealizar")) {
-                                                    Intent intent = new Intent(tareasBarrendero.this, Tarea_Concreta.class);
+                                                    Intent intent = new Intent(ListaTareasFragment.this.getActivity(), Tarea_Concreta.class);
                                                     intent.putExtra("ObjetoTarea", tareas.get(position));
                                                     startActivity(intent);
 
                                                 }else if(tareas.get(position).getEstado().equals("EnCurso")){
 
-                                                    Intent intent = new Intent(tareasBarrendero.this, ResponsableActivity.class);
+                                                    Intent intent = new Intent(ListaTareasFragment.this.getActivity(), ResponsableActivity.class);
                                                     intent.putExtra("ObjetoTarea", tareas.get(position));
                                                     startActivity(intent);
 
@@ -143,6 +157,6 @@ public class tareasBarrendero extends AppCompatActivity  {
         });
 
 
-
+        return v;
     }
 }

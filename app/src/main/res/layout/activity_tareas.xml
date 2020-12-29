@@ -10,8 +10,8 @@
 
     <ListView
         android:id="@+id/listViewTaras"
-        android:layout_width="418dp"
-        android:layout_height="632dp"
+        android:layout_width="409dp"
+        android:layout_height="590dp"
         android:layout_marginTop="1dp"
         app:layout_constraintBottom_toTopOf="@+id/container"
         app:layout_constraintEnd_toEndOf="parent"
