@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">uRClean</string>
 
-    <string-array name="spinner_crear_incidencia">
+    <string-array name="spinnerCrearIncidencia">
         <item>Limpieza</item>
-        <item>Tipo de incidencia 2</item>
+        <item>Desperfecto</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
