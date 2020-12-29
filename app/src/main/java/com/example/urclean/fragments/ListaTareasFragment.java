@@ -127,16 +127,30 @@ public class ListaTareasFragment extends Fragment {
                                             @Override
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                                                Fragment selectedFragment;
+
                                                 if(tareas.get(position).getEstado().equals("SinRealizar")) {
-                                                    Intent intent = new Intent(ListaTareasFragment.this.getActivity(), Tarea_Concreta.class);
-                                                    intent.putExtra("ObjetoTarea", tareas.get(position));
-                                                    startActivity(intent);
+
+                                                    Log.e("SINR","SinRealizar");
+
+                                                    selectedFragment = new TareaConcretaFragment();
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putSerializable("ObjetoTarea", tareas.get(position));
+                                                    selectedFragment.setArguments(bundle);
+                                                    getActivity().getSupportFragmentManager().beginTransaction().
+                                                            replace(R.id.fragment_container, selectedFragment).commit();
 
                                                 }else if(tareas.get(position).getEstado().equals("EnCurso")){
 
-                                                    Intent intent = new Intent(ListaTareasFragment.this.getActivity(), ResponsableActivity.class);
-                                                    intent.putExtra("ObjetoTarea", tareas.get(position));
-                                                    startActivity(intent);
+                                                    Log.e("ENC","En curso");
+
+                                                    selectedFragment = new TareaResponsableFragment();
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putSerializable("ObjetoTarea", tareas.get(position));
+                                                    selectedFragment.setArguments(bundle);
+
+                                                    getActivity().getSupportFragmentManager().beginTransaction().
+                                                            replace(R.id.fragment_container, selectedFragment).commit();
 
                                                 } else {
                                                     Log.e("feil", "Feil en el estado");

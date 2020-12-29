@@ -5,21 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.example.urclean.firebase.FirebaseCallback;
-import com.example.urclean.fragments.IncidenciaCiudadanoFragment;
 import com.example.urclean.fragments.ListaTareasFragment;
 import com.example.urclean.fragments.MenuBarrenderoFragment;
-import com.example.urclean.fragments.NotificacionesCiudadanoFragment;
 import com.example.urclean.fragments.PerfilCiudadanoFragment;
-import com.example.urclean.fragments.PerfilFragment;
-import com.example.urclean.fragments.QuejasFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.example.urclean.firebase.FirebaseConnection;
@@ -41,7 +32,7 @@ public class menuBarrendero extends AppCompatActivity  {
         navigation.setOnNavigationItemSelectedListener(navListener);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentBarrendero,
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new MenuBarrenderoFragment()).commit();
         }
     }
@@ -53,7 +44,7 @@ public class menuBarrendero extends AppCompatActivity  {
                     Fragment selectedFragment = null;
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
-                            selectedFragment = new PerfilFragment();
+                            selectedFragment = new PerfilCiudadanoFragment();
                             break;
                         case R.id.navigation_tareas:
                             selectedFragment = new ListaTareasFragment();
@@ -65,7 +56,7 @@ public class menuBarrendero extends AppCompatActivity  {
                             //selectedFragment = new NotificacionesCiudadanoFragment();
                             break;
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentBarrendero,
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
 
                     return true;
