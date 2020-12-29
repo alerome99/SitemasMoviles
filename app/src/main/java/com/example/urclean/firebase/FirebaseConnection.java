@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.urclean.model.Tarea;
+import com.example.urclean.model.userClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,7 +75,7 @@ public class FirebaseConnection {
         user.put("name", name);
         user.put("dni",dni);
         user.put("telefono",telefono);
-        user.put("idUser", mAuth.getCurrentUser().getUid());
+        //user.put("idUser", mAuth.getUid());
         db.collection("Persona")
                 .add(user)
                 .addOnSuccessListener(documentReference -> callback.onResponse(true))
@@ -89,7 +91,7 @@ public class FirebaseConnection {
     public void saveGrupo(String numero, final FirebaseCallback callback) {
         Map<String,Object> grupo = new HashMap<>();
         grupo.put("numero",numero);
-        grupo.put("idUser", mAuth.getCurrentUser().getUid());
+        //grupo.put("idUser", mAuth.getCurrentUser().getUid());
         db.collection("Grupo")
                 .add(grupo)
                 .addOnSuccessListener(documentReference -> callback.onResponse(true))
@@ -169,6 +171,23 @@ public class FirebaseConnection {
                 });
     }
 
+    public void getUsuarioPorEmail(String email, final FirebaseCallback callback){
+        db.collection("Persona")
+                .whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
     public void getTarea(String grupoUser,final FirebaseCallback callback){
 
         db.collection("Tareas")
@@ -216,7 +235,72 @@ public class FirebaseConnection {
 
     }
 
-    public void modificarDatos(final FirebaseCallback callback){
+    public void asignarGrupo(String id, String gr, FirebaseCallback callback){
+
+        Map<String,Object> barrendero = new HashMap<>();
+        barrendero.put("Grupo",gr);
+
+        DocumentReference ref = db.collection("Persona").document(id);
+        ref.update(barrendero)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void documentReference)  {
+                        callback.onResponse(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });
+
+    }
+
+    public void convertirBarrendero(String id, FirebaseCallback callback){
+
+        Map<String,Object> persona = new HashMap<>();
+        persona.put("type","barrendero");
+
+        DocumentReference ref = db.collection("Persona").document(id);
+        ref.update(persona)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                    public void onSuccess(Void documentReference)  {
+                        callback.onResponse(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });
+
+    }
+
+    public void modificarDatos(String id, String username, String tlf, String email, FirebaseCallback callback){
+
+        Map<String,Object> persona = new HashMap<>();
+        persona.put("telefono", tlf);
+        persona.put("username", username);
+        persona.put("email", email);
+
+        DocumentReference ref = db.collection("Persona").document(id);
+        ref.update(persona)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void documentReference)  {
+                        callback.onResponse(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });
+
     }
 
 

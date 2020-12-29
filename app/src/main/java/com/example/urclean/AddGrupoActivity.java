@@ -59,8 +59,7 @@ public class AddGrupoActivity extends AppCompatActivity{
         buttonAddGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(editTextTextNumeroGrupo.getText().toString() + "holaaaaaaaaaaaaaaaaaaaaaaa");
-                connection.saveGrupo(editTextTextNumeroGrupo.getText().toString() , new FirebaseCallback() {
+                connection.saveGrupo(editTextTextNumeroGrupo.getText().toString(), new FirebaseCallback() {
                     @Override
                     public void onResponse(boolean correct) {
                         if (correct) {
