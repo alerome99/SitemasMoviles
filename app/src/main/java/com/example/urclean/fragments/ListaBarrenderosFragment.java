@@ -1,41 +1,50 @@
-package com.example.urclean;
+package com.example.urclean.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+
+import androidx.fragment.app.Fragment;
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseConnection;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.util.List;
 
-public class ListaBarrenderosActivity extends AppCompatActivity {
+public class ListaBarrenderosFragment extends Fragment {
 
-    BottomNavigationView navigation;
+    EditText searchFilter;
     private ListView lvLista;
     String[] datos;
     String[][] extra;
-    String[] prueba = {"Interestelar", "Christopher Nolan"};
     private ArrayAdapter<String> adaptador;
-
     private FirebaseConnection connection;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_clientes);
-        navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        lvLista = findViewById(R.id.lvLista);
         connection = FirebaseConnection.getInstance();
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_lista_clientes, container, false);
+        searchFilter = v.findViewById(R.id.searchFilter);
+        lvLista = v.findViewById(R.id.lvLista);
+
+
         connection.getBarrenderos(correct -> {
             if (correct) {
                 if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
@@ -50,43 +59,52 @@ public class ListaBarrenderosActivity extends AppCompatActivity {
                         extra[i][2] = (String) document.get("telefono");
                         i++;
                     }
-                    adaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,datos);
+                    adaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,datos);
                     lvLista.setAdapter(adaptador);
                     lvLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Fragment selectedFragment;
+                            selectedFragment = new DetallesBarrenderoFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("EMAIL", extra[position][1]);
+                            bundle.putString("NAME", extra[position][0]);
+                            bundle.putString("TELEFONO", extra[position][2]);
+                            selectedFragment.setArguments(bundle);
+                            getActivity().getSupportFragmentManager().beginTransaction().
+                                    replace(R.id.fragment_container, selectedFragment).commit();
+
+                            /*
                             Intent detalles = new Intent(view.getContext(), detallesBarrendero.class);
                             detalles.putExtra("NAME", extra[position][0]);
                             detalles.putExtra("EMAIL", extra[position][1]);
                             detalles.putExtra("PHONE", extra[position][2]);
                             startActivity(detalles);
+                             */
                         }
                     });
                 }
             }
         });
-        navigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+        searchFilter.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onNavigationItemReselected(@NonNull MenuItem item) {
-                switch(item.getItemId()){
-                    case (R.id.navigation_home):
-                        startActivity(new Intent(ListaBarrenderosActivity.this, Perfil_v2.class));
-                        break;
-                    case (R.id.navigation_incidencia_ciudadano):
-                        startActivity(new Intent(ListaBarrenderosActivity.this, ListaUsuariosActivity.class));
-                        //Ir a Incidencia
-                        break;
-                    case (R.id.navigation_list_ciudadano):
-                        startActivity(new Intent(ListaBarrenderosActivity.this, ListaBarrenderosActivity.class));
-                        //Ir a...?
-                        break;
-                    case (R.id.navigation_notifications):
-                        startActivity(new Intent(ListaBarrenderosActivity.this, AddGrupoActivity.class));
-                        break;
-                }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                (ListaBarrenderosFragment.this).adaptador.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
-        //adaptador = new Adaptador_lista(this, prueba);
-        //lvLista.setAdapter(adaptador);
+
+        return v;
     }
+
+
 }
