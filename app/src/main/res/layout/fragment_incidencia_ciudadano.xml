@@ -40,6 +40,7 @@
         android:layout_marginRight="40dp"/>
 
     <EditText
+        android:id="@+id/editTextDireccionIncidencia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -61,6 +62,7 @@
 
 
     <EditText
+        android:id="@+id/editTextDescripcionIncidencia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bordesedittext"
@@ -74,7 +76,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/botonEnviarIncidencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
