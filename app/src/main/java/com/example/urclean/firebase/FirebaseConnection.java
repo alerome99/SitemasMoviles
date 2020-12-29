@@ -136,10 +136,6 @@ public class FirebaseConnection {
                 });
     }
 
-    public void modificarDatos(final FirebaseCallback callback){
-
-    }
-
     public void modificarPersona(String username, String name, String dni, String tlf, String email){
         Map<String,Object> user = new HashMap<>();
         user.put("username", username);
@@ -165,6 +161,28 @@ public class FirebaseConnection {
                 });
     }
 
+    public void saveIncidencia(String tipo, String direccion, String descripcion, final FirebaseCallback callback){
+        Map<String,Object> incidencia = new HashMap<>();
+        incidencia.put("tipo", tipo);
+        incidencia.put("direccion", direccion);
+        incidencia.put("descripcion", descripcion);
+        incidencia.put("email", mAuth.getCurrentUser().getEmail());
+        db.collection("Incidencia").add(incidencia)
+                .addOnSuccessListener(documentReference -> callback.onResponse(true))
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });;
+    }
+
+    public void saveQueja(String descripcion){
+        Map<String,Object> queja = new HashMap<>();
+        queja.put("descripcion", descripcion);
+        queja.put("email", mAuth.getCurrentUser().getEmail());
+        db.collection("Queja").add(queja);
+    }
 
     public FirebaseUser getUser(){
         return mAuth.getCurrentUser();
