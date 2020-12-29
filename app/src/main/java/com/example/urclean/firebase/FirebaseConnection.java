@@ -200,6 +200,25 @@ public class FirebaseConnection {
 
     }
 
+    public void marcarCompletadaTarea(String id, FirebaseCallback callback){
+
+        DocumentReference ref = db.collection("Tareas").document(id);
+        ref.update("Estado","Completada")
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void documentReference)  {
+                        callback.onResponse(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });
+
+    }
+
     public void modificarDatos(final FirebaseCallback callback){
     }
 

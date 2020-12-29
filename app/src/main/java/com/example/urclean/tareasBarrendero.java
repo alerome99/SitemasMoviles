@@ -3,20 +3,16 @@ package com.example.urclean;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.example.urclean.model.Tarea;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
@@ -124,7 +120,7 @@ public class tareasBarrendero extends AppCompatActivity  {
 
                                                 }else if(tareas.get(position).getEstado().equals("EnCurso")){
 
-                                                    Intent intent = new Intent(tareasBarrendero.this, ResponsbleActivity.class);
+                                                    Intent intent = new Intent(tareasBarrendero.this, ResponsableActivity.class);
                                                     intent.putExtra("ObjetoTarea", tareas.get(position));
                                                     startActivity(intent);
 

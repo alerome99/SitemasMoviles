@@ -41,7 +41,9 @@ public class menuBarrendero extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menubarrendero);
         connection = FirebaseConnection.getInstance();
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
 
         navigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
@@ -69,10 +71,9 @@ public class menuBarrendero extends AppCompatActivity  {
             }
         });
 
-
-
-
+        
     }
+
 
     public void cerrarSes(View v){
 
