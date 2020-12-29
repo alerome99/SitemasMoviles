@@ -73,14 +73,6 @@ public class ListaUsuariosFragment extends Fragment {
                             selectedFragment.setArguments(bundle);
                             getActivity().getSupportFragmentManager().beginTransaction().
                                     replace(R.id.fragment_container, selectedFragment).commit();
-
-                            /*
-                            Intent detalles = new Intent(view.getContext(), detallesBarrendero.class);
-                            detalles.putExtra("NAME", extra[position][0]);
-                            detalles.putExtra("EMAIL", extra[position][1]);
-                            detalles.putExtra("PHONE", extra[position][2]);
-                            startActivity(detalles);
-                             */
                         }
                     });
                 }
@@ -99,7 +91,39 @@ public class ListaUsuariosFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                connection.getUsuarios(correct -> {
+                    if (correct) {
+                        if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                        } else {
+                            int i = 0;
+                            datos = new String [connection.getResponse().size()];
+                            extra = new String [connection.getResponse().size()][3];
+                            for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                if(document.get("username").toString().contains(s)){
+                                    datos[i] = (String) document.get("username");
+                                    extra[i][0] = (String) document.get("name");
+                                    extra[i][1] = (String) document.get("email");
+                                    extra[i][2] = (String) document.get("telefono");
+                                    i++;
+                                }
+                            }
+                            lvLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    Fragment selectedFragment;
+                                    selectedFragment = new DetallesBarrenderoFragment();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("EMAIL", extra[position][1]);
+                                    bundle.putString("NAME", extra[position][0]);
+                                    bundle.putString("TELEFONO", extra[position][2]);
+                                    selectedFragment.setArguments(bundle);
+                                    getActivity().getSupportFragmentManager().beginTransaction().
+                                            replace(R.id.fragment_container, selectedFragment).commit();
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
 
