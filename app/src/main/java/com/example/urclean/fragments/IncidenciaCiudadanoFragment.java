@@ -1,5 +1,6 @@
 package com.example.urclean.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,10 +14,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.urclean.R;
+import com.example.urclean.direccionMapsActivity;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 
-public class IncidenciaCiudadanoFragment extends Fragment implements View.OnClickListener {
+public class IncidenciaCiudadanoFragment extends Fragment {
     //implements AdapterView.OnItemSelectedListener
 
     private FirebaseConnection connection;
@@ -38,32 +40,40 @@ public class IncidenciaCiudadanoFragment extends Fragment implements View.OnClic
         direccion = view.findViewById(R.id.editTextDireccionIncidencia);
         descripcion = view.findViewById(R.id.editTextDescripcionIncidencia);
 
-        view.findViewById(R.id.botonEnviarIncidencia).setOnClickListener(this);
+        view.findViewById(R.id.botonEnviarIncidencia).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String item = spinner.getSelectedItem().toString();
+                Log.d("onTouch", item);
+                switch (item){
+                    case "Limpieza":
+                        break;
+                    case "Desperfecto":
+                        connection.saveDesperfecto(direccion.getText().toString(), descripcion.getText().toString(), new FirebaseCallback() {
+                            @Override
+                            public void onResponse(boolean correct) {
+                                if(correct){
+
+                                }else{
+
+                                }
+                            }
+                        });
+                        break;
+                }
+            }
+        });
+
+        view.findViewById(R.id.botonMaps).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), direccionMapsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         connection = FirebaseConnection.getInstance();
 
         return view;
-    }
-
-    @Override
-    public void onClick(View view) {
-        String item = spinner.getSelectedItem().toString();
-        Log.d("onTouch", item);
-        switch (item){
-            case "Limpieza":
-                break;
-            case "Desperfecto":
-                connection.saveDesperfecto(direccion.getText().toString(), descripcion.getText().toString(), new FirebaseCallback() {
-                    @Override
-                    public void onResponse(boolean correct) {
-                        if(correct){
-
-                        }else{
-
-                        }
-                    }
-                });
-                break;
-        }
     }
 }
