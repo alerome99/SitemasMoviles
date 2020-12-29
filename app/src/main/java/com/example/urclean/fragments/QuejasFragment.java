@@ -35,7 +35,16 @@ public class QuejasFragment extends Fragment implements View.OnTouchListener{
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        connection.saveQueja(editTextQueja.getText().toString());
+        connection.saveQueja(editTextQueja.getText().toString(), new FirebaseCallback() {
+            @Override
+            public void onResponse(boolean correct) {
+                if(correct){
+
+                }else{
+
+                }
+            }
+        });
 
         return false;
     }

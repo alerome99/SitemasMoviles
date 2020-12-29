@@ -36,8 +36,16 @@ public class IncidenciaCiudadanoFragment extends Fragment implements AdapterView
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
         String item = parent.getItemAtPosition(pos).toString();
+        switch (item){
+            case "Limpieza":
+                // Asignar a tareas
+                break;
+            case "Desperfecto":
+                // Asignar a desperfecto
+                break;
+        }
+
 
     }
 

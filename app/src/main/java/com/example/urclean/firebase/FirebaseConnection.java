@@ -161,13 +161,12 @@ public class FirebaseConnection {
                 });
     }
 
-    public void saveIncidencia(String tipo, String direccion, String descripcion, final FirebaseCallback callback){
-        Map<String,Object> incidencia = new HashMap<>();
-        incidencia.put("tipo", tipo);
-        incidencia.put("direccion", direccion);
-        incidencia.put("descripcion", descripcion);
-        incidencia.put("email", mAuth.getCurrentUser().getEmail());
-        db.collection("Incidencia").add(incidencia)
+    public void saveDesperfecto(String direccion, String descripcion, final FirebaseCallback callback){
+        Map<String,Object> desperfecto = new HashMap<>();
+        desperfecto.put("direccion", direccion);
+        desperfecto.put("descripcion", descripcion);
+        desperfecto.put("email", mAuth.getCurrentUser().getEmail());
+        db.collection("Desperfecto").add(desperfecto)
                 .addOnSuccessListener(documentReference -> callback.onResponse(true))
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -177,11 +176,18 @@ public class FirebaseConnection {
                 });;
     }
 
-    public void saveQueja(String descripcion){
+    public void saveQueja(String descripcion, final FirebaseCallback callback){
         Map<String,Object> queja = new HashMap<>();
         queja.put("descripcion", descripcion);
         queja.put("email", mAuth.getCurrentUser().getEmail());
-        db.collection("Queja").add(queja);
+        db.collection("Queja").add(queja)
+                .addOnSuccessListener(documentReference -> callback.onResponse(true))
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });;
     }
 
     public FirebaseUser getUser(){
