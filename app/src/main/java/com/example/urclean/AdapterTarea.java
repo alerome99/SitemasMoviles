@@ -57,7 +57,7 @@ public class AdapterTarea extends BaseAdapter {
 
             imagen.setImageResource(imagenes[0]);
 
-        }else if(condicion.equals("Realizandose")){
+        }else if(condicion.equals("EnCurso")){
 
             imagen.setImageResource(imagenes[1]);
 

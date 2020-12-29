@@ -58,7 +58,7 @@ public class menuBarrendero extends AppCompatActivity  {
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):
-                        //Ir a lista de notificaciones
+                      //  startActivity (new Intent(menuBarrendero.this, Tarea_Concreta.class));
                         break;
                     case (R.id.navigation_tareas):
                         startActivity (new Intent(menuBarrendero.this, tareasBarrendero.class));

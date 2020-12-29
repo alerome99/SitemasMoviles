@@ -24,31 +24,30 @@ public class MenuSupervisorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menubarrendero);
+        setContentView(R.layout.activity_menusupervisor);
         connection = FirebaseConnection.getInstance();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         Logoutsupervisor = findViewById(R.id.Logoutsupervisor);
+        navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
         navigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-                    case (R.id.navigation_home):
+                    case R.id.navigation_home:
                         startActivity(new Intent(MenuSupervisorActivity.this, Perfil_v2.class));
                         break;
-                    case (R.id.navigation_incidencia_ciudadano):
+                    case R.id.navigation_incidencia_ciudadano:
                         startActivity(new Intent(MenuSupervisorActivity.this, ListaUsuariosActivity.class));
                         //Ir a Incidencia
                         break;
-                    case (R.id.navigation_list_ciudadano):
+                    case R.id.navigation_list_ciudadano:
+                        startActivity(new Intent(MenuSupervisorActivity.this, ListaBarrenderosActivity.class));
                         //Ir a...?
                         break;
-                    case (R.id.navigation_notifications):
+                    case R.id.navigation_notifications:
+                        startActivity(new Intent(MenuSupervisorActivity.this, AddGrupoActivity.class));
                         //Ir a lista de notificaciones
-                        break;
-                    case (R.id.navigation_tareas):
-                        //Vista tareas
                         break;
                 }
             }
