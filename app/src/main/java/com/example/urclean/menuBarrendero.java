@@ -2,36 +2,31 @@ package com.example.urclean;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
 
 
-import android.content.ClipData;
-import android.content.ClipData.Item;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.urclean.firebase.FirebaseCallback;
+import com.example.urclean.fragments.IncidenciaCiudadanoFragment;
+import com.example.urclean.fragments.ListaTareasFragment;
+import com.example.urclean.fragments.MenuBarrenderoFragment;
+import com.example.urclean.fragments.NotificacionesCiudadanoFragment;
+import com.example.urclean.fragments.PerfilCiudadanoFragment;
+import com.example.urclean.fragments.PerfilFragment;
+import com.example.urclean.fragments.QuejasFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 
-import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 
 public class menuBarrendero extends AppCompatActivity  {
 
     BottomNavigationView navigation;
-
-
 
     private FirebaseConnection connection;
 
@@ -42,50 +37,38 @@ public class menuBarrendero extends AppCompatActivity  {
         setContentView(R.layout.activity_menubarrendero);
         connection = FirebaseConnection.getInstance();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation_barrendero);
+        navigation.setOnNavigationItemSelectedListener(navListener);
 
-
-        navigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
-            @Override
-            public void onNavigationItemReselected(@NonNull MenuItem item) {
-                switch(item.getItemId()){
-                    case (R.id.navigation_home):
-                        startActivity(new Intent(menuBarrendero.this, Perfil.class));
-                        break;
-                    case (R.id.navigation_incidencia_ciudadano):
-                        startActivity (new Intent(menuBarrendero.this, IncidenciaActivity.class));
-
-                        break;
-                    case (R.id.navigation_list_ciudadano):
-                        //Ir a...?
-                        break;
-                    case (R.id.navigation_notifications):
-                      //  startActivity (new Intent(menuBarrendero.this, Tarea_Concreta.class));
-                        break;
-                    case (R.id.navigation_tareas):
-                        startActivity (new Intent(menuBarrendero.this, tareasBarrendero.class));
-                        break;
-
-                }
-
-            }
-        });
-
-        
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentBarrendero,
+                    new MenuBarrenderoFragment()).commit();
+        }
     }
 
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+                    switch (item.getItemId()) {
+                        case R.id.navigation_home:
+                            selectedFragment = new PerfilFragment();
+                            break;
+                        case R.id.navigation_tareas:
+                            selectedFragment = new ListaTareasFragment();
+                            break;
+                        case R.id.navigation_list_ciudadano:
+                            selectedFragment = new MenuBarrenderoFragment();
+                            break;
+                        case R.id.navigation_notifications:
+                            //selectedFragment = new NotificacionesCiudadanoFragment();
+                            break;
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentBarrendero,
+                            selectedFragment).commit();
 
-    public void cerrarSes(View v){
-
-        connection.logout(new FirebaseCallback() {
-            @Override
-            public void onResponse(boolean correct) {
-
-                if(correct){
-                    startActivity(new Intent(menuBarrendero.this, AccesoActivity.class));
+                    return true;
                 }
-            }
-        });
-
-    }
+            };
 }
