@@ -10,11 +10,18 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.urclean.firebase.FirebaseCallback;
+import com.example.urclean.firebase.FirebaseConnection;
+import com.example.urclean.model.Tarea;
+import com.example.urclean.model.userClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class detallesUsuario extends AppCompatActivity {
     Button buttonRegistrarBarrendero;
     BottomNavigationView navigation;
+    private FirebaseConnection connection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,7 @@ public class detallesUsuario extends AppCompatActivity {
         EditText editTextPhone = findViewById(R.id.editTextPhone);
         EditText editTextEmail = findViewById(R.id.editTextEmail);
         navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        connection = FirebaseConnection.getInstance();
 
         if(bu!=null) {
             editTextName.setText(bu.getString("NAME"));
@@ -50,6 +58,7 @@ public class detallesUsuario extends AppCompatActivity {
                         //Ir a...?
                         break;
                     case (R.id.navigation_notifications):
+                        startActivity(new Intent(detallesUsuario.this, AddGrupoActivity.class));
                         //Ir a lista de notificaciones
                         break;
                 }
@@ -60,6 +69,28 @@ public class detallesUsuario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //modificar el campo tipo del usuario a barrendero
+                connection.getUsuarioPorEmail(bu.getString("EMAIL"), correct -> {
+                    if (correct){
+                        if (connection.getResponse().isEmpty() || connection.getResponse() == null){
+                        }else{
+                            String id = "";
+                            for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                id = (String) document.getId();
+                            }
+                            connection.convertirBarrendero(id, new FirebaseCallback() {
+                                @Override
+                                public void onResponse(boolean correct) {
+                                    if (correct) {
+                                        Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
+                                    } else {
+                                        Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        }
+                    }else{
+                    }
+                });
             }
         });
     }

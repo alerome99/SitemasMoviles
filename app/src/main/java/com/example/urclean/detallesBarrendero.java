@@ -12,8 +12,10 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.lang.reflect.Array;
@@ -86,7 +88,28 @@ public class detallesBarrendero extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //añadir una persona al grupo que este
-                spinner.getSelectedItem().toString();
+                connection.getUsuarioPorEmail(bu.getString("EMAIL"), correct -> {
+                    if (correct){
+                        if (connection.getResponse().isEmpty() || connection.getResponse() == null){
+                        }else{
+                            String id = "";
+                            for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                id = (String) document.getId();
+                            }
+                            connection.asignarGrupo(id, spinner.getSelectedItem().toString(), new FirebaseCallback() {
+                                @Override
+                                public void onResponse(boolean correct) {
+                                    if (correct) {
+                                        Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
+                                    } else {
+                                        Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        }
+                    }else{
+                    }
+                });
             }
         });
     }

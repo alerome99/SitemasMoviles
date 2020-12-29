@@ -34,18 +34,18 @@ public class MenuSupervisorActivity extends AppCompatActivity {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-                    case (R.id.navigation_home):
+                    case R.id.navigation_home:
                         startActivity(new Intent(MenuSupervisorActivity.this, Perfil_v2.class));
                         break;
-                    case (R.id.navigation_incidencia_ciudadano):
+                    case R.id.navigation_incidencia_ciudadano:
                         startActivity(new Intent(MenuSupervisorActivity.this, ListaUsuariosActivity.class));
                         //Ir a Incidencia
                         break;
-                    case (R.id.navigation_list_ciudadano):
+                    case R.id.navigation_list_ciudadano:
                         startActivity(new Intent(MenuSupervisorActivity.this, ListaBarrenderosActivity.class));
                         //Ir a...?
                         break;
-                    case (R.id.navigation_notifications):
+                    case R.id.navigation_notifications:
                         startActivity(new Intent(MenuSupervisorActivity.this, AddGrupoActivity.class));
                         //Ir a lista de notificaciones
                         break;
