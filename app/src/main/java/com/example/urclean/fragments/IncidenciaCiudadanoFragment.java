@@ -30,6 +30,8 @@ public class IncidenciaCiudadanoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_incidencia_ciudadano, container, false);
 
+        connection = FirebaseConnection.getInstance();
+
         spinner = (Spinner) view.findViewById(R.id.spinnerCrearIncidencia);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.spinnerCrearIncidencia,
@@ -71,8 +73,6 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        connection = FirebaseConnection.getInstance();
 
         return view;
     }
