@@ -11,11 +11,10 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".ResponsbleActivity"></activity>
+
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".MenuSupervisorActivity"></activity>
         <activity android:name=".Tarea_Concreta"></activity>
-        <activity android:name=".Perfil"></activity>
         <activity android:name=".Perfil_v2"></activity>
         <activity android:name=".tareasBarrendero" />
         <activity android:name=".ModificarPerfilActivity" />

@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.urclean.fragments.IncidenciaCiudadanoFragment;
 import com.example.urclean.fragments.ListaTareasFragment;
 import com.example.urclean.fragments.MenuBarrenderoFragment;
+import com.example.urclean.fragments.NotificacionesCiudadanoFragment;
 import com.example.urclean.fragments.PerfilCiudadanoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -49,11 +51,16 @@ public class menuBarrendero extends AppCompatActivity  {
                         case R.id.navigation_tareas:
                             selectedFragment = new ListaTareasFragment();
                             break;
+
+                        case R.id.navigation_incidencia_ciudadano:
+                            selectedFragment = new IncidenciaCiudadanoFragment();
+                            break;
+
                         case R.id.navigation_list_ciudadano:
                             selectedFragment = new MenuBarrenderoFragment();
                             break;
                         case R.id.navigation_notifications:
-                            //selectedFragment = new NotificacionesCiudadanoFragment();
+                            selectedFragment = new NotificacionesCiudadanoFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
