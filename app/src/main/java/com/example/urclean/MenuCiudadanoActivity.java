@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.urclean.fragments.IncidenciaCiudadanoFragment;
+import com.example.urclean.fragments.MenuCiudadanoFragment;
 import com.example.urclean.fragments.NotificacionesCiudadanoFragment;
 import com.example.urclean.fragments.PerfilCiudadanoFragment;
-import com.example.urclean.fragments.QuejasFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuCiudadanoActivity extends AppCompatActivity {
@@ -18,13 +18,26 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menuciudadano);
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation_barrendero);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        //I added this if statement to keep the selected fragment when rotating the device
-        if (savedInstanceState == null) {
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle != null){
+            Double lat = bundle.getDouble("lat");
+            Double lng = bundle.getDouble("lng");
+
+            Bundle args = new Bundle();
+            args.putDouble("lat", lat);
+            args.putDouble("lng",lng);
+
+            IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
+            fragment.setArguments(args);
+
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new PerfilCiudadanoFragment()).commit();
+                    fragment).commit();
+        }else if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new MenuCiudadanoFragment()).commit();
         }
 
     }
@@ -41,7 +54,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
                             selectedFragment = new IncidenciaCiudadanoFragment();
                             break;
                         case R.id.nav_quejas:
-                            selectedFragment = new QuejasFragment();
+                            selectedFragment = new MenuCiudadanoFragment();
                             break;
                         case R.id.nav_notificaciones:
                             selectedFragment = new NotificacionesCiudadanoFragment();

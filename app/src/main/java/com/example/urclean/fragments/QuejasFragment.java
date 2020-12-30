@@ -38,7 +38,7 @@ public class QuejasFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onResponse(boolean correct) {
                 if(correct){
-
+                    editTextQueja.setText("");
                 }else{
 
                 }

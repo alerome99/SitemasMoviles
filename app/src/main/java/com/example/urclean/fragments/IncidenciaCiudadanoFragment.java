@@ -18,17 +18,22 @@ import com.example.urclean.direccionMapsActivity;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 
+import java.util.Locale;
+
 public class IncidenciaCiudadanoFragment extends Fragment {
     //implements AdapterView.OnItemSelectedListener
 
     private FirebaseConnection connection;
     private EditText direccion, descripcion;
     private Spinner spinner;
+    private String lat, lng;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_incidencia_ciudadano, container, false);
+
+        connection = FirebaseConnection.getInstance();
 
         spinner = (Spinner) view.findViewById(R.id.spinnerCrearIncidencia);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -39,6 +44,12 @@ public class IncidenciaCiudadanoFragment extends Fragment {
 
         direccion = view.findViewById(R.id.editTextDireccionIncidencia);
         descripcion = view.findViewById(R.id.editTextDescripcionIncidencia);
+
+        if(getArguments()!=null){
+            lat = String.format(Locale.getDefault(),"%1$.4f" , getArguments().getDouble("lat"));
+            lng = String.format(Locale.getDefault(),"%1$.4f" , getArguments().getDouble("lng"));
+            direccion.setText(lat+" , "+lng);
+        }
 
         view.findViewById(R.id.botonEnviarIncidencia).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +82,6 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        connection = FirebaseConnection.getInstance();
 
         return view;
     }

@@ -204,6 +204,39 @@ public class FirebaseConnection {
                 });
     }
 
+    public void getQueja(String email, final FirebaseCallback callback){
+        db.collection("Queja")
+                .whereEqualTo("email",email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getDesperfecto(String email, final FirebaseCallback callback){
+        db.collection("Desperfecto")
+                .whereEqualTo("email",email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
 
     public void modificarPersona(String username, String name, String dni, String tlf, String email) {
         Map<String, Object> user = new HashMap<>();
