@@ -30,10 +30,9 @@ import com.example.urclean.firebase.FirebaseConnection;
 public class menuBarrendero extends AppCompatActivity  {
 
     BottomNavigationView navigation;
-
-
-
+    Button botonSol;
     private FirebaseConnection connection;
+
 
 
     @Override
@@ -42,6 +41,7 @@ public class menuBarrendero extends AppCompatActivity  {
         setContentView(R.layout.activity_menubarrendero);
         connection = FirebaseConnection.getInstance();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        botonSol= (Button) findViewById(R.id.ButtonSolicitarCambio);
 
         navigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
@@ -70,8 +70,6 @@ public class menuBarrendero extends AppCompatActivity  {
         });
 
 
-
-
     }
 
     public void cerrarSes(View v){
@@ -85,6 +83,27 @@ public class menuBarrendero extends AppCompatActivity  {
                 }
             }
         });
+
+    }
+
+    public void solicitarCambio(View v){
+        botonSol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(menuBarrendero.this, solicitudCambioTurno.class));
+            }
+        });
+        /*connection.logout(new FirebaseCallback() {
+            @Override
+            public void onResponse(boolean correct) {
+
+                if(correct){
+                    startActivity(new Intent(menuBarrendero.this, AccesoActivity.class));
+                }
+            }
+        });*/
+
+
 
     }
 }
