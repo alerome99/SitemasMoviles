@@ -21,8 +21,21 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        //I added this if statement to keep the selected fragment when rotating the device
-        if (savedInstanceState == null) {
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle != null){
+            Double lat = bundle.getDouble("lat");
+            Double lng = bundle.getDouble("lng");
+
+            Bundle args = new Bundle();
+            args.putDouble("lat", lat);
+            args.putDouble("lng",lng);
+
+            IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
+            fragment.setArguments(args);
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    fragment).commit();
+        }else if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new PerfilCiudadanoFragment()).commit();
         }

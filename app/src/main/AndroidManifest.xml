@@ -15,10 +15,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".direccionMapsActivity"
-            android:label="@string/title_activity_direccion_maps"
-            android:theme="@style/Theme.URClean"></activity>
+        <activity android:name=".direccionMapsActivity"></activity>
 
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".MenuSupervisorActivity"></activity>
