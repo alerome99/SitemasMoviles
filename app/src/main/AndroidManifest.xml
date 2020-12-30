@@ -11,16 +11,11 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".ResponsbleActivity"></activity>
+
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".MenuSupervisorActivity"></activity>
         <activity android:name=".Tarea_Concreta"></activity>
-        <activity android:name=".Perfil"></activity>
-        <activity android:name=".Perfil_v2"></activity>
         <activity android:name=".tareasBarrendero" />
-        <activity android:name=".ModificarPerfilActivity" />
-        <activity android:name=".ListaUsuariosActivity" />
-        <activity android:name=".detallesUsuario" />
         <activity android:name=".AccesoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,9 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddGrupoActivity"></activity>
-        <activity android:name=".ListaBarrenderosActivity"></activity>
-        <activity android:name=".detallesBarrendero"></activity>
         <activity android:name=".MenuCiudadanoActivity" />
         <activity android:name=".menuBarrendero" />
     </application>
