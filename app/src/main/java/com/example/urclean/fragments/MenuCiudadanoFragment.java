@@ -34,6 +34,22 @@ public class MenuCiudadanoFragment extends Fragment {
             }
         });
 
+        view.findViewById(R.id.botonCiudadanoHistorialQuejas).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment selectedFragment = new HistorialQuejasFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            }
+        });
+
+        view.findViewById(R.id.botonCiudadanoHistorialDesperfectos).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment selectedFragment = new HistorialDesperfectosFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            }
+        });
+
         return view;
     }
 }
