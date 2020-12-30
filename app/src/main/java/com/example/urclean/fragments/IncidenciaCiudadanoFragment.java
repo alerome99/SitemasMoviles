@@ -18,12 +18,15 @@ import com.example.urclean.direccionMapsActivity;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 
+import java.util.Locale;
+
 public class IncidenciaCiudadanoFragment extends Fragment {
     //implements AdapterView.OnItemSelectedListener
 
     private FirebaseConnection connection;
     private EditText direccion, descripcion;
     private Spinner spinner;
+    private String lat, lng;
 
     @Nullable
     @Override
@@ -41,6 +44,12 @@ public class IncidenciaCiudadanoFragment extends Fragment {
 
         direccion = view.findViewById(R.id.editTextDireccionIncidencia);
         descripcion = view.findViewById(R.id.editTextDescripcionIncidencia);
+
+        if(getArguments()!=null){
+            lat = String.format(Locale.getDefault(),"%1$.4f" , getArguments().getDouble("lat"));
+            lng = String.format(Locale.getDefault(),"%1$.4f" , getArguments().getDouble("lng"));
+            direccion.setText(lat+" , "+lng);
+        }
 
         view.findViewById(R.id.botonEnviarIncidencia).setOnClickListener(new View.OnClickListener() {
             @Override

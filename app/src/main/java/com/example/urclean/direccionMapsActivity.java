@@ -1,7 +1,9 @@
 package com.example.urclean;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +20,8 @@ import java.util.Locale;
 public class direccionMapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
 
     private GoogleMap mMap;
+    private double lat, lng;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,24 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        tv = findViewById(R.id.textViewCoordenadas);
+
+        findViewById(R.id.botonAceptarCoordenadas).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (direccionMapsActivity.this, MenuCiudadanoActivity.class);
+
+                Bundle b = new Bundle();
+                b.putDouble("lat", lat);
+                b.putDouble("lng", lng);
+
+                intent.putExtras(b);
+
+                startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -54,18 +76,20 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
 
     @Override
     public void onMarkerDragStart(Marker marker) {
-        Toast.makeText(this, "start", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "start", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onMarkerDrag(Marker marker) {
         String title = String.format(Locale.getDefault(), getString(R.string.marker_detail_latlng),
                 marker.getPosition().latitude, marker.getPosition().longitude);
-        setTitle(title);
+        tv.setText("Coordenadas: "+ title);
     }
 
     @Override
     public void onMarkerDragEnd(Marker marker) {
-        Toast.makeText(this, "finish", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "finish", Toast.LENGTH_SHORT).show();
+        lat = marker.getPosition().latitude;
+        lng = marker.getPosition().longitude;
     }
 }
