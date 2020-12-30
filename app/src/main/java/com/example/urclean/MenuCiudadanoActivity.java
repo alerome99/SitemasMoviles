@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.urclean.fragments.IncidenciaCiudadanoFragment;
+import com.example.urclean.fragments.MenuCiudadanoFragment;
 import com.example.urclean.fragments.NotificacionesCiudadanoFragment;
 import com.example.urclean.fragments.PerfilCiudadanoFragment;
-import com.example.urclean.fragments.QuejasFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuCiudadanoActivity extends AppCompatActivity {
@@ -37,7 +37,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
                     fragment).commit();
         }else if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new PerfilCiudadanoFragment()).commit();
+                    new MenuCiudadanoFragment()).commit();
         }
 
     }
@@ -54,7 +54,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
                             selectedFragment = new IncidenciaCiudadanoFragment();
                             break;
                         case R.id.nav_quejas:
-                            selectedFragment = new QuejasFragment();
+                            selectedFragment = new MenuCiudadanoFragment();
                             break;
                         case R.id.nav_notificaciones:
                             selectedFragment = new NotificacionesCiudadanoFragment();
