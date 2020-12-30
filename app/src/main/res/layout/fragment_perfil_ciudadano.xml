@@ -4,34 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2027">
+    android:theme="@style/Theme.URClean"
+    android:background="@color/white">
 
-    <TextView
-        android:id="@+id/textViewName"
-        android:layout_width="155dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="67dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView1"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-
-    <TextView
-        android:id="@+id/textViewTelefono"
-        android:layout_width="153dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="28dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDni"
-        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -46,17 +21,17 @@
         app:srcCompat="@drawable/ic_baseline_person_24"
         tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="51dp"
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="155dp"
         android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="17dp"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        app:srcCompat="@drawable/ic_baseline_phone_24"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="67dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView1"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -66,7 +41,6 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="15dp"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView1"
         app:srcCompat="@drawable/ic_baseline_contact_page_24"
@@ -79,39 +53,35 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="28dp"
         android:gravity="center_vertical"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/textViewName"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textViewNacimiento"
-        android:layout_width="304dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="26dp"
-        android:gravity="center_vertical"
-        android:text="07-Junio-1974"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCalle"
-        tools:ignore="MissingConstraints" />
-
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/imageView"
         android:layout_width="51dp"
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="17dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/ic_baseline_house_24"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:srcCompat="@drawable/ic_baseline_phone_24"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textViewTelefono"
+        android:layout_width="153dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDni"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -119,72 +89,26 @@
         android:layout_width="51dp"
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="29dp"
         android:layout_marginEnd="19dp"
-        app:layout_constraintEnd_toStartOf="@+id/textViewEmail"
+        android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/ic_baseline_email_24"
-        tools:ignore="MissingConstraints"
-        tools:srcCompat="@drawable/ic_baseline_email_24" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textViewEmail"
         android:layout_width="300dp"
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="29dp"
         android:layout_marginEnd="31dp"
+        android:layout_marginTop="28dp"
         android:gravity="center_vertical"
-        android:text=""
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNacimiento"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="50dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="18dp"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:srcCompat="@drawable/ic_baseline_calendar_today_24"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textViewCalle"
-        android:layout_width="296dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="37dp"
-        android:gravity="center_vertical"
-        android:text="Av.Murcia, 13 "
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/textViewTelefono"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textViewUsername"
-        android:layout_width="127dp"
-        android:layout_height="48dp"
-
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center_horizontal"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPhoto"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -198,5 +122,31 @@
         app:srcCompat="@drawable/ic_baseline_person_24"
         tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="127dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhoto"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/botonEditar"
+        android:layout_width="354dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:gravity="center"
+        android:text="Editar"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

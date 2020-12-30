@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.TareaConcretaFragment">
+
+    <TextView
+    android:id="@+id/nombreTarea"
+    android:layout_width="193dp"
+    android:layout_height="53dp"
+    android:layout_marginTop="32dp"
+    android:layout_marginEnd="136dp"
+    android:text="Limpieza de botellón"
+    android:textColor="@color/white"
+    android:textSize="18sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descripcionTarea"
+        android:layout_width="264dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="27dp"
+        android:inputType="textMultiLine"
+        android:background="@drawable/bordesedittext"
+        android:text="Botellon en el paseo del cauce a la altura del ambulatorio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descTarResp" />
+
+
+    <TextView
+        android:id="@+id/calleTarea"
+        android:layout_width="264dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="73dp"
+        android:layout_marginBottom="44dp"
+        android:text="Paseo del cauce 58"
+        app:layout_constraintBottom_toTopOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionTarea" />
+
+    <TextView
+        android:id="@+id/distritoTarea"
+        android:layout_width="230dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="73dp"
+        android:text="Pilarica"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+
+    <TextView
+        android:id="@+id/descTarResp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="147dp"
+        android:text="Descripcion de la tarea"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreTarea" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="292dp"
+        android:text="Calle"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionTarea" />
+
+    <Button
+        android:id="@+id/botonTratarTarea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="100dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="Tratar Tarea"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/distritoTarea"
+        />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="272dp"
+        android:text="Distrito"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calleTarea" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

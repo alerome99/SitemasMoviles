@@ -4,75 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menuBarrendero"
-    android:background="#FFFFFF"
+    tools:context=".MenuSupervisorActivity"
+    android:background="#2027"
     >
 
-    <Button
-        android:id="@+id/Buttondatospersonales"
-        android:layout_width="287dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/bordesnotificaciones"
-        android:gravity="center"
-        android:text="Editar datos personales"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/Buttonregistrar"
-        android:layout_width="287dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
-        android:gravity="center"
-        android:text="Registrar barrendero"
-        android:textSize="18sp"
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="410dp"
+        android:layout_height="679dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Buttondatospersonales" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/Buttonincidencias"
-        android:layout_width="287dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
-        android:gravity="center"
-        android:text="Incidencia laboral"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Buttonregistrar" />
-
-    <Button
-        android:id="@+id/Buttongestioncambios"
-        android:layout_width="287dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
-        android:gravity="center"
-        android:text="Gestión cambios de horario"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Buttonincidencias" />
-
-    <Button
-        android:id="@+id/Logoutsupervisor"
-        android:layout_width="287dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
-        android:gravity="center"
-        android:onClick="cerrarSes"
-        android:text="Cerrar sesión"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Buttongestioncambios" />
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/container"
@@ -87,13 +34,13 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@android:color/holo_blue_dark"
             app:itemIconTint="@android:color/white"
             app:itemTextColor="@android:color/white"
             app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_navigation_menu" />
+            app:menu="@menu/bottom_navigation_menuciudadano" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

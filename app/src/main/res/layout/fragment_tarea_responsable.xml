@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.TareaResponsableFragment">
+
+    <Button
+        android:id="@+id/botonCompletadoTarea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="100dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="Marcar tarea como completa"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapViewResp"
+        android:layout_width="216dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="101dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreCalleResp" />
+
+    <TextView
+        android:id="@+id/nombreCalleResp"
+        android:layout_width="170dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="25dp"
+        android:text="Nombre calle"
+        app:layout_constraintBottom_toTopOf="@+id/mapViewResp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descripcionResp"
+        android:layout_width="246dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="89dp"
+        android:background="@drawable/bordesedittext"
+        android:inputType="textMultiLine"
+        android:text="Descripcion de lo que ocurre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="196dp"
+        android:text="Descripcion de la tarea"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapViewResp" />
+
+    <TextView
+        android:id="@+id/solucionResp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="155dp"
+        android:text="Describa la solucion tomada"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionResp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="247dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="91dp"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/solucionResp" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

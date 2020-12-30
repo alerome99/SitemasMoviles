@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.URClean"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="51dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/EditTextName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_person_24"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/EditTextName"
+        android:layout_width="155dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="67dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="53dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView1"
+        app:srcCompat="@drawable/ic_baseline_contact_page_24"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/EditTextDni"
+        android:layout_width="158dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextName"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="51dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:srcCompat="@drawable/ic_baseline_phone_24"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/EditTextTelefono"
+        android:layout_width="153dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextDni"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="51dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/ic_baseline_email_24"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/EditTextEmail"
+        android:layout_width="300dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="31dp"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextTelefono"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageViewPhoto"
+        android:layout_width="139dp"
+        android:layout_height="215dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_person_24"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/EditTextUsername"
+        android:layout_width="127dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhoto"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/botonCancelar"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="20dp"
+        android:text="Cancelar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextEmail"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"/>
+
+    <Button
+        android:id="@+id/botonAceptar"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="32dp"
+        android:text="Aceptar"
+        app:layout_constraintStart_toEndOf="@+id/botonCancelar"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextEmail"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

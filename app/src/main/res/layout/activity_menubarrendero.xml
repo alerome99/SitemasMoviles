@@ -8,72 +8,19 @@
     android:background="#FFFFFF"
     >
 
-    <Button
-        android:id="@+id/Button1"
-        android:layout_width="287dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/bordesnotificaciones"
-        android:gravity="center"
-        android:text="Editar datos personales"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/Button2"
-        android:layout_width="287dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
-        android:gravity="center"
-        android:text="Estadísticas de trabajo"
-        android:textSize="18sp"
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="410dp"
+        android:layout_height="679dp"
+        android:layout_marginEnd="1dp"
+        android:background="@color/background"
+        app:layout_constraintBottom_toTopOf="@+id/container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button1" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/Button3"
-        android:layout_width="287dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
-        android:gravity="center"
-        android:text="Incidencia laboral"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button2" />
-
-    <Button
-        android:id="@+id/ButtonSolicitarCambio"
-        android:layout_width="287dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
-        android:gravity="center"
-        android:onClick="solicitarCambio"
-        android:text="Solicitar cambio de horario"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button3" />
-
-    <Button
-        android:id="@+id/Logoutbarrendero"
-        android:layout_width="287dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
-        android:gravity="center"
-        android:onClick="cerrarSes"
-        android:text="Cerrar sesión"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonSolicitarCambio" />
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/container"
@@ -86,7 +33,7 @@
         <!-- Main content -->
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
+            android:id="@+id/bottom_navigation_barrendero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

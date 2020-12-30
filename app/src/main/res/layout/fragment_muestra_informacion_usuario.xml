@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2027">
+
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="51dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="67dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextName"
+        app:srcCompat="@drawable/ic_baseline_person_24"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="51dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="17dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView1"
+        app:srcCompat="@drawable/ic_baseline_phone_24"
+        tools:ignore="MissingConstraints" />
+
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="51dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="19dp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/ic_baseline_email_24"
+        tools:ignore="MissingConstraints"
+        tools:srcCompat="@drawable/ic_baseline_email_24" />
+
+    <ImageView
+        android:id="@+id/imageViewPhoto"
+        android:layout_width="151dp"
+        android:layout_height="227dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_person_24"
+        tools:ignore="MissingConstraints" />
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="410dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <!-- Main content -->
+
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="300dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="45dp"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="153dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="45dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextName"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="155dp"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="67dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonRegistrarBarrendero"
+        android:layout_width="199dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="24dp"
+        android:text="Registrar barrendero"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        app:layout_constraintVertical_bias="0.27" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

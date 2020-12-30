@@ -77,23 +77,6 @@ public class solicitudCambioTurno extends AppCompatActivity {
         }
 
 
-        /*btnCalOrigen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                c= Calendar.getInstance();
-                int dia = c.get(Calendar.DAY_OF_MONTH);
-                int mes = c.get(Calendar.MONTH);
-                int anio = c.get(Calendar.YEAR);
-
-                dpd = new DatePickerDialog(solicitudCambioTurno.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        txtFechaOrigen.setText(dayOfMonth+ "/" +month+ "/" +year);
-                    }
-                },dia,mes,anio);
-                dpd.show();
-            }
-        });*/
     }
 
 }
