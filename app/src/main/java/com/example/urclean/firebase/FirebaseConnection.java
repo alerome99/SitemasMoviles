@@ -1,6 +1,7 @@
 package com.example.urclean.firebase;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -310,6 +311,27 @@ public class FirebaseConnection {
                     }
                 });
 
+    }
+
+    public void addFoto(String id, String path, FirebaseCallback callback){
+
+        Map<String,Object> usuario = new HashMap<>();
+        usuario.put("Foto",path);
+
+        DocumentReference ref = db.collection("Persona").document(id);
+        ref.update(usuario)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void documentReference)  {
+                        callback.onResponse(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });
     }
 
     public void convertirBarrendero(String id, FirebaseCallback callback){
