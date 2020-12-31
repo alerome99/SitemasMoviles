@@ -1,7 +1,6 @@
 package com.example.urclean.firebase;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -379,9 +378,11 @@ public class FirebaseConnection {
                 });
     }
 
-    public void saveDesperfecto(String direccion, String descripcion, final FirebaseCallback callback){
+    public void saveDesperfecto(String direccion, String lat, String lng, String descripcion, final FirebaseCallback callback){
         Map<String,Object> desperfecto = new HashMap<>();
         desperfecto.put("direccion", direccion);
+        desperfecto.put("lat", lat);
+        desperfecto.put("lng", lng);
         desperfecto.put("descripcion", descripcion);
         desperfecto.put("email", mAuth.getCurrentUser().getEmail());
         db.collection("Desperfecto").add(desperfecto)
