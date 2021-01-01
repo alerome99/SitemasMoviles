@@ -1,7 +1,10 @@
 package com.example.urclean;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,13 +18,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 
 public class direccionMapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
 
     private GoogleMap mMap;
     private double lat, lng;
-    private TextView tv;
+    private String dir;
+    private TextView tvCoordenadas, tvDireccion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +38,8 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        tv = findViewById(R.id.textViewCoordenadas);
+        tvCoordenadas = findViewById(R.id.textViewCoordenadas);
+        tvDireccion = findViewById((R.id.textViewDireccion));
 
         findViewById(R.id.botonAceptarCoordenadas).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,8 +47,9 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
                 Intent intent = new Intent (direccionMapsActivity.this, MenuCiudadanoActivity.class);
 
                 Bundle b = new Bundle();
-                b.putDouble("lat", lat);
-                b.putDouble("lng", lng);
+                b.putString("lat", String.format(Locale.getDefault(), "%1$.4f", lat));
+                b.putString("lng", String.format(Locale.getDefault(), "%1$.4f", lng));
+                b.putString("dir", dir);
 
                 intent.putExtras(b);
 
@@ -70,8 +78,9 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(valladolid, 12));
 
-        //googleMap.setOnMarkerClickListener(this);
         googleMap.setOnMarkerDragListener(this);
+
+
     }
 
     @Override
@@ -83,7 +92,7 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
     public void onMarkerDrag(Marker marker) {
         String title = String.format(Locale.getDefault(), getString(R.string.marker_detail_latlng),
                 marker.getPosition().latitude, marker.getPosition().longitude);
-        tv.setText("Coordenadas: "+ title);
+        tvCoordenadas.setText("Coordenadas: "+ title);
     }
 
     @Override
@@ -91,5 +100,14 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
         // Toast.makeText(this, "finish", Toast.LENGTH_SHORT).show();
         lat = marker.getPosition().latitude;
         lng = marker.getPosition().longitude;
+
+        Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+        try {
+            List<Address> direccion = geocoder.getFromLocation(lat, lng, 1);
+            dir = direccion.get(0).getAddressLine(0);
+            tvDireccion.setText("Dirección: "+dir);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
