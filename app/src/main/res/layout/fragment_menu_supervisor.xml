@@ -45,12 +45,12 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonAddBarrendero" />
 
     <Button
-        android:id="@+id/Button4"
+        android:id="@+id/buttonListaQuejas"
         android:layout_width="287dp"
         android:layout_height="55dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Solicitar cambio de horario"
+        android:text="Lista de quejas"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +68,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button4" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonListaQuejas" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
 package com.example.urclean.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,11 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.urclean.AccesoActivity;
-import com.example.urclean.MenuSupervisorActivity;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
-import com.example.urclean.menuBarrendero;
 
 
 public class MenuSupervisorFragment extends Fragment {
@@ -26,6 +23,7 @@ public class MenuSupervisorFragment extends Fragment {
     private Button buttonRegistroBarrendero;
     private Button buttonAddBarrendero;
     private Button buttonCrearGrupo;
+    private Button buttonListaQuejas;
 
     public MenuSupervisorFragment() {
         // Required empty public constructor
@@ -48,7 +46,7 @@ public class MenuSupervisorFragment extends Fragment {
         buttonRegistroBarrendero = v.findViewById(R.id.buttonRegistroBarrendero);
         buttonAddBarrendero = v.findViewById(R.id.buttonAddBarrendero);
         buttonCrearGrupo = v.findViewById(R.id.buttonCrearGrupo);
-
+        buttonListaQuejas = v.findViewById(R.id.buttonListaQuejas);
 
         Logoutsupervisor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -68,6 +66,16 @@ public class MenuSupervisorFragment extends Fragment {
             public void onClick(View v) {
                 Fragment selectedFragment;
                 selectedFragment = new ListaUsuariosFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.fragment_container, selectedFragment).commit();
+            }
+        });
+
+        buttonListaQuejas.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //startActivity(new Intent( MenuSupervisorFragment.this.getActivity(), quejasSupervisor.class));
+                Fragment selectedFragment;
+                selectedFragment = new QuejasSupervisorFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().
                         replace(R.id.fragment_container, selectedFragment).commit();
             }
