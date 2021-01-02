@@ -65,8 +65,8 @@ public class MenuSupervisorActivity extends AppCompatActivity  {
                             selectedFragment = new MenuSupervisorFragment();
                             break;
                         case R.id.nav_notificaciones:
-                            selectedFragment = new AddGrupoFragment();
-                            //selectedFragment = new NotificacionesCiudadanoFragment();
+                            //selectedFragment = new AddGrupoFragment();
+                            selectedFragment = new NotificacionesCiudadanoFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
