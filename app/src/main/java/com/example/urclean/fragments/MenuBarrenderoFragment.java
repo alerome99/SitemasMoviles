@@ -20,7 +20,7 @@ import com.example.urclean.menuBarrendero;
 
 public class MenuBarrenderoFragment extends Fragment {
 
-    private Button buttonLogout;
+    private Button buttonLogout,botonHistorial;
     private FirebaseConnection connection;
 
     public MenuBarrenderoFragment() {
@@ -41,6 +41,9 @@ public class MenuBarrenderoFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_menu_barrendero, container, false);
         buttonLogout = v.findViewById(R.id.Logoutbarrendero);
+        botonHistorial = v.findViewById(R.id.BotonHistorialBarrendero);
+
+
 
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -55,6 +58,17 @@ public class MenuBarrenderoFragment extends Fragment {
                 });
             }
         });
+
+        botonHistorial.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Fragment selectedFragment;
+                selectedFragment = new HistorialTareasFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.fragment_container, selectedFragment).commit();
+            }
+        });
+
+
 
         return v;
     }

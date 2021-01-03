@@ -115,12 +115,15 @@ public class AccesoActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(boolean correct) {
                         if (correct) {
+
+                            Log.e("LOGIN","Login correcto");
                             connection.getPersona(new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
                                     if (correct) {
                                         if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
                                              Snackbar.make(v, "No existen datos", Snackbar.LENGTH_LONG).show();
+                                            Log.e("NAME",""+(String) connection.getUser().getUid());
                                         } else {
                                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                                 typeUser = (String) document.get("type");

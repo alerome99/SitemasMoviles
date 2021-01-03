@@ -72,7 +72,7 @@ public class FirebaseConnection {
         user.put("name", name);
         user.put("dni",dni);
         user.put("telefono",telefono);
-        //user.put("idUser", mAuth.getUid());
+        user.put("idUser", mAuth.getUid());
         db.collection("Persona")
                 .add(user)
                 .addOnSuccessListener(documentReference -> callback.onResponse(true))
@@ -222,6 +222,28 @@ public class FirebaseConnection {
 
         db.collection("Tareas")
                 .whereEqualTo("Grupo", grupoUser)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            Log.e("TAREA", "dentro de tarea");
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            Log.e("TAREA", "no ha ido a la tarea");
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getTareasPersona(final FirebaseCallback callback){
+
+        Log.e("GTP", "dentro");
+        db.collection("Tareas")
+                .whereEqualTo("Responsable",getUser().getUid())
+                .whereEqualTo("Estado","Completada")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
