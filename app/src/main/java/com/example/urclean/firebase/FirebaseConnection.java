@@ -63,7 +63,7 @@ public class FirebaseConnection {
     }
 
     public void saveUser(String name,String username,String email, String usertype, String telefono,
-                         String dni, final FirebaseCallback callback) {
+                         String dni,String fecha, final FirebaseCallback callback) {
         Map<String,Object> user = new HashMap<>();
         user.put("username",username);
         user.put("email",email);
@@ -71,7 +71,8 @@ public class FirebaseConnection {
         user.put("name", name);
         user.put("dni",dni);
         user.put("telefono",telefono);
-        //user.put("idUser", mAuth.getUid());
+        user.put("idUser", mAuth.getUid());
+        user.put("fecha", fecha);
         db.collection("Persona")
                 .add(user)
                 .addOnSuccessListener(documentReference -> callback.onResponse(true))
@@ -108,6 +109,8 @@ public class FirebaseConnection {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            Log.e("tag", mAuth.getCurrentUser().getUid());
+                            Log.e("tag2",task.getResult().toString());
                             response = task.getResult();
                             callback.onResponse(true);
                         } else {
