@@ -1,5 +1,6 @@
 package com.example.urclean;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -7,7 +8,9 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,12 +18,18 @@ import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Calendar;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
     private Button buttonRegisterFinal, buttonLogin;
     private EditText username, password, password2, name, email,dni,telefono;
     private FirebaseConnection connection;
+    private Button btnCalendario;
+    private Calendar c;
+    private DatePickerDialog dpd;
+    private TextView txtFecha;
 
 
     @Override
@@ -37,7 +46,27 @@ public class RegisterActivity extends AppCompatActivity {
         dni = findViewById(R.id.editTextTextDNI);
         telefono = findViewById(R.id.editTextTextTelefono);
         buttonRegisterFinal=findViewById(R.id.buttonRegisterFinal);
+        btnCalendario = findViewById(R.id.buttonFechaNac);
+        txtFecha = findViewById(R.id.textViewFechaNac);
 
+        // Para abrir calendario
+
+        btnCalendario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                c= Calendar.getInstance();
+                int dia = c.get(Calendar.DAY_OF_MONTH);
+                int mes = c.get(Calendar.MONTH);
+                int anio = c.get(Calendar.YEAR);
+                dpd = new DatePickerDialog(RegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                        txtFecha.setText(dayOfMonth+ "/" +month+ "/" +year);
+                    }
+                },dia,mes,anio);
+                dpd.show();
+            }
+        });
         // Controlador de input de email
 
         email.addTextChangedListener(new TextWatcher()  {
@@ -204,7 +233,7 @@ public class RegisterActivity extends AppCompatActivity {
             connection.register(RegisterActivity.this, email.getText().toString().trim(), password.getText().toString().trim(), correct -> {
                 if (correct) {
                     connection.saveUser(name.getText().toString(), username.getText().toString().trim(), email.getText().toString().trim(),
-                            "ciudadano", telefono.getText().toString().trim(), dni.getText().toString(), new FirebaseCallback() {
+                            "ciudadano", telefono.getText().toString().trim(), dni.getText().toString(), txtFecha.getText().toString(), new FirebaseCallback() {
                         @Override
                         public void onResponse(boolean correct) {
                             if (correct) {
@@ -225,6 +254,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         } //fin comprobacion
     }
+
 
     private void testErrorInput(){
 

@@ -34,31 +34,33 @@
 
     <Button
         android:id="@+id/marcarQuejaLeida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="193dp"
+        android:layout_height="65dp"
         android:layout_marginTop="493dp"
         android:layout_marginEnd="155dp"
         android:layout_marginBottom="600dp"
-        android:text="Boton marcar Leida"
+        android:text="Marcar Leida"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescripcionQueja"
-        app:layout_constraintVertical_bias="0.496" />
+        app:layout_constraintVertical_bias="0.554" />
 
     <Button
         android:id="@+id/marcarQuejaCompletada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="193dp"
+        android:layout_height="65dp"
         android:layout_marginTop="493dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="600dp"
-        android:text="Boton marcar Completada"
+        android:text="Marcar Completada"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.288"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescripcionQueja"
-        app:layout_constraintVertical_bias="0.308" />
+        app:layout_constraintVertical_bias="0.427" />
 
     <TextView
         android:id="@+id/textView8"
@@ -79,4 +81,16 @@
         app:layout_constraintEnd_toStartOf="@+id/editTextDescripcionQueja"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <Button
+        android:id="@+id/botonAtrasDetallesQueja"
+        android:layout_width="146dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="40dp"
+        android:text="Atras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

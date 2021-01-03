@@ -45,7 +45,7 @@ public class MenuSupervisorActivity extends AppCompatActivity  {
         navigation.setOnNavigationItemSelectedListener(navListener);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new MenuSupervisorFragment()).commit();
+                    new PerfilCiudadanoFragment()).commit();
         }
     }
 
@@ -61,7 +61,7 @@ public class MenuSupervisorActivity extends AppCompatActivity  {
                         case R.id.nav_incidencias:
                             selectedFragment = new IncidenciaCiudadanoFragment();
                             break;
-                        case R.id.nav_quejas:
+                        case R.id.nav_menu_principal:
                             selectedFragment = new MenuSupervisorFragment();
                             break;
                         case R.id.nav_notificaciones:
