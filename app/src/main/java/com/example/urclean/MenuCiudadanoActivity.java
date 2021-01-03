@@ -23,12 +23,14 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
 
         Bundle bundle = this.getIntent().getExtras();
         if(bundle != null){
-            Double lat = bundle.getDouble("lat");
-            Double lng = bundle.getDouble("lng");
+            String lat = bundle.getString("lat");
+            String lng = bundle.getString("lng");
+            String dir = bundle.getString("dir");
 
             Bundle args = new Bundle();
-            args.putDouble("lat", lat);
-            args.putDouble("lng",lng);
+            args.putString("lat", lat);
+            args.putString("lng",lng);
+            args.putString("dir", dir);
 
             IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
             fragment.setArguments(args);

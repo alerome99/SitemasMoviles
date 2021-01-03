@@ -19,6 +19,7 @@ import com.example.urclean.fragments.ListaBarrenderosFragment;
 import com.example.urclean.fragments.ListaTareasFragment;
 import com.example.urclean.fragments.ListaUsuariosFragment;
 import com.example.urclean.fragments.MenuBarrenderoFragment;
+import com.example.urclean.fragments.MenuSupervisorFragment;
 import com.example.urclean.fragments.NotificacionesCiudadanoFragment;
 import com.example.urclean.fragments.PerfilCiudadanoFragment;
 import com.example.urclean.fragments.PerfilFragment;
@@ -44,7 +45,7 @@ public class MenuSupervisorActivity extends AppCompatActivity  {
         navigation.setOnNavigationItemSelectedListener(navListener);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new MenuBarrenderoFragment()).commit();
+                    new PerfilCiudadanoFragment()).commit();
         }
     }
 
@@ -58,14 +59,14 @@ public class MenuSupervisorActivity extends AppCompatActivity  {
                             selectedFragment = new PerfilCiudadanoFragment();
                             break;
                         case R.id.nav_incidencias:
-                            selectedFragment = new ListaBarrenderosFragment();
+                            selectedFragment = new IncidenciaCiudadanoFragment();
                             break;
-                        case R.id.nav_quejas:
-                            selectedFragment = new ListaUsuariosFragment();
+                        case R.id.nav_menu_principal:
+                            selectedFragment = new MenuSupervisorFragment();
                             break;
                         case R.id.nav_notificaciones:
-                            selectedFragment = new AddGrupoFragment();
-                            //selectedFragment = new NotificacionesCiudadanoFragment();
+                            //selectedFragment = new AddGrupoFragment();
+                            selectedFragment = new NotificacionesCiudadanoFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

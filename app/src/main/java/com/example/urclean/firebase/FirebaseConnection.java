@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.urclean.model.Queja;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -109,8 +110,22 @@ public class FirebaseConnection {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            Log.e("tag", mAuth.getCurrentUser().getUid());
-                            Log.e("tag2",task.getResult().toString());
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getQuejas(final FirebaseCallback callback){
+        db.collection("Queja")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
                             response = task.getResult();
                             callback.onResponse(true);
                         } else {
@@ -173,6 +188,23 @@ public class FirebaseConnection {
     public void getUsuarioPorEmail(String email, final FirebaseCallback callback){
         db.collection("Persona")
                 .whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getQuejaPorEmailTitulo(String email, String titulo, final FirebaseCallback callback){
+        db.collection("Queja")
+                .whereEqualTo("email", email).whereEqualTo("titulo", titulo)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -315,6 +347,27 @@ public class FirebaseConnection {
 
     }
 
+    public void addFoto(String id, String path, FirebaseCallback callback){
+
+        Map<String,Object> usuario = new HashMap<>();
+        usuario.put("Foto",path);
+
+        DocumentReference ref = db.collection("Persona").document(id);
+        ref.update(usuario)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void documentReference)  {
+                        callback.onResponse(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });
+    }
+
     public void convertirBarrendero(String id, FirebaseCallback callback){
 
         Map<String,Object> persona = new HashMap<>();
@@ -324,6 +377,33 @@ public class FirebaseConnection {
         ref.update(persona)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
+                    public void onSuccess(Void documentReference)  {
+                        callback.onResponse(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });
+
+    }
+
+    public void cambiarEstadoQueja(String id, String estado, FirebaseCallback callback){
+
+        Map<String,Object> queja = new HashMap<>();
+        if(estado.equals("1")){
+            queja.put("estado", "RECIBIDA");
+        }
+        if(estado.equals("2")){
+            queja.put("estado", "SOLUCIONADA");
+        }
+
+        DocumentReference ref = db.collection("Queja").document(id);
+        ref.update(queja)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
                     public void onSuccess(Void documentReference)  {
                         callback.onResponse(true);
                     }
@@ -360,9 +440,11 @@ public class FirebaseConnection {
                 });
     }
 
-    public void saveDesperfecto(String direccion, String descripcion, final FirebaseCallback callback){
+    public void saveDesperfecto(String direccion, String lat, String lng, String descripcion, final FirebaseCallback callback){
         Map<String,Object> desperfecto = new HashMap<>();
         desperfecto.put("direccion", direccion);
+        desperfecto.put("lat", lat);
+        desperfecto.put("lng", lng);
         desperfecto.put("descripcion", descripcion);
         desperfecto.put("email", mAuth.getCurrentUser().getEmail());
         db.collection("Desperfecto").add(desperfecto)
@@ -375,10 +457,13 @@ public class FirebaseConnection {
                 });;
     }
 
-    public void saveQueja(String descripcion, final FirebaseCallback callback){
+    public void saveQueja(Queja q, final FirebaseCallback callback){
         Map<String,Object> queja = new HashMap<>();
-        queja.put("descripcion", descripcion);
-        queja.put("email", mAuth.getCurrentUser().getEmail());
+        q.setEmail(mAuth.getCurrentUser().getEmail());
+        queja.put("descripcion", q.getDescripcion());
+        queja.put("titulo", q.getTitulo());
+        queja.put("email", q.getEmail());
+        queja.put("estado", q.getEstado().toString());
         db.collection("Queja").add(queja)
                 .addOnSuccessListener(documentReference -> callback.onResponse(true))
                 .addOnFailureListener(new OnFailureListener() {

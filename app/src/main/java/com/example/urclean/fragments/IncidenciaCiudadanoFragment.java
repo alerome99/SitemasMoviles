@@ -18,16 +18,12 @@ import com.example.urclean.direccionMapsActivity;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 
-import java.util.Locale;
-
 public class IncidenciaCiudadanoFragment extends Fragment {
-    //implements AdapterView.OnItemSelectedListener
 
     private FirebaseConnection connection;
     private EditText direccion, descripcion;
     private Spinner spinner;
-    private String lat, lng;
-
+    private String lat,lng,dir;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,9 +42,11 @@ public class IncidenciaCiudadanoFragment extends Fragment {
         descripcion = view.findViewById(R.id.editTextDescripcionIncidencia);
 
         if(getArguments()!=null){
-            lat = String.format(Locale.getDefault(),"%1$.4f" , getArguments().getDouble("lat"));
-            lng = String.format(Locale.getDefault(),"%1$.4f" , getArguments().getDouble("lng"));
-            direccion.setText(lat+" , "+lng);
+            lat = getArguments().getString("lat");
+            lng = getArguments().getString("lng");
+            dir = getArguments().getString("dir");
+
+            direccion.setText(dir);
         }
 
         view.findViewById(R.id.botonEnviarIncidencia).setOnClickListener(new View.OnClickListener() {
@@ -60,11 +58,12 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                     case "Limpieza":
                         break;
                     case "Desperfecto":
-                        connection.saveDesperfecto(direccion.getText().toString(), descripcion.getText().toString(), new FirebaseCallback() {
+                        connection.saveDesperfecto(dir, lat, lng, descripcion.getText().toString(), new FirebaseCallback() {
                             @Override
                             public void onResponse(boolean correct) {
                                 if(correct){
-
+                                    direccion.setText("");
+                                    descripcion.setText("");
                                 }else{
 
                                 }

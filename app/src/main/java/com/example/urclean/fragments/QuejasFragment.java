@@ -13,10 +13,13 @@ import androidx.fragment.app.Fragment;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
+import com.example.urclean.model.Queja;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class QuejasFragment extends Fragment implements View.OnClickListener{
 
     private EditText editTextQueja;
+    private EditText editTextTituloQueja;
     private FirebaseConnection connection;
 
     @Nullable
@@ -28,17 +31,20 @@ public class QuejasFragment extends Fragment implements View.OnClickListener{
 
         editTextQueja = view.findViewById(R.id.editTextQueja);
         view.findViewById(R.id.botonEnviarQueja).setOnClickListener(this);
+        editTextTituloQueja = view.findViewById(R.id.editTextTituloQueja);
 
         return view;
     }
 
     @Override
     public void onClick(View view) {
-        connection.saveQueja(editTextQueja.getText().toString(), new FirebaseCallback() {
+        Queja queja = new Queja(editTextQueja.getText().toString(), null, editTextTituloQueja.getText().toString());
+        connection.saveQueja(queja, new FirebaseCallback() {
             @Override
             public void onResponse(boolean correct) {
                 if(correct){
                     editTextQueja.setText("");
+                    editTextTituloQueja.setText("");
                 }else{
 
                 }

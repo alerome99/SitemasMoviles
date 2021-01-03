@@ -31,6 +31,7 @@ public class DetallesUsuarioFragment extends Fragment {
     EditText editTextPhone;
     EditText editTextEmail;
     ArrayList<String> listaGrupos;
+    Button botonAtrasDetallesUsuario;
 
 
     public DetallesUsuarioFragment() {
@@ -54,6 +55,7 @@ public class DetallesUsuarioFragment extends Fragment {
         Bundle bundle = getArguments();
 
         buttonRegistrarBarrendero = v.findViewById(R.id.buttonRegistrarBarrendero);
+        botonAtrasDetallesUsuario = v.findViewById(R.id.botonAtrasDetallesUsuario);
         spinner = v.findViewById(R.id.spinner);
         editTextName = v.findViewById(R.id.editTextName);
         editTextPhone = v.findViewById(R.id.editTextPhone);
@@ -63,6 +65,16 @@ public class DetallesUsuarioFragment extends Fragment {
         editTextEmail.setText(getArguments().getString("EMAIL"));
         editTextPhone.setText(getArguments().getString("TELEFONO"));
         editTextName.setText(getArguments().getString("NAME"));
+
+        botonAtrasDetallesUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment selectedFragment;
+                selectedFragment = new ListaUsuariosFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.fragment_container, selectedFragment).commit();
+            }
+        });
 
         buttonRegistrarBarrendero.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +96,10 @@ public class DetallesUsuarioFragment extends Fragment {
                                     } else {
                                         Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
                                     }
+                                    Fragment selectedFragment;
+                                    selectedFragment = new ListaUsuariosFragment();
+                                    getActivity().getSupportFragmentManager().beginTransaction().
+                                            replace(R.id.fragment_container, selectedFragment).commit();
                                 }
                             });
                         }
