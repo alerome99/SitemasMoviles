@@ -29,6 +29,7 @@ public class DetallesQuejaFragment extends Fragment {
     private FirebaseConnection connection;
     EditText editTextTituloQueja;
     EditText editTextDescripcionQueja;
+    Button botonAtrasDetallesQueja;
 
     public DetallesQuejaFragment() {
 
@@ -50,6 +51,7 @@ public class DetallesQuejaFragment extends Fragment {
         Bundle bundle = getArguments();
 
         marcarQuejaLeida = v.findViewById(R.id.marcarQuejaLeida);
+        botonAtrasDetallesQueja = v.findViewById(R.id.botonAtrasDetallesQueja);
         marcarQuejaCompletada = v.findViewById(R.id.marcarQuejaCompletada);
         editTextTituloQueja = v.findViewById(R.id.editTextTituloQueja);
         editTextDescripcionQueja = v.findViewById(R.id.editTextDescripcionQueja);
@@ -59,6 +61,16 @@ public class DetallesQuejaFragment extends Fragment {
         if(getArguments().getString("ESTADO").equals("RECIBIDA")){
             marcarQuejaLeida.setVisibility(View.INVISIBLE);
         }
+
+        botonAtrasDetallesQueja.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment selectedFragment;
+                selectedFragment = new QuejasSupervisorFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.fragment_container, selectedFragment).commit();
+            }
+        });
 
         marcarQuejaLeida.setOnClickListener(new View.OnClickListener() {
             @Override

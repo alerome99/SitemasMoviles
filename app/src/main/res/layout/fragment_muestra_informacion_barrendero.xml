@@ -86,6 +86,18 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
         tools:ignore="MissingConstraints" />
 
+    <Button
+        android:id="@+id/botonAtrasDetallesBarrandero"
+        android:layout_width="146dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="40dp"
+        android:text="Atras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/editTextPhone"
         android:layout_width="153dp"
@@ -122,7 +134,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
-        app:layout_constraintVertical_bias="0.27" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/spinner"
