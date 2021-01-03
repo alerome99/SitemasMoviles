@@ -39,8 +39,7 @@
             android:background="@android:color/holo_blue_dark"
             app:itemIconTint="@android:color/white"
             app:itemTextColor="@android:color/white"
-            app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_navigation_menuciudadano" />
+            app:menu="@menu/bottom_navigation_supervisor" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

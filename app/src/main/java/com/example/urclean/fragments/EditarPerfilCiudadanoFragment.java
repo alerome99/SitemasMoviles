@@ -1,22 +1,28 @@
 package com.example.urclean.fragments;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.squareup.picasso.Picasso;
 
 public class EditarPerfilCiudadanoFragment extends Fragment implements View.OnTouchListener{
 
     private EditText editTextUsername, editTextName, editTextEmail, editTextDni, editTextTelefono;
     private FirebaseConnection connection;
+    ImageView imageViewPhoto;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +37,7 @@ public class EditarPerfilCiudadanoFragment extends Fragment implements View.OnTo
         editTextEmail = view.findViewById(R.id.EditTextEmail);
         editTextDni = view.findViewById(R.id.EditTextDni);
         editTextTelefono = view.findViewById(R.id.EditTextTelefono);
+        imageViewPhoto = view.findViewById(R.id.imageViewPhotoEdit);
 
         connection = FirebaseConnection.getInstance();
         connection.getPersona(correct -> {
@@ -43,12 +50,20 @@ public class EditarPerfilCiudadanoFragment extends Fragment implements View.OnTo
                     String username = "";
                     String phone = "";
                     String dni = "";
+                    String url = "";
                     for (QueryDocumentSnapshot document : connection.getResponse()){
                         email = (String) document.get("email");
                         name = (String) document.get("name");
                         username = (String) document.get("username");
                         phone = (String) document.get("telefono");
                         dni = (String) document.get("dni");
+                        url = (String) document.get("Foto");
+                    }
+                    if(url!=null){
+                        Uri path = Uri.parse(url);
+                        Picasso.get().load(path).into(imageViewPhoto);
+                        //imageViewPhoto.setImageURI(path);
+                        //Glide.with(getActivity()).load(path).fitCenter().centerCrop().into(imageViewPhoto);
                     }
                     editTextUsername.setText(username);
                     editTextName.setText(name);
@@ -85,4 +100,10 @@ public class EditarPerfilCiudadanoFragment extends Fragment implements View.OnTo
         }
         return false;
     }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
 }
+
