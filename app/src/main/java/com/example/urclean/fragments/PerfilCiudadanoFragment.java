@@ -30,6 +30,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -88,7 +89,9 @@ public class PerfilCiudadanoFragment extends Fragment implements View.OnTouchLis
                     }
                     if(url!=null){
                         Uri path = Uri.parse(url);
-                        Glide.with(getActivity()).load(path).fitCenter().centerCrop().into(imageViewPhoto);
+                        //imageViewPhoto.setImageURI(path);
+                        Picasso.get().load(path).into(imageViewPhoto);
+                        //Glide.with(getActivity()).load(path).fitCenter().centerCrop().into(imageViewPhoto);
                     }
                     textViewEmail.setText(email);
                     textViewName.setText(name);
@@ -137,7 +140,7 @@ public class PerfilCiudadanoFragment extends Fragment implements View.OnTouchLis
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
-                                Glide.with(getActivity()).load(task.getResult().toString()).fitCenter().centerCrop().into(imageViewPhoto);
+                                Picasso.get().load(task.getResult().toString()).into(imageViewPhoto);
                                 String pathS = task.getResult().toString();
                                 connection.getUsuarioPorEmail(textViewEmail.getText().toString(), correct -> {
                                     if (correct){
@@ -176,5 +179,10 @@ public class PerfilCiudadanoFragment extends Fragment implements View.OnTouchLis
         Fragment selectedFragment = new EditarPerfilCiudadanoFragment();
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
         return false;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 }
