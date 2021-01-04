@@ -64,7 +64,7 @@ public class menuBarrendero extends AppCompatActivity  {
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
+                            selectedFragment).addToBackStack(null).commit();
 
                     return true;
                 }

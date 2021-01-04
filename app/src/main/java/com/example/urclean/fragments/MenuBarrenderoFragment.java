@@ -64,7 +64,7 @@ public class MenuBarrenderoFragment extends Fragment {
                 Fragment selectedFragment;
                 selectedFragment = new HistorialTareasFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, selectedFragment).commit();
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 
