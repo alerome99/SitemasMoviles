@@ -5,25 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.example.urclean.firebase.FirebaseCallback;
-import com.example.urclean.fragments.AddGrupoFragment;
 import com.example.urclean.fragments.IncidenciaCiudadanoFragment;
-import com.example.urclean.fragments.ListaBarrenderosFragment;
-import com.example.urclean.fragments.ListaTareasFragment;
-import com.example.urclean.fragments.ListaUsuariosFragment;
-import com.example.urclean.fragments.MenuBarrenderoFragment;
+import com.example.urclean.fragments.ListaNotificacionesSupervisorFragment;
 import com.example.urclean.fragments.MenuSupervisorFragment;
-import com.example.urclean.fragments.NotificacionesCiudadanoFragment;
 import com.example.urclean.fragments.PerfilCiudadanoFragment;
-import com.example.urclean.fragments.PerfilFragment;
-import com.example.urclean.fragments.QuejasFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.example.urclean.firebase.FirebaseConnection;
@@ -66,7 +54,7 @@ public class MenuSupervisorActivity extends AppCompatActivity  {
                             break;
                         case R.id.nav_notificaciones:
                             //selectedFragment = new AddGrupoFragment();
-                            selectedFragment = new NotificacionesCiudadanoFragment();
+                            selectedFragment = new ListaNotificacionesSupervisorFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
