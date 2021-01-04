@@ -25,7 +25,7 @@
 
     <EditText
         android:id="@+id/editTextTituloQueja"
-        android:layout_width="334dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginRight="40dp"
@@ -33,6 +33,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/bordesedittext"
         android:textSize="18dp"
+        android:hint="Título"
         android:textColor="@color/black"
         android:gravity="start|top"
         android:inputType="textMultiLine" />
@@ -47,6 +48,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/bordesedittext"
         android:textSize="18dp"
+        android:hint="Descripción"
         android:textColor="@color/black"
         android:gravity="start|top"
         android:inputType="textMultiLine" />
