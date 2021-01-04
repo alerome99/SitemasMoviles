@@ -103,11 +103,12 @@ public class FirebaseConnection {
                 });
     }
 
-    public void saveTarea(String direccion, String codPostal, String descripcion, final FirebaseCallback callback){
+    public void saveTarea(String email,String direccion, String codPostal, String descripcion, final FirebaseCallback callback){
         Map<String,Object> tarea = new HashMap<>();
         tarea.put("direccion", direccion);
         tarea.put("codPostal", codPostal);
         tarea.put("descripcion", descripcion);
+        tarea.put("email", email);
 
         db.collection("Tareas")
                 .add(tarea)
@@ -365,6 +366,23 @@ public class FirebaseConnection {
 
     public void getDesperfecto(String email, final FirebaseCallback callback){
         db.collection("Desperfecto")
+                .whereEqualTo("email",email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getIncidenciaLimpieza(String email, final FirebaseCallback callback){
+        db.collection("Tareas")
                 .whereEqualTo("email",email)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

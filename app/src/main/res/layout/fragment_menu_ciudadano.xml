@@ -5,7 +5,7 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MenuBarrenderoFragment"
+    tools:context=".fragments.MenuCiudadanoFragment"
     android:orientation="vertical">
 
 
@@ -40,6 +40,17 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:text="Historial desperfectos"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/botonCiudadanoHistorialIncidencias"
+        android:layout_width="287dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bordesnotificaciones"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Historial incidencias de limpieza"
         android:textSize="18sp" />
 
     <Button

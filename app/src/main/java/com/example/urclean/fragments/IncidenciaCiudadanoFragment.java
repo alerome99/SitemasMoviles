@@ -2,6 +2,7 @@ package com.example.urclean.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.example.urclean.direccionMapsActivity;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class IncidenciaCiudadanoFragment extends Fragment {
 
@@ -65,15 +67,31 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                     String item = spinner.getSelectedItem().toString();
                     switch (item){
                         case "Limpieza":
-                            connection.saveTarea(dir, cod, descripcion.getText().toString(), new FirebaseCallback() {
+                            connection.getPersona(new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
-                                    if(correct){
-                                        direccion.setText("");
-                                        descripcion.setText("");
-                                        Snackbar.make(view, "Incidencia enviada", Snackbar.LENGTH_LONG).show();
-                                    }else{
-                                        Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                                    if (correct) {
+                                        if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                                            Log.e("vacio", "esta vacio");
+                                        } else {
+                                            String email="";
+                                            for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                                email = (String) document.get("email");
+
+                                            }
+                                            connection.saveTarea(email,dir, cod, descripcion.getText().toString(), new FirebaseCallback() {
+                                                @Override
+                                                public void onResponse(boolean correct) {
+                                                    if (correct) {
+                                                        direccion.setText("");
+                                                        descripcion.setText("");
+                                                        Snackbar.make(view, "Incidencia enviada", Snackbar.LENGTH_LONG).show();
+                                                    } else {
+                                                        Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                                                    }
+                                                }
+                                            });
+                                        }
                                     }
                                 }
                             });
