@@ -137,18 +137,6 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/botonAtrasRespuestaCambio"
-        android:layout_width="146dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginBottom="40dp"
-        android:text="Atras"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/buttonAceptarCambio"
         android:layout_width="173dp"
         android:layout_height="67dp"

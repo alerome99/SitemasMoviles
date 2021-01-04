@@ -9,12 +9,14 @@ public class Notificacion {
     private String email;
     private String usuario;
     private String grupoAnt;
+    private estadoNotificacion estado;
 
     public Notificacion(String grupo, String grupoAnt, String descripcion, String email /*String usuario*/) {
         this.grupo = grupo;
         this.descripcion = descripcion;
         this.email = email;
         this.grupoAnt = grupoAnt;
+        estado = estadoNotificacion.ENPROCESO;
         //this.usuario = usuario;
     }
 
@@ -56,5 +58,21 @@ public class Notificacion {
 
     public String getUsuario(){
         return usuario;
+    }
+
+    public estadoNotificacion getEstado(){
+        return estado;
+    }
+
+    public void setEstado(String e) {
+        if(e.equals("ENPROCESO")){
+            estado = estadoNotificacion.ENPROCESO;
+        }
+        if(e.equals("CONCEDIDO")){
+            estado = estadoNotificacion.CONCEDIDO;
+        }
+        if(e.equals("RECHAZADO")){
+            estado = estadoNotificacion.RECHAZADO;
+        }
     }
 }

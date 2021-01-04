@@ -92,8 +92,12 @@ public class MenuSupervisorFragment extends Fragment {
 
         buttonCrearGrupo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                String bandera = "";
+                Bundle bundle = new Bundle();
+                bundle.putString("CODIGO", bandera);
                 Fragment selectedFragment;
                 selectedFragment = new AddGrupoFragment();
+                selectedFragment.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction().
                         replace(R.id.fragment_container, selectedFragment).commit();
             }

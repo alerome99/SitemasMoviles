@@ -24,7 +24,7 @@ public class DetallesRespuestaFragment extends Fragment {
     private FirebaseConnection connection;
     EditText editTextRespuesta;
     EditText editTextJustificacion;
-    Button botonAtrasRespuestaCambio;
+    Button botonConfirmarRespuesta;
 
     public DetallesRespuestaFragment() {
 
@@ -45,20 +45,41 @@ public class DetallesRespuestaFragment extends Fragment {
 
         Bundle bundle = getArguments();
 
-        botonAtrasRespuestaCambio = v.findViewById(R.id.botonAtrasRespuestaCambio);
+        botonConfirmarRespuesta = v.findViewById(R.id.botonConfirmarRespuesta);
         editTextJustificacion = v.findViewById(R.id.editTextJustificacion);
         editTextRespuesta = v.findViewById(R.id.editTextRespuesta);
 
         editTextRespuesta.setText(getArguments().getString("RESPUESTA"));
         editTextJustificacion.setText(getArguments().getString("RAZON"));
 
-        botonAtrasRespuestaCambio.setOnClickListener(new View.OnClickListener() {
+        botonConfirmarRespuesta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment selectedFragment;
-                selectedFragment = new ListaNotificacionesSupervisorFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, selectedFragment).commit();
+                connection.getNotificacionBarrenderosPorEmail(getArguments().getString("EMAIL"), correct -> {
+                    if (correct) {
+                        if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                        } else {
+                            String id = "";
+                            for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                id = (String) document.getId();
+                            }
+                            connection.actualizarEstadoRespuesta(id, new FirebaseCallback() {
+                                @Override
+                                public void onResponse(boolean correct) {
+                                    if (correct) {
+                                        Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
+                                    } else {
+                                        Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
+                                    }
+                                    Fragment selectedFragment;
+                                    selectedFragment = new ListaNotificacionesBarrenderoFragment();
+                                    getActivity().getSupportFragmentManager().beginTransaction().
+                                            replace(R.id.fragment_container, selectedFragment).commit();
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
 
