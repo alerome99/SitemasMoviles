@@ -138,7 +138,8 @@ public class ListaTareasFragment extends Fragment {
                                                     bundle.putSerializable("ObjetoTarea", tareas.get(position));
                                                     selectedFragment.setArguments(bundle);
                                                     getActivity().getSupportFragmentManager().beginTransaction().
-                                                            replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
+                                                            replace(R.id.fragment_container, selectedFragment)
+                                                    .addToBackStack(null).commit();
 
                                                 }else if(tareas.get(position).getEstado().equals("EnCurso")){
 
