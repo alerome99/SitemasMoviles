@@ -62,7 +62,7 @@ public class HistorialQuejasFragment extends Fragment {
                                             String descripcion = (String) document.get("descripcion");
                                             String estado = (String) document.get("estado");
                                             String titulo = (String) document.get("titulo");
-                                            quejas.add("TÍTULO: "+titulo+"\nDESCRIPCION: "+ descripcion+"\nESTADO: "+ estado);
+                                            quejas.add("\nTÍTULO: "+titulo+"\nDESCRIPCION: "+ descripcion+"\nESTADO: "+ estado);
                                         }
 
 

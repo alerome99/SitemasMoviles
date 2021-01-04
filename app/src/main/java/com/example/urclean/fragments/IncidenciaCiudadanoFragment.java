@@ -24,7 +24,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 public class IncidenciaCiudadanoFragment extends Fragment {
 
     private FirebaseConnection connection;
-    private EditText descripcion;
+    private EditText descripcion, asunto;
     private TextView direccion;
     private Spinner spinner;
     private String lat,lng,dir,cod;
@@ -44,6 +44,7 @@ public class IncidenciaCiudadanoFragment extends Fragment {
 
         direccion = view.findViewById(R.id.textViewDireccionIncidencia);
         descripcion = view.findViewById(R.id.editTextDescripcionIncidencia);
+        asunto = view.findViewById(R.id.editTextAsunto);
 
         if(getArguments()!=null){
             lat = getArguments().getString("lat");
@@ -57,13 +58,16 @@ public class IncidenciaCiudadanoFragment extends Fragment {
         view.findViewById(R.id.botonEnviarIncidencia).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(asunto.getText().toString().trim().length() == 0){
+                    asunto.setError("Ingrese un asunto a la incidencia");
+                }
                 if(direccion.getText().toString().trim().length() == 0){
                     direccion.setError("Ingrese el lugar de la incidencia");
                 }
                 if(descripcion.getText().toString().trim().length() == 0){
                     descripcion.setError("Ingrese el motivo de la incidencia");
                 }
-                if(direccion.getText().toString().trim().length() != 0 && descripcion.getText().toString().trim().length() != 0){
+                if(direccion.getText().toString().trim().length() != 0 && descripcion.getText().toString().trim().length() != 0 && asunto.getText().toString().trim().length() != 0){
                     String item = spinner.getSelectedItem().toString();
                     switch (item){
                         case "Limpieza":
@@ -77,14 +81,14 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                                             String email="";
                                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                                 email = (String) document.get("email");
-
                                             }
-                                            connection.saveTarea(email,dir, cod, descripcion.getText().toString(), new FirebaseCallback() {
+                                            connection.saveTarea(email,asunto.getText().toString(),dir,cod, descripcion.getText().toString(), new FirebaseCallback() {
                                                 @Override
                                                 public void onResponse(boolean correct) {
                                                     if (correct) {
                                                         direccion.setText("");
                                                         descripcion.setText("");
+                                                        asunto.setText("");
                                                         Snackbar.make(view, "Incidencia enviada", Snackbar.LENGTH_LONG).show();
                                                     } else {
                                                         Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
