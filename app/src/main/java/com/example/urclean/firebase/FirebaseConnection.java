@@ -9,6 +9,7 @@ import com.example.urclean.model.Grupo;
 import com.example.urclean.model.Notificacion;
 import com.example.urclean.model.Queja;
 import com.example.urclean.model.Respuesta;
+import com.example.urclean.model.estadoQueja;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -169,6 +170,22 @@ public class FirebaseConnection {
 
     public void getQuejas(final FirebaseCallback callback){
         db.collection("Queja")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getDesperfectos(final FirebaseCallback callback){
+        db.collection("Desperfecto")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -403,6 +420,23 @@ public class FirebaseConnection {
 
     public void getQuejaPorEmailTitulo(String email, String titulo, final FirebaseCallback callback){
         db.collection("Queja")
+                .whereEqualTo("email", email).whereEqualTo("titulo", titulo)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getDesperfectoPorEmailTitulo(String email, String titulo, final FirebaseCallback callback){
+        db.collection("Desperfecto")
                 .whereEqualTo("email", email).whereEqualTo("titulo", titulo)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -698,6 +732,33 @@ public class FirebaseConnection {
 
     }
 
+    public void cambiarEstadoDesperfecto(String id, String estado, FirebaseCallback callback){
+
+        Map<String,Object> desperfecto = new HashMap<>();
+        if(estado.equals("1")){
+            desperfecto.put("estado", "RECIBIDA");
+        }
+        if(estado.equals("2")){
+            desperfecto.put("estado", "SOLUCIONADA");
+        }
+
+        DocumentReference ref = db.collection("Desperfecto").document(id);
+        ref.update(desperfecto)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void documentReference)  {
+                        callback.onResponse(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });
+
+    }
+
     public void modificarDatos(String id, String username, String tlf, String email, FirebaseCallback callback){
 
         Map<String,Object> persona = new HashMap<>();
@@ -721,12 +782,12 @@ public class FirebaseConnection {
                 });
     }
 
-    public void saveDesperfecto(String direccion, String lat, String lng, String descripcion, final FirebaseCallback callback){
+    public void saveDesperfecto(String titulo, String direccion, String descripcion, final FirebaseCallback callback){
         Map<String,Object> desperfecto = new HashMap<>();
+        desperfecto.put("titulo", titulo);
         desperfecto.put("direccion", direccion);
-        desperfecto.put("lat", lat);
-        desperfecto.put("lng", lng);
         desperfecto.put("descripcion", descripcion);
+        desperfecto.put("estado", estadoQueja.NOTIFICADA.toString());
         desperfecto.put("email", mAuth.getCurrentUser().getEmail());
         db.collection("Desperfecto").add(desperfecto)
                 .addOnSuccessListener(documentReference -> callback.onResponse(true))

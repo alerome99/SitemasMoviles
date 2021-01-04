@@ -101,10 +101,11 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                             });
                             break;
                         case "Desperfecto":
-                            connection.saveDesperfecto(dir, lat, lng, descripcion.getText().toString(), new FirebaseCallback() {
+                            connection.saveDesperfecto(asunto.getText().toString(), dir, descripcion.getText().toString(), new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
                                     if(correct){
+                                        asunto.setText("");
                                         direccion.setText("");
                                         descripcion.setText("");
                                         Snackbar.make(view, "Desperfecto enviado", Snackbar.LENGTH_LONG).show();

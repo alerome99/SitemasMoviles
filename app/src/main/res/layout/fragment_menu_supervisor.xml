@@ -57,6 +57,18 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonCrearGrupo" />
 
     <Button
+        android:id="@+id/buttonListaDesperfectos"
+        android:layout_width="287dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="Lista de desperfectos"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonListaQuejas" />
+
+    <Button
         android:id="@+id/Logoutsupervisor"
         android:layout_width="287dp"
         android:layout_height="55dp"
@@ -68,7 +80,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonListaQuejas" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonListaDesperfectos" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
