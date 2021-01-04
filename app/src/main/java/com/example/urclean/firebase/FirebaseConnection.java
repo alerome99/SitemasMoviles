@@ -202,6 +202,23 @@ public class FirebaseConnection {
                 });
     }
 
+    public void getNotificacionesQuejas(String email,final FirebaseCallback callback){
+        db.collection("Queja")
+                .whereEqualTo("email",email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        }else{
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
     public void getCurrentUser(final FirebaseCallback callback){
         db.collection("Persona")
                 .whereEqualTo("idUser", mAuth.getCurrentUser().getUid())

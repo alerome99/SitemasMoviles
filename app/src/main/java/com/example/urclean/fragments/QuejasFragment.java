@@ -14,7 +14,7 @@ import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.example.urclean.model.Queja;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.material.snackbar.Snackbar;
 
 public class QuejasFragment extends Fragment implements View.OnClickListener{
 
@@ -45,8 +45,9 @@ public class QuejasFragment extends Fragment implements View.OnClickListener{
                 if(correct){
                     editTextQueja.setText("");
                     editTextTituloQueja.setText("");
+                    Snackbar.make(view, "Queja enviada", Snackbar.LENGTH_LONG).show();
                 }else{
-
+                    Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
                 }
             }
         });

@@ -60,7 +60,7 @@ public class HistorialDesperfectosFragment extends Fragment {
                                         for (QueryDocumentSnapshot document : connection.getResponse()) {
                                             String descripcion = (String) document.get("descripcion");
                                             String direccion = (String) document.get("direccion");
-                                            desperfectos.add("Dirección: " + direccion + "\nDescripcion: " + descripcion);
+                                            desperfectos.add("Dirección: " + direccion + "\n\nDescripcion: " + descripcion);
                                         }
 
 
