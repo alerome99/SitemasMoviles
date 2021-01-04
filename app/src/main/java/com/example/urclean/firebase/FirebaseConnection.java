@@ -103,6 +103,23 @@ public class FirebaseConnection {
                 });
     }
 
+    public void saveTarea(String direccion, String codPostal, String descripcion, final FirebaseCallback callback){
+        Map<String,Object> tarea = new HashMap<>();
+        tarea.put("direccion", direccion);
+        tarea.put("codPostal", codPostal);
+        tarea.put("descripcion", descripcion);
+
+        db.collection("Tareas")
+                .add(tarea)
+                .addOnSuccessListener(documentReference -> callback.onResponse(true))
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });
+    }
+
 
     public void getPersona(final FirebaseCallback callback){
         db.collection("Persona")

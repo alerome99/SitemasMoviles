@@ -24,7 +24,7 @@ public class IncidenciaCiudadanoFragment extends Fragment {
     private FirebaseConnection connection;
     private EditText direccion, descripcion;
     private Spinner spinner;
-    private String lat,lng,dir;
+    private String lat,lng,dir,cod;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class IncidenciaCiudadanoFragment extends Fragment {
             lat = getArguments().getString("lat");
             lng = getArguments().getString("lng");
             dir = getArguments().getString("dir");
+            cod = getArguments().getString("cod");
 
             direccion.setText(dir);
         }
@@ -57,6 +58,18 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                 Log.d("onTouch", item);
                 switch (item){
                     case "Limpieza":
+                        connection.saveTarea(dir, cod, descripcion.getText().toString(), new FirebaseCallback() {
+                            @Override
+                            public void onResponse(boolean correct) {
+                                if(correct){
+                                    direccion.setText("");
+                                    descripcion.setText("");
+                                    Snackbar.make(view, "Incidencia enviada", Snackbar.LENGTH_LONG).show();
+                                }else{
+                                    Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                                }
+                            }
+                        });
                         break;
                     case "Desperfecto":
                         connection.saveDesperfecto(dir, lat, lng, descripcion.getText().toString(), new FirebaseCallback() {
