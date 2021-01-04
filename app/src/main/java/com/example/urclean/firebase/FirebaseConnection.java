@@ -77,6 +77,7 @@ public class FirebaseConnection {
         user.put("telefono",telefono);
         user.put("idUser", mAuth.getUid());
         user.put("fecha",fecha);
+
         db.collection("Persona")
                 .add(user)
                 .addOnSuccessListener(documentReference -> callback.onResponse(true))
