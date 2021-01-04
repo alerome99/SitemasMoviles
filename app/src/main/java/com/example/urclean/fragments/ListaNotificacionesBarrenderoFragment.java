@@ -27,6 +27,7 @@ public class ListaNotificacionesBarrenderoFragment extends Fragment {
     String[][] extra;
     private ArrayAdapter<String> adaptador;
     private FirebaseConnection connection;
+    private String email;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,36 +45,45 @@ public class ListaNotificacionesBarrenderoFragment extends Fragment {
         searchFilter = v.findViewById(R.id.searchFilter);
         listViewNotificaciones = v.findViewById(R.id.listViewNotificaciones);
 
-
-        connection.getNotificacionesBarrenderos(correct -> {
-            if (correct) {
+        connection.getCurrentUser(correct2 -> {
+            if (correct2) {
                 if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
                 } else {
-                    int i = 0;
-                    datos = new String [connection.getResponse().size()];
-                    extra = new String [connection.getResponse().size()][3];
+                    email = "";
                     for (QueryDocumentSnapshot document : connection.getResponse()) {
-                        datos[i] = (String) document.get("email");
-                        extra[i][0] = (String) document.get("email");
-                        extra[i][1] = (String) document.get("respuesta");
-                        extra[i][2] = (String) document.get("justificacion");
-                        i++;
+                        email = (String) document.get("email");
                     }
-                    adaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,datos);
-                    listViewNotificaciones.setAdapter(adaptador);
-                    listViewNotificaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Fragment selectedFragment;
-                            selectedFragment = new DetallesRespuestaFragment();
-                            Bundle bundle = new Bundle();
-                            bundle.putString("EMAIL", extra[position][0]);
-                            bundle.putString("RESPUESTA", extra[position][1]);
-                            System.out.println("holaaaaaaaaaaaaaa " + extra[position][1]);
-                            bundle.putString("RAZON", extra[position][2]);
-                            selectedFragment.setArguments(bundle);
-                            getActivity().getSupportFragmentManager().beginTransaction().
-                                    replace(R.id.fragment_container, selectedFragment).commit();
+                    connection.getNotificacionBarrenderosPorEmail(email, correct -> {
+                        if (correct) {
+                            if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                            } else {
+                                int i = 0;
+                                datos = new String[connection.getResponse().size()];
+                                extra = new String[connection.getResponse().size()][3];
+                                for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                    datos[i] = (String) document.get("email");
+                                    extra[i][0] = (String) document.get("email");
+                                    extra[i][1] = (String) document.get("respuesta");
+                                    extra[i][2] = (String) document.get("justificacion");
+                                    i++;
+                                }
+                                adaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, datos);
+                                listViewNotificaciones.setAdapter(adaptador);
+                                listViewNotificaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Fragment selectedFragment;
+                                        selectedFragment = new DetallesRespuestaFragment();
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("EMAIL", email);
+                                        bundle.putString("RESPUESTA", extra[position][1]);
+                                        bundle.putString("RAZON", extra[position][2]);
+                                        selectedFragment.setArguments(bundle);
+                                        getActivity().getSupportFragmentManager().beginTransaction().
+                                                replace(R.id.fragment_container, selectedFragment).commit();
+                                    }
+                                });
+                            }
                         }
                     });
                 }

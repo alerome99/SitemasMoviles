@@ -31,7 +31,6 @@ public class DetallesBarrenderoFragment extends Fragment {
     EditText editTextPhone;
     EditText editTextEmail;
     ArrayList<String> listaGrupos;
-    Button botonAtrasDetallesBarrandero;
 
 
     public DetallesBarrenderoFragment() {
@@ -55,7 +54,6 @@ public class DetallesBarrenderoFragment extends Fragment {
         Bundle bundle = getArguments();
 
         buttonGrupo = v.findViewById(R.id.buttonGrupo);
-        botonAtrasDetallesBarrandero = v.findViewById(R.id.botonAtrasDetallesBarrandero);
         spinner = v.findViewById(R.id.spinner);
         editTextName = v.findViewById(R.id.editTextName);
         editTextPhone = v.findViewById(R.id.editTextPhone);
@@ -65,16 +63,6 @@ public class DetallesBarrenderoFragment extends Fragment {
         editTextEmail.setText(getArguments().getString("EMAIL"));
         editTextPhone.setText(getArguments().getString("TELEFONO"));
         editTextName.setText(getArguments().getString("NAME"));
-
-        botonAtrasDetallesBarrandero.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment selectedFragment;
-                selectedFragment = new ListaBarrenderosFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, selectedFragment).commit();
-            }
-        });
 
         connection.getGrupos(correct -> {
             if (correct) {

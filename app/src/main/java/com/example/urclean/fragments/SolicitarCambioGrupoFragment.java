@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
@@ -31,7 +32,8 @@ public class SolicitarCambioGrupoFragment extends Fragment {
     EditText editTextRazon;
     ArrayList<String> listaGrupos;
     Button buttonSolicitarCambio;
-    Button botonAtrasSolicitarCambio;
+    private String email;
+    TextView textViewError;
 
     public SolicitarCambioGrupoFragment() {
 
@@ -42,7 +44,6 @@ public class SolicitarCambioGrupoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         connection = FirebaseConnection.getInstance();
-
     }
 
     @Override
@@ -52,7 +53,7 @@ public class SolicitarCambioGrupoFragment extends Fragment {
         View v =  inflater.inflate(R.layout.fragment_solicitud_cambio_grupo, container, false);
 
         buttonSolicitarCambio = v.findViewById(R.id.buttonSolicitarCambio);
-        botonAtrasSolicitarCambio = v.findViewById(R.id.botonAtrasSolicitarCambio);
+        textViewError = v.findViewById(R.id.textViewError);
         spinner = v.findViewById(R.id.spinner);
         editTextGrupoActual = v.findViewById(R.id.editTextGrupoActual);
         editTextRazon = v.findViewById(R.id.editTextRazon);
@@ -100,24 +101,59 @@ public class SolicitarCambioGrupoFragment extends Fragment {
                     if (correct){
                         if (connection.getResponse().isEmpty() || connection.getResponse() == null){
                         }else{
-                            String email = "";
+                            email = "";
                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                 email = (String) document.get("email");
                             }
-                            Notificacion n = new Notificacion(spinner.getSelectedItem().toString(), editTextGrupoActual.getText().toString(),
-                                    editTextRazon.getText().toString(), email);
-                            connection.crearNotificacion(n, new FirebaseCallback() {
-                                @Override
-                                public void onResponse(boolean correct) {
-                                    if (correct) {
-                                        Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
+                            connection.getNotificacionesSupervisor(correct2 ->{
+                                if (correct2) {
+                                    if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                                        Notificacion n = new Notificacion(spinner.getSelectedItem().toString(), editTextGrupoActual.getText().toString(),
+                                                editTextRazon.getText().toString(), email);
+                                        connection.crearNotificacion(n, new FirebaseCallback() {
+                                            @Override
+                                            public void onResponse(boolean correct) {
+                                                if (correct) {
+                                                    Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
+                                                } else {
+                                                    Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
+                                                }
+                                                Fragment selectedFragment;
+                                                selectedFragment = new MenuBarrenderoFragment();
+                                                getActivity().getSupportFragmentManager().beginTransaction().
+                                                        replace(R.id.fragment_container, selectedFragment).commit();
+                                            }
+                                        });
                                     } else {
-                                        Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
+                                        Boolean bandera = true;
+                                        String comprobacion = "";
+                                        for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                            comprobacion = (String) document.get("email");
+                                            if(email.equals(comprobacion)){
+                                                bandera = false;
+                                            }
+                                        }
+                                        if(bandera){
+                                            Notificacion n = new Notificacion(spinner.getSelectedItem().toString(), editTextGrupoActual.getText().toString(),
+                                                    editTextRazon.getText().toString(), email);
+                                            connection.crearNotificacion(n, new FirebaseCallback() {
+                                                @Override
+                                                public void onResponse(boolean correct) {
+                                                    if (correct) {
+                                                        Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
+                                                    } else {
+                                                        Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
+                                                    }
+                                                    Fragment selectedFragment;
+                                                    selectedFragment = new MenuBarrenderoFragment();
+                                                    getActivity().getSupportFragmentManager().beginTransaction().
+                                                            replace(R.id.fragment_container, selectedFragment).commit();
+                                                }
+                                            });
+                                        }else{
+                                            editTextRazon.setError("YA TIENES UNA SOLICITUD EN PROCESO");
+                                        }
                                     }
-                                    Fragment selectedFragment;
-                                    selectedFragment = new MenuBarrenderoFragment();
-                                    getActivity().getSupportFragmentManager().beginTransaction().
-                                            replace(R.id.fragment_container, selectedFragment).commit();
                                 }
                             });
                         }
