@@ -1,5 +1,6 @@
 package com.example.urclean.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -91,4 +92,15 @@ public class HistorialTareasFragment extends Fragment {
 
       return v;
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
 }

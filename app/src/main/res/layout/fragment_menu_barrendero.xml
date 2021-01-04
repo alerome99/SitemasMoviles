@@ -28,7 +28,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/bordesnotificaciones"
         android:gravity="center"
-        android:text="Incidencia laboral"
+        android:text="Fichar y opciones de turno"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

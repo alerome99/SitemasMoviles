@@ -138,7 +138,7 @@ public class ListaTareasFragment extends Fragment {
                                                     bundle.putSerializable("ObjetoTarea", tareas.get(position));
                                                     selectedFragment.setArguments(bundle);
                                                     getActivity().getSupportFragmentManager().beginTransaction().
-                                                            replace(R.id.fragment_container, selectedFragment).commit();
+                                                            replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
 
                                                 }else if(tareas.get(position).getEstado().equals("EnCurso")){
 
@@ -150,7 +150,8 @@ public class ListaTareasFragment extends Fragment {
                                                     selectedFragment.setArguments(bundle);
 
                                                     getActivity().getSupportFragmentManager().beginTransaction().
-                                                            replace(R.id.fragment_container, selectedFragment).commit();
+                                                            replace(R.id.fragment_container, selectedFragment).
+                                                            addToBackStack(null).commit();
 
                                                 } else {
                                                     Log.e("feil", "Feil en el estado");
