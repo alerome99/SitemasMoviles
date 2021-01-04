@@ -17,6 +17,7 @@ import com.example.urclean.R;
 import com.example.urclean.direccionMapsActivity;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
+import com.google.android.material.snackbar.Snackbar;
 
 public class IncidenciaCiudadanoFragment extends Fragment {
 
@@ -64,8 +65,9 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                                 if(correct){
                                     direccion.setText("");
                                     descripcion.setText("");
+                                    Snackbar.make(view, "Desperfecto enviado", Snackbar.LENGTH_LONG).show();
                                 }else{
-
+                                    Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
                                 }
                             }
                         });

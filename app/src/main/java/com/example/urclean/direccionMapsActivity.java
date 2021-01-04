@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -76,7 +75,7 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
         LatLng valladolid = new LatLng(41.6521328, -4.728562); // Coordenadas de valladolid
         mMap.addMarker(new MarkerOptions().position(valladolid).title("Valladolid").draggable(true));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(valladolid, 12));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(valladolid, 16));
 
         googleMap.setOnMarkerDragListener(this);
 

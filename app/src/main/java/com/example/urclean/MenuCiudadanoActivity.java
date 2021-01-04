@@ -18,7 +18,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menuciudadano);
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation_ciudadano);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         Bundle bundle = this.getIntent().getExtras();
