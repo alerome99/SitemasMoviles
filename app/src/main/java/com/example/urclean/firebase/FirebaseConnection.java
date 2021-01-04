@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
@@ -106,22 +107,47 @@ public class FirebaseConnection {
                 });
     }
 
-    public void saveTarea(String email,String direccion, String codPostal, String descripcion, final FirebaseCallback callback){
-        Map<String,Object> tarea = new HashMap<>();
-        tarea.put("direccion", direccion);
-        tarea.put("codPostal", codPostal);
-        tarea.put("descripcion", descripcion);
-        tarea.put("email", email);
+    public void saveTarea(String email,String asunto,String direccion, String codPostal, String descripcion, final FirebaseCallback callback){
+        getGrupo(codPostal, new FirebaseCallback() {
+            @Override
+            public void onResponse(boolean correct) {
+                if (correct){
+                    if (getResponse().isEmpty() || getResponse() == null) {
 
-        db.collection("Tareas")
-                .add(tarea)
-                .addOnSuccessListener(documentReference -> callback.onResponse(true))
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        callback.onResponse(false);
+                    }else{
+                        String grupo="";
+                        for (QueryDocumentSnapshot document : getResponse()) {
+                            grupo = (String) document.get("numero");
+                        }
+                        Map<String,Object> tarea = new HashMap<>();
+                        DocumentReference doc = db.collection("Tareas").document();
+
+                        tarea.put("Calle", direccion);
+                        tarea.put("Descripcion", descripcion);
+                        tarea.put("Estado", "SinAsignar");
+                        tarea.put("Grupo", grupo);
+                        tarea.put("Nombre",asunto);
+                        tarea.put("Responsable", "");
+                        tarea.put("Id", doc.getId());
+                        tarea.put("email", email);
+                        
+                        db.collection("Tareas").document(doc.getId())
+                                .set(tarea)
+                                .addOnSuccessListener(documentReference -> callback.onResponse(true))
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        callback.onResponse(false);
+                                    }
+                                });
                     }
-                });
+                }
+            }
+        });
+
+
+
+
     }
 
 
@@ -170,6 +196,23 @@ public class FirebaseConnection {
                         } else {
                             callback.onResponse(false);
                         }
+                    }
+                });
+    }
+
+    public void getGrupo(String codigo, final FirebaseCallback callback) {
+        db.collection("Grupo").whereEqualTo("codigo", codigo).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                            //grupo[0] = (String) document.getData().get(codigo);
+                        } else {
+                            callback.onResponse(false);
+                        }
+
                     }
                 });
     }
@@ -274,9 +317,26 @@ public class FirebaseConnection {
                 });
     }
 
-    public void getNotificacionesQuejas(String email,final FirebaseCallback callback){
+    public void getNotificacionesQuejas(final FirebaseCallback callback){
         db.collection("Queja")
-                .whereEqualTo("email",email)
+                .whereEqualTo("email",mAuth.getCurrentUser().getEmail())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        }else{
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getNotificacionesIncidencias(final FirebaseCallback callback){
+        db.collection("Tareas")
+                .whereEqualTo("email", mAuth.getCurrentUser().getEmail())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -360,7 +420,6 @@ public class FirebaseConnection {
     }
 
     public void getTarea(String grupoUser,final FirebaseCallback callback){
-
         db.collection("Tareas")
                 .whereEqualTo("Grupo", grupoUser)
                 .get()

@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 
+import android.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.urclean.fragments.IncidenciaCiudadanoFragment;
@@ -70,4 +72,5 @@ public class menuBarrendero extends AppCompatActivity  {
                     return true;
                 }
             };
+
 }
