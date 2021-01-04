@@ -42,8 +42,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editTextDireccionIncidencia"
+        <TextView
+            android:id="@+id/textViewDireccionIncidencia"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"

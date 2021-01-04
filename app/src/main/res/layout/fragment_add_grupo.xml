@@ -6,19 +6,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/editTextCodigoPostal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="60dp"
+        android:ems="10"
+        android:hint="Codigo postal"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddGrupo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <Button
         android:id="@+id/buttonAddGrupo"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/button_rounded"
         android:onClick="onClick"
         android:text="Añadir Grupo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextTextNumeroGrupo" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCodigoPostal" />
 
     <EditText
         android:id="@+id/editTextTextNumeroGrupo"
@@ -27,14 +46,44 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="176dp"
+        android:layout_marginBottom="35dp"
         android:ems="10"
         android:hint="Numero"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editTextCodigoPostal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.562" />
+
+    <Button
+        android:id="@+id/botonMostrarListaCodigos"
+        android:layout_width="116dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="121dp"
+        android:text="MAS"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonAddGrupo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextNumeroGrupo"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerSeleccionarCodigo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonAddGrupo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCodigoPostal"
+        app:layout_constraintVertical_bias="0.1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

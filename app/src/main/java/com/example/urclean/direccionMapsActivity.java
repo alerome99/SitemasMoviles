@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,7 +25,7 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
 
     private GoogleMap mMap;
     private double lat, lng;
-    private String dir;
+    private String dir, cod;
     private TextView tvCoordenadas, tvDireccion;
 
     @Override
@@ -50,6 +49,7 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
                 b.putString("lat", String.format(Locale.getDefault(), "%1$.4f", lat));
                 b.putString("lng", String.format(Locale.getDefault(), "%1$.4f", lng));
                 b.putString("dir", dir);
+                b.putString("cod", cod);
 
                 intent.putExtras(b);
 
@@ -76,7 +76,7 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
         LatLng valladolid = new LatLng(41.6521328, -4.728562); // Coordenadas de valladolid
         mMap.addMarker(new MarkerOptions().position(valladolid).title("Valladolid").draggable(true));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(valladolid, 12));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(valladolid, 16));
 
         googleMap.setOnMarkerDragListener(this);
 
@@ -106,6 +106,8 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
             List<Address> direccion = geocoder.getFromLocation(lat, lng, 1);
             dir = direccion.get(0).getAddressLine(0);
             tvDireccion.setText("Dirección: "+dir);
+            cod = direccion.get(0).getPostalCode();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

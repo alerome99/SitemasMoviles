@@ -7,35 +7,28 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
+import com.example.urclean.model.Respuesta;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.util.ArrayList;
+
+public class DetallesRespuestaFragment extends Fragment {
 
 
-public class DetallesUsuarioFragment extends Fragment {
-
-
-    Button buttonRegistrarBarrendero;
-    Spinner spinner;
     private FirebaseConnection connection;
-    EditText editTextName;
-    EditText editTextPhone;
-    EditText editTextEmail;
-    ArrayList<String> listaGrupos;
+    EditText editTextRespuesta;
+    EditText editTextJustificacion;
+    Button botonConfirmarRespuesta;
 
-    public DetallesUsuarioFragment() {
+    public DetallesRespuestaFragment() {
 
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,34 +41,29 @@ public class DetallesUsuarioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v =  inflater.inflate(R.layout.fragment_muestra_informacion_usuario, container, false);
+        View v =  inflater.inflate(R.layout.fragment_detalles_respuesta_cambio_grupo, container, false);
 
         Bundle bundle = getArguments();
 
-        buttonRegistrarBarrendero = v.findViewById(R.id.buttonRegistrarBarrendero);
-        spinner = v.findViewById(R.id.spinner);
-        editTextName = v.findViewById(R.id.editTextName);
-        editTextPhone = v.findViewById(R.id.editTextPhone);
-        editTextEmail = v.findViewById(R.id.editTextEmail);
-        listaGrupos = new ArrayList<>();
+        botonConfirmarRespuesta = v.findViewById(R.id.botonConfirmarRespuesta);
+        editTextJustificacion = v.findViewById(R.id.editTextJustificacion);
+        editTextRespuesta = v.findViewById(R.id.editTextRespuesta);
 
-        editTextEmail.setText(getArguments().getString("EMAIL"));
-        editTextPhone.setText(getArguments().getString("TELEFONO"));
-        editTextName.setText(getArguments().getString("NAME"));
+        editTextRespuesta.setText(getArguments().getString("RESPUESTA"));
+        editTextJustificacion.setText(getArguments().getString("RAZON"));
 
-        buttonRegistrarBarrendero.setOnClickListener(new View.OnClickListener() {
+        botonConfirmarRespuesta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //modificar el campo tipo del usuario a barrendero
-                connection.getUsuarioPorEmail(getArguments().getString("EMAIL"), correct -> {
-                    if (correct){
-                        if (connection.getResponse().isEmpty() || connection.getResponse() == null){
-                        }else{
+                connection.getNotificacionBarrenderosPorEmail(getArguments().getString("EMAIL"), correct -> {
+                    if (correct) {
+                        if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                        } else {
                             String id = "";
                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                 id = (String) document.getId();
                             }
-                            connection.convertirBarrendero(id, new FirebaseCallback() {
+                            connection.actualizarEstadoRespuesta(id, new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
                                     if (correct) {
@@ -84,13 +72,12 @@ public class DetallesUsuarioFragment extends Fragment {
                                         Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
                                     }
                                     Fragment selectedFragment;
-                                    selectedFragment = new ListaUsuariosFragment();
+                                    selectedFragment = new ListaNotificacionesBarrenderoFragment();
                                     getActivity().getSupportFragmentManager().beginTransaction().
                                             replace(R.id.fragment_container, selectedFragment).commit();
                                 }
                             });
                         }
-                    }else{
                     }
                 });
             }

@@ -3,21 +3,13 @@ package com.example.urclean.model;
 import java.util.ArrayList;
 
 public class Grupo {
+
     private String numero;
+    private String codigoPostal;
 
-    private ArrayList<userClient> lista;
-
-    public Grupo(String numero) {
+    public Grupo(String numero, String codigoPostal) {
         this.numero = numero;
-        lista = new ArrayList<>();
-    }
-
-    public ArrayList<userClient> getBarrenderos(){
-        return lista;
-    }
-
-    public void addBarrendero(userClient c){
-        lista.add(c);
+        this.codigoPostal = codigoPostal;
     }
 
     public String getNumero() {
@@ -26,5 +18,13 @@ public class Grupo {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public String getCodigoPostal(){
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String cp){
+        codigoPostal = cp;
     }
 }

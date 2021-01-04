@@ -50,6 +50,14 @@ public class MenuCiudadanoFragment extends Fragment {
             }
         });
 
+        view.findViewById(R.id.botonCiudadanoHistorialIncidencias).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment selectedFragment = new HistorialIncidenciasFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            }
+        });
+
         return view;
     }
 }

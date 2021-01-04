@@ -18,9 +18,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
-public class HistorialDesperfectosFragment extends Fragment {
-
-    private ArrayList<String> desperfectos;
+public class HistorialIncidenciasFragment  extends Fragment {
+    private ArrayList<String> incidencias;
     private FirebaseConnection connection;
     private ListView lista;
     private String email;
@@ -32,7 +31,7 @@ public class HistorialDesperfectosFragment extends Fragment {
 
         connection = FirebaseConnection.getInstance();
 
-        desperfectos = new ArrayList<String>();
+        incidencias = new ArrayList<String>();
         lista = view.findViewById(R.id.listViewHistorialDesperfectos);
 
         connection.getPersona(new FirebaseCallback() {
@@ -47,7 +46,7 @@ public class HistorialDesperfectosFragment extends Fragment {
 
                         }
 
-                        connection.getDesperfecto(email, new FirebaseCallback() {
+                        connection.getIncidenciaLimpieza(email, new FirebaseCallback() {
                             @Override
                             public void onResponse(boolean correct) {
                                 if (correct){
@@ -60,11 +59,10 @@ public class HistorialDesperfectosFragment extends Fragment {
                                         for (QueryDocumentSnapshot document : connection.getResponse()) {
                                             String descripcion = (String) document.get("descripcion");
                                             String direccion = (String) document.get("direccion");
-                                            desperfectos.add("Dirección: " + direccion + "\n\nDescripcion: " + descripcion);
+                                            incidencias.add("Dirección: " + direccion + "\n\nDescripcion: " + descripcion);
                                         }
 
-
-                                        ArrayAdapter adaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1 , desperfectos);
+                                        ArrayAdapter adaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1 , incidencias);
                                         lista.setAdapter(adaptador);
 
                                         lista.setOnItemClickListener( new AdapterView.OnItemClickListener(){

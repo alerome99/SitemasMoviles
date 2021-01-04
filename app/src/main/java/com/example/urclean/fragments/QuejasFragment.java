@@ -14,7 +14,7 @@ import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.example.urclean.model.Queja;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.material.snackbar.Snackbar;
 
 public class QuejasFragment extends Fragment implements View.OnClickListener{
 
@@ -38,17 +38,26 @@ public class QuejasFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        Queja queja = new Queja(editTextQueja.getText().toString(), null, editTextTituloQueja.getText().toString());
-        connection.saveQueja(queja, new FirebaseCallback() {
-            @Override
-            public void onResponse(boolean correct) {
-                if(correct){
-                    editTextQueja.setText("");
-                    editTextTituloQueja.setText("");
-                }else{
-
+        if(editTextQueja.getText().toString().trim().length() == 0){
+            editTextQueja.setError("Ingrese el motivo de su queja");
+        }
+        if(editTextTituloQueja.getText().toString().trim().length() == 0){
+            editTextTituloQueja.setError("Ingrese un título para su queja");
+        }
+        if ((editTextQueja.getText().toString().trim().length() != 0) && (editTextTituloQueja.getText().toString().trim().length() != 0)){
+            Queja queja = new Queja(editTextQueja.getText().toString(), null, editTextTituloQueja.getText().toString());
+            connection.saveQueja(queja, new FirebaseCallback() {
+                @Override
+                public void onResponse(boolean correct) {
+                    if (correct) {
+                        editTextQueja.setText("");
+                        editTextTituloQueja.setText("");
+                        Snackbar.make(view, "Queja enviada", Snackbar.LENGTH_LONG).show();
+                    } else {
+                        Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }

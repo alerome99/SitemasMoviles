@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,13 +18,16 @@ import com.example.urclean.R;
 import com.example.urclean.direccionMapsActivity;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class IncidenciaCiudadanoFragment extends Fragment {
 
     private FirebaseConnection connection;
-    private EditText direccion, descripcion;
+    private EditText descripcion;
+    private TextView direccion;
     private Spinner spinner;
-    private String lat,lng,dir;
+    private String lat,lng,dir,cod;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,13 +42,14 @@ public class IncidenciaCiudadanoFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        direccion = view.findViewById(R.id.editTextDireccionIncidencia);
+        direccion = view.findViewById(R.id.textViewDireccionIncidencia);
         descripcion = view.findViewById(R.id.editTextDescripcionIncidencia);
 
         if(getArguments()!=null){
             lat = getArguments().getString("lat");
             lng = getArguments().getString("lng");
             dir = getArguments().getString("dir");
+            cod = getArguments().getString("cod");
 
             direccion.setText(dir);
         }
@@ -52,24 +57,60 @@ public class IncidenciaCiudadanoFragment extends Fragment {
         view.findViewById(R.id.botonEnviarIncidencia).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String item = spinner.getSelectedItem().toString();
-                Log.d("onTouch", item);
-                switch (item){
-                    case "Limpieza":
-                        break;
-                    case "Desperfecto":
-                        connection.saveDesperfecto(dir, lat, lng, descripcion.getText().toString(), new FirebaseCallback() {
-                            @Override
-                            public void onResponse(boolean correct) {
-                                if(correct){
-                                    direccion.setText("");
-                                    descripcion.setText("");
-                                }else{
+                if(direccion.getText().toString().trim().length() == 0){
+                    direccion.setError("Ingrese el lugar de la incidencia");
+                }
+                if(descripcion.getText().toString().trim().length() == 0){
+                    descripcion.setError("Ingrese el motivo de la incidencia");
+                }
+                if(direccion.getText().toString().trim().length() != 0 && descripcion.getText().toString().trim().length() != 0){
+                    String item = spinner.getSelectedItem().toString();
+                    switch (item){
+                        case "Limpieza":
+                            connection.getPersona(new FirebaseCallback() {
+                                @Override
+                                public void onResponse(boolean correct) {
+                                    if (correct) {
+                                        if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                                            Log.e("vacio", "esta vacio");
+                                        } else {
+                                            String email="";
+                                            for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                                email = (String) document.get("email");
 
+                                            }
+                                            connection.saveTarea(email,dir, cod, descripcion.getText().toString(), new FirebaseCallback() {
+                                                @Override
+                                                public void onResponse(boolean correct) {
+                                                    if (correct) {
+                                                        direccion.setText("");
+                                                        descripcion.setText("");
+                                                        Snackbar.make(view, "Incidencia enviada", Snackbar.LENGTH_LONG).show();
+                                                    } else {
+                                                        Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
                                 }
-                            }
-                        });
-                        break;
+                            });
+                            break;
+                        case "Desperfecto":
+                            connection.saveDesperfecto(dir, lat, lng, descripcion.getText().toString(), new FirebaseCallback() {
+                                @Override
+                                public void onResponse(boolean correct) {
+                                    if(correct){
+                                        direccion.setText("");
+                                        descripcion.setText("");
+                                        Snackbar.make(view, "Desperfecto enviado", Snackbar.LENGTH_LONG).show();
+                                    }else{
+                                        Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            break;
+                    }
                 }
             }
         });

@@ -18,7 +18,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menuciudadano);
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation_ciudadano);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         Bundle bundle = this.getIntent().getExtras();
@@ -26,11 +26,13 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
             String lat = bundle.getString("lat");
             String lng = bundle.getString("lng");
             String dir = bundle.getString("dir");
+            String cod = bundle.getString("cod");
 
             Bundle args = new Bundle();
             args.putString("lat", lat);
             args.putString("lng",lng);
             args.putString("dir", dir);
+            args.putString("cod", cod);
 
             IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
             fragment.setArguments(args);
@@ -41,7 +43,6 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new MenuCiudadanoFragment()).commit();
         }
-
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
