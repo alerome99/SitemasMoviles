@@ -25,7 +25,7 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
 
     private GoogleMap mMap;
     private double lat, lng;
-    private String dir;
+    private String dir, cod;
     private TextView tvCoordenadas, tvDireccion;
 
     @Override
@@ -49,6 +49,7 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
                 b.putString("lat", String.format(Locale.getDefault(), "%1$.4f", lat));
                 b.putString("lng", String.format(Locale.getDefault(), "%1$.4f", lng));
                 b.putString("dir", dir);
+                b.putString("cod", cod);
 
                 intent.putExtras(b);
 
@@ -105,6 +106,8 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
             List<Address> direccion = geocoder.getFromLocation(lat, lng, 1);
             dir = direccion.get(0).getAddressLine(0);
             tvDireccion.setText("Dirección: "+dir);
+            cod = direccion.get(0).getPostalCode();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
