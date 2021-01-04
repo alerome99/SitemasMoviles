@@ -53,13 +53,14 @@ public class HistorialIncidenciasFragment  extends Fragment {
                                     if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
 
                                     }else{
-
                                         // Rellenar arraylist de desperfectos.
                                         //for que recorre los desperfectos.
                                         for (QueryDocumentSnapshot document : connection.getResponse()) {
-                                            String descripcion = (String) document.get("descripcion");
-                                            String direccion = (String) document.get("direccion");
-                                            incidencias.add("Dirección: " + direccion + "\n\nDescripcion: " + descripcion);
+                                            String nombre = (String) document.get("Nombre");
+                                            String descripcion = (String) document.get("Descripcion");
+                                            String direccion = (String) document.get("Calle");
+                                            String estado = (String) document.get("Estado");
+                                            incidencias.add("\nASUNTO: " + nombre + "\nDESCRIPCIÓN: "+descripcion+"\nDIRECCIÓN: " + direccion+"\nESTADO: "+estado);
                                         }
 
                                         ArrayAdapter adaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1 , incidencias);

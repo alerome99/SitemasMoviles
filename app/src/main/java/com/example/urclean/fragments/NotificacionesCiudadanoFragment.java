@@ -1,7 +1,6 @@
 package com.example.urclean.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.urclean.R;
-import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -36,35 +34,37 @@ public class NotificacionesCiudadanoFragment extends Fragment {
         connection = FirebaseConnection.getInstance();
         quejas = new ArrayList<String>();
 
-        connection.getPersona(new FirebaseCallback() {
-            @Override
-            public void onResponse(boolean correct) {
-                if (correct) {
-                    if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
-                        Log.e("vacio", "esta vacio");
-                    } else {
-                        for (QueryDocumentSnapshot document : connection.getResponse()) {
-                            email = (String) document.get("email");
-                        }
 
-                        connection.getNotificacionesQuejas(email, c ->{
-                            if(c){
-                                if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
-                                } else {
-                                    for (QueryDocumentSnapshot document : connection.getResponse()) {
-                                        String titulo = (String) document.get("titulo");
-                                        String estado = (String) document.get("estado");
-                                        quejas.add("La queja "+titulo+" ha sido "+estado);
-                                    }
-                                    adaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1 , quejas);
-                                    lista.setAdapter(adaptador);
-                                }
-                            }
-                        });
+        connection.getNotificacionesQuejas(correct ->{
+            if(correct){
+                if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                } else {
+                    for (QueryDocumentSnapshot document : connection.getResponse()) {
+                        String titulo = (String) document.get("titulo");
+                        String estado = (String) document.get("estado");
+                        quejas.add("La queja "+titulo+" ha sido "+estado);
                     }
+                    adaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1 , quejas);
+                    lista.setAdapter(adaptador);
                 }
             }
         });
+
+        connection.getNotificacionesIncidencias(correct -> {
+            if(correct){
+                if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                } else {
+                    for (QueryDocumentSnapshot document : connection.getResponse()) {
+                        String asunto = (String) document.get("Nombre");
+                        String estado = (String) document.get("Estado");
+                        quejas.add("La incidencia "+asunto+" está "+estado);
+                    }
+                    adaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1 , quejas);
+                    lista.setAdapter(adaptador);
+                }
+            }
+        });
+
 
 
         return view;
