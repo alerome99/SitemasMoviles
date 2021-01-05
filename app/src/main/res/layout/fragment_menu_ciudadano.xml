@@ -12,56 +12,51 @@
     <Button
         android:id="@+id/botonCiudadanoQuejas"
         android:layout_width="287dp"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_marginTop="100dp"
         android:gravity="center"
         android:layout_gravity="center"
         android:text="Quejas"
-        android:background="@drawable/button_menu"
         android:textSize="18sp" />
 
     <Button
         android:id="@+id/botonCiudadanoHistorialQuejas"
         android:layout_width="287dp"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:layout_gravity="center"
         android:text="Historial quejas"
-        android:background="@drawable/button_menu"
         android:textSize="18sp" />
 
     <Button
         android:id="@+id/botonCiudadanoHistorialDesperfectos"
         android:layout_width="287dp"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:layout_gravity="center"
-        android:background="@drawable/button_menu"
         android:text="Historial desperfectos"
         android:textSize="18sp" />
 
     <Button
         android:id="@+id/botonCiudadanoHistorialIncidencias"
         android:layout_width="287dp"
-        android:layout_height="65dp"
+        android:layout_height="57dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="Historial incidencias de limpieza"
-        android:background="@drawable/button_menu"
+        android:text="Historial incidencias"
         android:textSize="18sp" />
 
     <Button
         android:id="@+id/LogoutCiudadano"
         android:layout_width="287dp"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:layout_gravity="center"
         android:text="Cerrar sesión"
-        android:background="@drawable/button_menu"
         android:textSize="18sp" />
 
 

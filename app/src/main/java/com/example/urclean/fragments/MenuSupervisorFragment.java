@@ -68,7 +68,7 @@ public class MenuSupervisorFragment extends Fragment {
                 Fragment selectedFragment;
                 selectedFragment = new ListaUsuariosFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, selectedFragment).commit();
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 
