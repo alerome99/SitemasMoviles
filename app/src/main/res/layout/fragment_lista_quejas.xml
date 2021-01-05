@@ -10,7 +10,7 @@
     <ListView
         android:id="@+id/listViewQuejas"
         android:layout_width="match_parent"
-        android:layout_height="620dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/container"
         app:layout_constraintEnd_toEndOf="parent"
