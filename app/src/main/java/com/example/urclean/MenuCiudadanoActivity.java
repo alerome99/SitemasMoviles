@@ -23,16 +23,18 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
 
         Bundle bundle = this.getIntent().getExtras();
         if(bundle != null){
-            String lat = bundle.getString("lat");
-            String lng = bundle.getString("lng");
             String dir = bundle.getString("dir");
             String cod = bundle.getString("cod");
+            String tipo = bundle.getString("tipo");
+            String asunto = bundle.getString("asunto");
+            String descripcion = bundle.getString("descripcion");
 
             Bundle args = new Bundle();
-            args.putString("lat", lat);
-            args.putString("lng",lng);
             args.putString("dir", dir);
             args.putString("cod", cod);
+            args.putString("tipo", tipo);
+            args.putString("asunto", asunto);
+            args.putString("descripcion", descripcion);
 
             IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
             fragment.setArguments(args);

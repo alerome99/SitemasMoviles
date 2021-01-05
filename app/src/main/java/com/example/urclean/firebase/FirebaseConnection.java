@@ -401,6 +401,23 @@ public class FirebaseConnection {
                 });
     }
 
+    public void getNotificacionesDesperfectos(final FirebaseCallback callback){
+        db.collection("Desperfecto")
+                .whereEqualTo("email", mAuth.getCurrentUser().getEmail())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        }else{
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
     public void getCurrentUser(final FirebaseCallback callback){
         db.collection("Persona")
                 .whereEqualTo("idUser", mAuth.getCurrentUser().getUid())
