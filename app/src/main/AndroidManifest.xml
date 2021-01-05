@@ -18,8 +18,6 @@
         <activity android:name=".direccionMapsActivity"></activity>
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".MenuSupervisorActivity"></activity>
-        <activity android:name=".Tarea_Concreta"></activity>
-        <activity android:name=".tareasBarrendero" />
         <activity android:name=".AccesoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,7 +1,5 @@
 package com.example.urclean.fragments;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,12 +13,9 @@ import android.widget.ListView;
 
 import com.example.urclean.AdapterTarea;
 import com.example.urclean.R;
-import com.example.urclean.ResponsableActivity;
-import com.example.urclean.Tarea_Concreta;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.example.urclean.model.Tarea;
-import com.example.urclean.tareasBarrendero;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;

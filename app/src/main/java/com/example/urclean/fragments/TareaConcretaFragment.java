@@ -1,6 +1,5 @@
 package com.example.urclean.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,10 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.urclean.R;
-import com.example.urclean.Tarea_Concreta;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
-import com.example.urclean.menuBarrendero;
 import com.example.urclean.model.Tarea;
 import com.google.android.material.snackbar.Snackbar;
 
