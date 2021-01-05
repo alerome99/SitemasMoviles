@@ -39,11 +39,13 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
             IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
             fragment.setArguments(args);
 
+            bottomNav.setSelectedItemId(R.id.nav_incidencias);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    fragment).commit();
+                    fragment).addToBackStack(null).commit();
         }else if (savedInstanceState == null) {
+            bottomNav.setSelectedItemId(R.id.nav_menu);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new MenuCiudadanoFragment()).commit();
+                    new MenuCiudadanoFragment()).addToBackStack(null).commit();
         }
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -58,7 +60,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
                         case R.id.nav_incidencias:
                             selectedFragment = new IncidenciaCiudadanoFragment();
                             break;
-                        case R.id.nav_quejas:
+                        case R.id.nav_menu:
                             selectedFragment = new MenuCiudadanoFragment();
                             break;
                         case R.id.nav_notificaciones:
@@ -67,7 +69,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
+                            selectedFragment).addToBackStack(null).commit();
 
                     return true;
                 }

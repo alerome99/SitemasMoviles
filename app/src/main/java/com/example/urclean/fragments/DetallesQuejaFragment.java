@@ -1,24 +1,19 @@
 package com.example.urclean.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
-import java.util.ArrayList;
 
 
 public class DetallesQuejaFragment extends Fragment {
@@ -82,7 +77,7 @@ public class DetallesQuejaFragment extends Fragment {
                                     Fragment selectedFragment;
                                     selectedFragment = new QuejasSupervisorFragment();
                                     getActivity().getSupportFragmentManager().beginTransaction().
-                                            replace(R.id.fragment_container, selectedFragment).commit();
+                                            replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                                 }
                             });
                         }
@@ -116,7 +111,7 @@ public class DetallesQuejaFragment extends Fragment {
                                     Fragment selectedFragment;
                                     selectedFragment = new QuejasSupervisorFragment();
                                     getActivity().getSupportFragmentManager().beginTransaction().
-                                            replace(R.id.fragment_container, selectedFragment).commit();
+                                            replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                                 }
                             });
                         }

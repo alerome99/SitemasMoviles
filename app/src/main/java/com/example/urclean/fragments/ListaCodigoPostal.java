@@ -1,26 +1,18 @@
 package com.example.urclean.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.urclean.AdapterGrupo;
-import com.example.urclean.AdapterQueja;
 import com.example.urclean.R;
-import com.example.urclean.ResponsableActivity;
-import com.example.urclean.Tarea_Concreta;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.example.urclean.model.CodigoPostal;
-import com.example.urclean.model.Queja;
-import com.example.urclean.tareasBarrendero;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -83,7 +75,7 @@ public class ListaCodigoPostal extends Fragment {
                             bundle.putString("CODIGO", codigos.get(position).getCodigo());
                             selectedFragment.setArguments(bundle);
                             getActivity().getSupportFragmentManager().beginTransaction().
-                                    replace(R.id.fragment_container, selectedFragment).commit();
+                                    replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                         }
                     });
                 }
