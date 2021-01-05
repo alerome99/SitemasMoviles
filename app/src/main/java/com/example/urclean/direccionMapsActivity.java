@@ -32,7 +32,7 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
     private GoogleMap mMap;
     private String dir, cod;
     private TextView tvCoordenadas, tvDireccion;
-    private String asunto, tipo, descripcion;
+    private String asunto, tipo, descripcion, usuario;
     private Marker marker;
 
     @Override
@@ -51,6 +51,7 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
         }
 
         tipo = bundle.getString("tipo");
+        usuario = bundle.getString("usuario");
 
         if (bundle.getString("descripcion") != null) {
             descripcion = bundle.getString("descripcion");
@@ -63,8 +64,14 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
             @Override
             public void onClick(View view) {
 
-
-                Intent intent = new Intent(direccionMapsActivity.this, MenuCiudadanoActivity.class);
+                Intent intent;
+                if(usuario.equals("ciudadano")) {
+                    intent = new Intent(direccionMapsActivity.this, MenuCiudadanoActivity.class);
+                }else if(usuario.equals("barrendero")){
+                    intent = new Intent(direccionMapsActivity.this, menuBarrendero.class);
+                }else{
+                    intent = new Intent(direccionMapsActivity.this, MenuSupervisorActivity.class);
+                }
 
                 Bundle b = new Bundle();
                 b.putString("dir", dir);
@@ -76,6 +83,7 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
                 if (descripcion != null) {
                     b.putString("descripcion", descripcion);
                 }
+                b.putString("usuario",usuario);
 
                 intent.putExtras(b);
 
@@ -87,7 +95,19 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
         findViewById(R.id.botonAtras).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(direccionMapsActivity.this, MenuCiudadanoActivity.class);
+                Intent intent;
+                if(usuario.equals("ciudadano")) {
+                    intent = new Intent(direccionMapsActivity.this, MenuCiudadanoActivity.class);
+                }else if(usuario.equals("barrendero")){
+                    intent = new Intent(direccionMapsActivity.this, menuBarrendero.class);
+                }else{
+                    intent = new Intent(direccionMapsActivity.this, MenuSupervisorActivity.class);
+                }
+                Bundle b = new Bundle();
+                b.putString("usuario",usuario);
+
+                intent.putExtras(b);
+
                 startActivity(intent);
             }
         });

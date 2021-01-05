@@ -27,7 +27,7 @@ public class IncidenciaCiudadanoFragment extends Fragment {
     private EditText descripcion, asunto;
     private TextView direccion;
     private Spinner spinner;
-    private String dir,cod;
+    private String dir,cod, usuario;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,7 +46,9 @@ public class IncidenciaCiudadanoFragment extends Fragment {
         descripcion = view.findViewById(R.id.editTextDescripcionIncidencia);
         asunto = view.findViewById(R.id.editTextAsunto);
 
-        if(getArguments()!=null){
+        usuario = getArguments().getString("usuario");
+
+        if(getArguments().getString("tipo")!=null){
             dir = getArguments().getString("dir");
             cod = getArguments().getString("cod");
 
@@ -164,6 +166,8 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                     bundle.putString("descripcion", descripcion.getText().toString());
                 }
                 bundle.putString("tipo", spinner.getSelectedItem().toString());
+                bundle.putString("usuario",usuario);
+
                 Intent intent = new Intent(getActivity().getApplicationContext(), direccionMapsActivity.class);
                 intent.putExtras(bundle);
 
