@@ -27,7 +27,7 @@ public class MenuSupervisorActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_menusupervisor);
         connection = FirebaseConnection.getInstance();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation_supervisor);
         navigation.setSelectedItemId(R.id.nav_menu_principal);
         navigation.setOnNavigationItemSelectedListener(navListener);
         if (savedInstanceState == null) {

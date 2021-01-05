@@ -31,7 +31,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/button_rounded"
+        android:background="#5462b0"
         android:onClick="onClick"
         android:text="Añadir Grupo"
         app:layout_constraintEnd_toEndOf="parent"

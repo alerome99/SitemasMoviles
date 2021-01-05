@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:theme="@style/Theme.URClean"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
 
     <ImageView
@@ -28,7 +26,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="67dp"
         android:gravity="center_vertical"
-        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageView1"
         app:layout_constraintTop_toTopOf="parent"
@@ -53,7 +50,6 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="28dp"
         android:gravity="center_vertical"
-        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/textViewName"
@@ -78,7 +74,6 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="28dp"
         android:gravity="center_vertical"
-        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/textViewDni"
@@ -104,7 +99,6 @@
         android:layout_marginEnd="31dp"
         android:layout_marginTop="28dp"
         android:gravity="center_vertical"
-        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView11"
@@ -128,7 +122,6 @@
         android:layout_height="48dp"
         android:layout_marginEnd="24dp"
         android:gravity="center_horizontal"
-        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPhoto"
@@ -140,7 +133,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
+        android:backgroundTint="#5462b0"
         android:gravity="center"
         android:text="Editar"
         android:textColor="@android:color/white"
