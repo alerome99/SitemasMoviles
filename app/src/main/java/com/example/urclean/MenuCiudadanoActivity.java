@@ -19,6 +19,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menuciudadano);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation_ciudadano);
+        bottomNav.setSelectedItemId(R.id.nav_menu);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         Bundle bundle = this.getIntent().getExtras();
@@ -58,7 +59,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
                         case R.id.nav_incidencias:
                             selectedFragment = new IncidenciaCiudadanoFragment();
                             break;
-                        case R.id.nav_quejas:
+                        case R.id.nav_menu:
                             selectedFragment = new MenuCiudadanoFragment();
                             break;
                         case R.id.nav_notificaciones:
