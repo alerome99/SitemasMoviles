@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2027"
     tools:context=".MenuCiudadanoActivity">
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -16,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/holo_blue_dark"
+        android:background="#3F51B5"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
         app:menu="@menu/bottom_navigation_menuciudadano"/>
