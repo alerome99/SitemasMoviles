@@ -241,13 +241,13 @@ public class RegisterActivity extends AppCompatActivity {
                             if (correct) {
                                 startActivity(new Intent(RegisterActivity.this, AccesoActivity.class));
                             } else {
-                                Log.e("SAVE", "Respuesta vacia");
+                                Log.e("SAVE", "Respuesta vacia saveUser");
                                 Snackbar.make(w, "Error al almacenar los datos", Snackbar.LENGTH_LONG).show();
                             }
                         }
                     }); // fin save user
                 } else {
-                    Log.e("REGISTER", "Respuesta vacia");
+                    Log.e("REGISTER", "Respuesta vacia register");
                     Log.e("REGE", "" + email.getText().toString().trim());
                     Log.e("REGP", "" + password.getText().toString().trim());
                     Snackbar.make(w, "Se ha producido un error en el registro", Snackbar.LENGTH_LONG).show();

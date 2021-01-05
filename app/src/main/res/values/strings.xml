@@ -10,5 +10,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_direccion_maps">Maps</string>
     <string name="marker_detail_latlng">(%1$.4f, %2$.4f)</string>
-    <string name="title_activity_holactivity">Map</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

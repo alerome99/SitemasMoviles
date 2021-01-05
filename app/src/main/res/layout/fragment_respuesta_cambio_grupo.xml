@@ -3,15 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#2027">
-
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/buttonRechazarCambio"
         android:layout_width="173dp"
         android:layout_height="67dp"
         android:layout_marginTop="100dp"
+        android:backgroundTint="#5462b0"
         android:text="Rechazar Cambio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -142,6 +141,7 @@
         android:layout_height="67dp"
         android:layout_marginTop="100dp"
         android:text="Aceptar Cambio"
+        android:backgroundTint="#5462b0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.067"

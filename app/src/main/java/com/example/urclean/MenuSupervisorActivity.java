@@ -27,11 +27,36 @@ public class MenuSupervisorActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_menusupervisor);
         connection = FirebaseConnection.getInstance();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation_supervisor);
+        navigation.setSelectedItemId(R.id.nav_menu_principal);
         navigation.setOnNavigationItemSelectedListener(navListener);
-        if (savedInstanceState == null) {
+
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle != null){
+            String dir = bundle.getString("dir");
+            String cod = bundle.getString("cod");
+            String tipo = bundle.getString("tipo");
+            String asunto = bundle.getString("asunto");
+            String descripcion = bundle.getString("descripcion");
+            String usuario = bundle.getString("usuario");
+
+            Bundle args = new Bundle();
+            args.putString("dir", dir);
+            args.putString("cod", cod);
+            args.putString("tipo", tipo);
+            args.putString("asunto", asunto);
+            args.putString("descripcion", descripcion);
+            args.putString("usuario", usuario);
+
+            IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
+            fragment.setArguments(args);
+
+            navigation.setSelectedItemId(R.id.nav_incidencias);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new PerfilCiudadanoFragment()).commit();
+                    fragment).addToBackStack(null).commit();
+        }else if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new MenuSupervisorFragment()).commit();
         }
     }
 
@@ -45,7 +70,10 @@ public class MenuSupervisorActivity extends AppCompatActivity  {
                             selectedFragment = new PerfilCiudadanoFragment();
                             break;
                         case R.id.nav_incidencias:
+                            Bundle b = new Bundle();
+                            b.putString("usuario","supervisor");
                             selectedFragment = new IncidenciaCiudadanoFragment();
+                            selectedFragment.setArguments(b);
                             break;
                         case R.id.nav_menu_principal:
                             selectedFragment = new MenuSupervisorFragment();
@@ -55,6 +83,7 @@ public class MenuSupervisorActivity extends AppCompatActivity  {
                             selectedFragment = new ListaNotificacionesSupervisorFragment();
                             break;
                     }
+
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).addToBackStack(null).commit();
 

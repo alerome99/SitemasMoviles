@@ -12,9 +12,8 @@
     <Button
         android:id="@+id/botonCiudadanoQuejas"
         android:layout_width="287dp"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_marginTop="100dp"
-        android:background="@drawable/bordesnotificaciones"
         android:gravity="center"
         android:layout_gravity="center"
         android:text="Quejas"
@@ -23,9 +22,8 @@
     <Button
         android:id="@+id/botonCiudadanoHistorialQuejas"
         android:layout_width="287dp"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
         android:gravity="center"
         android:layout_gravity="center"
         android:text="Historial quejas"
@@ -34,9 +32,8 @@
     <Button
         android:id="@+id/botonCiudadanoHistorialDesperfectos"
         android:layout_width="287dp"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
         android:gravity="center"
         android:layout_gravity="center"
         android:text="Historial desperfectos"
@@ -45,20 +42,18 @@
     <Button
         android:id="@+id/botonCiudadanoHistorialIncidencias"
         android:layout_width="287dp"
-        android:layout_height="65dp"
+        android:layout_height="57dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="Historial incidencias de limpieza"
+        android:text="Historial incidencias"
         android:textSize="18sp" />
 
     <Button
         android:id="@+id/LogoutCiudadano"
         android:layout_width="287dp"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
         android:gravity="center"
         android:layout_gravity="center"
         android:text="Cerrar sesión"

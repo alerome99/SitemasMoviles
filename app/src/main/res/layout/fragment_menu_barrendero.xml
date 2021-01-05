@@ -10,10 +10,9 @@
 
     <Button
         android:id="@+id/BotonHistorialBarrendero"
-        android:layout_width="200dp"
+        android:layout_width="287dp"
         android:layout_height="55dp"
-        android:layout_marginTop="195dp"
-        android:background="@drawable/bordesnotificaciones"
+        android:layout_marginTop="125dp"
         android:gravity="center"
         android:text="Estadísticas de trabajo"
         android:textSize="18sp"
@@ -23,10 +22,9 @@
 
     <Button
         android:id="@+id/Button3"
-        android:layout_width="200dp"
+        android:layout_width="287dp"
         android:layout_height="55dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
         android:gravity="center"
         android:text="Fichar y opciones de turno"
         android:textSize="18sp"
@@ -36,10 +34,9 @@
 
     <Button
         android:id="@+id/SolicitarCambioGrupo"
-        android:layout_width="200dp"
+        android:layout_width="287dp"
         android:layout_height="55dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/bordesnotificaciones"
         android:gravity="center"
         android:text="Solicitar cambio grupo"
         android:textSize="18sp"
@@ -49,12 +46,11 @@
 
     <Button
         android:id="@+id/Logoutbarrendero"
-        android:layout_width="200dp"
+        android:layout_width="287dp"
         android:layout_height="55dp"
         android:layout_marginStart="62dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="62dp"
-        android:background="@drawable/bordesnotificaciones"
         android:gravity="center"
         android:text="Cerrar sesión"
         android:textSize="18sp"

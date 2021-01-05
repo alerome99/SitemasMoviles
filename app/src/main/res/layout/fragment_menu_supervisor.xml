@@ -12,7 +12,7 @@
         android:id="@+id/buttonRegistroBarrendero"
         android:layout_width="287dp"
         android:layout_height="55dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="44dp"
         android:gravity="center"
         android:text="Registrar barrendero"
         android:textSize="18sp"

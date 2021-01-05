@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.URClean"
-    android:background="@color/white">
+>
 
     <ImageView
         android:id="@+id/imageView1"
@@ -143,7 +142,7 @@
         android:text="Cancelar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EditTextEmail"
-        android:backgroundTint="@android:color/holo_blue_dark"
+        android:backgroundTint="#5462b0"
         android:textColor="@android:color/white"/>
 
     <Button
@@ -155,6 +154,6 @@
         android:text="Aceptar"
         app:layout_constraintStart_toEndOf="@+id/botonCancelar"
         app:layout_constraintTop_toBottomOf="@+id/EditTextEmail"
-        android:backgroundTint="@android:color/holo_blue_dark"
+        android:backgroundTint="#5462b0"
         android:textColor="@android:color/white"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
