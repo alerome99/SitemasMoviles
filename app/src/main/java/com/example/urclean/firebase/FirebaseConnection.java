@@ -544,9 +544,43 @@ public class FirebaseConnection {
                 });
     }
 
-    public void getQueja(String email, final FirebaseCallback callback){
+    public void getQuejaPorEmail(final FirebaseCallback callback){
         db.collection("Queja")
-                .whereEqualTo("email",email)
+                .whereEqualTo("email", mAuth.getCurrentUser().getEmail())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getIncidenciaPorEmail(final FirebaseCallback callback){
+        db.collection("Tareas")
+                .whereEqualTo("email", mAuth.getCurrentUser().getEmail())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getDesperfectoPorEmail(final FirebaseCallback callback){
+        db.collection("Desperfecto")
+                .whereEqualTo("email", mAuth.getCurrentUser().getEmail())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
