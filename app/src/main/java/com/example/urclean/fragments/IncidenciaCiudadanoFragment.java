@@ -27,7 +27,7 @@ public class IncidenciaCiudadanoFragment extends Fragment {
     private EditText descripcion, asunto;
     private TextView direccion;
     private Spinner spinner;
-    private String lat,lng,dir,cod;
+    private String dir,cod;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,10 +47,17 @@ public class IncidenciaCiudadanoFragment extends Fragment {
         asunto = view.findViewById(R.id.editTextAsunto);
 
         if(getArguments()!=null){
-            lat = getArguments().getString("lat");
-            lng = getArguments().getString("lng");
             dir = getArguments().getString("dir");
             cod = getArguments().getString("cod");
+
+            if(getArguments().getString("tipo").equals("Desperfecto"))
+                spinner.setSelection(1,true);
+
+            if(getArguments().getString("asunto")!=null)
+                asunto.setText(getArguments().getString("asunto"));
+
+            if(getArguments().getString("descripcion")!=null)
+                descripcion.setText(getArguments().getString("descripcion"));
 
             direccion.setText(dir);
         }
@@ -149,7 +156,17 @@ public class IncidenciaCiudadanoFragment extends Fragment {
         view.findViewById(R.id.botonMaps).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                if(asunto.getText().toString()!=null){
+                    bundle.putString("asunto", asunto.getText().toString());
+                }
+                if(descripcion.getText().toString()!=null){
+                    bundle.putString("descripcion", descripcion.getText().toString());
+                }
+                bundle.putString("tipo", spinner.getSelectedItem().toString());
                 Intent intent = new Intent(getActivity().getApplicationContext(), direccionMapsActivity.class);
+                intent.putExtras(bundle);
+
                 startActivity(intent);
             }
         });
