@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -30,7 +31,7 @@ public class DetallesBarrenderoFragment extends Fragment {
     EditText editTextPhone;
     EditText editTextEmail;
     ArrayList<String> listaGrupos;
-
+    TextView textViewGrupoActual;
 
     public DetallesBarrenderoFragment() {
 
@@ -53,6 +54,7 @@ public class DetallesBarrenderoFragment extends Fragment {
         Bundle bundle = getArguments();
 
         buttonGrupo = v.findViewById(R.id.buttonGrupo);
+        textViewGrupoActual = v.findViewById(R.id.textViewGrupoActual);
         spinner = v.findViewById(R.id.spinner);
         editTextName = v.findViewById(R.id.editTextName);
         editTextPhone = v.findViewById(R.id.editTextPhone);
@@ -62,6 +64,23 @@ public class DetallesBarrenderoFragment extends Fragment {
         editTextEmail.setText(getArguments().getString("EMAIL"));
         editTextPhone.setText(getArguments().getString("TELEFONO"));
         editTextName.setText(getArguments().getString("NAME"));
+
+        connection.getUsuarioPorEmail(getArguments().getString("EMAIL"), correct -> {
+            if (correct) {
+                if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                } else {
+                    String grupo = "";
+                    for (QueryDocumentSnapshot document : connection.getResponse()) {
+                        grupo = (String) document.get("Grupo");
+                    }
+                    if(grupo!=null){
+                        textViewGrupoActual.setText(grupo);
+                    }else{
+                        textViewGrupoActual.setText("SIN ASIGNAR");
+                    }
+                }
+            }
+        });
 
         connection.getGrupos(correct -> {
             if (correct) {

@@ -29,7 +29,6 @@ public class AddGrupoFragment extends Fragment {
     private FirebaseConnection connection;
     private EditText editTextCodigoPostal;
     private Button botonMostrarListaCodigos;
-    private Spinner spinnerSeleccionarCodigo;
     private ArrayList<String> codigos;
     private EditText editTextError;
 
@@ -50,22 +49,23 @@ public class AddGrupoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_grupo, container, false);
 
         editTextTextNumeroGrupo = view.findViewById(R.id.editTextTextNumeroGrupo);
-        editTextError = view.findViewById(R.id.editTextError);
         codigos = new ArrayList<>();
-        spinnerSeleccionarCodigo = view.findViewById(R.id.spinnerSeleccionarCodigo);
+        editTextError = view.findViewById(R.id.editTextError);
         botonMostrarListaCodigos = view.findViewById(R.id.botonMostrarListaCodigos);
         buttonAddGrupo = view.findViewById(R.id.buttonAddGrupo);
         editTextCodigoPostal = view.findViewById(R.id.editTextCodigoPostal);
         connection = FirebaseConnection.getInstance();
-        //editTextCodigoPostal.setFocusable(false);
+        editTextCodigoPostal.setFocusable(false);
 
-        //Bundle bundle = getArguments();
-        /*
+        Bundle bundle = getArguments();
+
         if(getArguments().getString("CODIGO").equals("")){
         }else{
+            editTextTextNumeroGrupo.setText(getArguments().getString("NUMERO"));
             editTextCodigoPostal.setText(getArguments().getString("CODIGO"));
-        }*/
+        }
 
+        /*
         connection.getCodigosPostales(correct -> {
             if (correct) {
                 if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
@@ -80,7 +80,7 @@ public class AddGrupoFragment extends Fragment {
                     spinnerSeleccionarCodigo.setAdapter(adaptador);
                 }
             }
-        });
+        });*/
 
         buttonAddGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,12 +99,12 @@ public class AddGrupoFragment extends Fragment {
                                 if (numero.equals(editTextTextNumeroGrupo.getText().toString())) {
                                     bandera1 = false;
                                 }
-                                if (codigo.equals(spinnerSeleccionarCodigo.getSelectedItem().toString())) {
+                                if (codigo.equals(editTextCodigoPostal.getText().toString().toString())) {
                                     bandera2 = false;
                                 }
                             }
-                            if(bandera1 || bandera2){
-                                Grupo g = new Grupo(editTextTextNumeroGrupo.getText().toString(), spinnerSeleccionarCodigo.getSelectedItem().toString());
+                            if(bandera1 && bandera2){
+                                Grupo g = new Grupo(editTextTextNumeroGrupo.getText().toString(), editTextCodigoPostal.getText().toString());
                                 connection.saveGrupo(g, new FirebaseCallback() {
                                     @Override
                                     public void onResponse(boolean correct) {
@@ -137,6 +137,9 @@ public class AddGrupoFragment extends Fragment {
             public void onClick(View v) {
                 Fragment selectedFragment;
                 selectedFragment = new ListaCodigoPostal();
+                Bundle bundle = new Bundle();
+                bundle.putString("NUMERO", editTextTextNumeroGrupo.getText().toString());
+                selectedFragment.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction().
                         replace(R.id.fragment_container, selectedFragment).commit();
             }
