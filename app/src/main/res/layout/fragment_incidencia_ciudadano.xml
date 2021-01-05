@@ -97,7 +97,7 @@
     <EditText
         android:id="@+id/editTextDescripcionIncidencia"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:background="@drawable/bordesedittext"
         android:textColor="@android:color/black"
         android:gravity="top"
