@@ -125,8 +125,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s)  {
-                if (password.getText().toString().length() <= 0) {
-                    password.setError("Inserte el email");
+                if (password.getText().toString().length() <= 5) {
+                    password.setError("Inserte la contraseña con 6 caracteres");
                 } else {
                     password.setError(null);
                 }
@@ -147,8 +147,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s)  {
-                if (password2.getText().toString().length() <= 0) {
-                    password2.setError("Inserte el email");
+                if (password2.getText().toString().length() <= 5) {
+                    password2.setError("Inserte la contraseña con 6 caracteres");
                 } else {
                     password2.setError(null);
                 }
@@ -168,7 +168,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s)  {
                 if (name.getText().toString().length() <= 0) {
-                    name.setError("Inserte el email");
+                    name.setError("Inserte el nombre");
                 } else {
                     name.setError(null);
                 }
@@ -190,7 +190,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s)  {
                 if (dni.getText().toString().length() <= 0) {
-                    dni.setError("Inserte el email");
+                    dni.setError("Inserte el dni");
                 } else {
                     dni.setError(null);
                 }
@@ -212,7 +212,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s)  {
                 if (telefono.getText().toString().length() <= 0) {
-                    telefono.setError("Inserte el email");
+                    telefono.setError("Inserte el telefono");
                 } else {
                     telefono.setError(null);
                 }
@@ -225,12 +225,14 @@ public class RegisterActivity extends AppCompatActivity {
     public void onClick(View w){
 
         testErrorInput();
-        if(email.getText().toString().trim().length() != 0 && password.getText().toString().trim().length() != 0 &&
-           password2.getText().toString().trim().length() != 0 && name.getText().toString().trim().length() != 0 &&
+        if(email.getText().toString().trim().length() != 0 && password.getText().toString().trim().length() > 5 &&
+           password2.getText().toString().trim().length() > 5 && name.getText().toString().trim().length() != 0 &&
            username.getText().toString().trim().length() != 0 && dni.getText().toString().trim().length() != 0
-        && telefono.getText().toString().trim().length() != 0)
+        && telefono.getText().toString().trim().length() != 0
+                && (password.getText().toString().trim().equals(password2.getText().toString().trim())))
         {
-            connection.register(RegisterActivity.this, email.getText().toString().trim(), password.getText().toString().trim(), correct -> {
+            connection.register(RegisterActivity.this, email.getText().toString().trim(),
+                    password.getText().toString().trim(), correct -> {
                 if (correct) {
                     connection.saveUser(name.getText().toString(), username.getText().toString().trim(), email.getText().toString().trim(),
                             "ciudadano", telefono.getText().toString().trim(), dni.getText().toString(), txtFecha.getText().toString(), new FirebaseCallback() {
@@ -258,16 +260,22 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void testErrorInput(){
 
+
         if(email.getText().toString().trim().length() == 0 ){
             email.setError("Inserte el email");
         }
 
-        if(password.getText().toString().trim().length() == 0 ){
-            password.setError("Inserte la contraseña");
+        if(!password.getText().toString().trim().equals(password2.getText().toString().trim())){
+            password.setError("No coinciden las contraseñas");
+            password2.setError("No coinciden las contraseñas");
         }
 
-        if(password2.getText().toString().trim().length() == 0 ){
-            password2.setError("Inserte la contraseña");
+        if(password.getText().toString().trim().length() < 5 ){
+            password.setError("Inserte la contraseña con 6 caracteres minimo");
+        }
+
+        if(password2.getText().toString().trim().length() < 5 ){
+            password2.setError("Inserte la contraseña  6 caracteres minimo");
         }
 
         if(name.getText().toString().trim().length() == 0 ){

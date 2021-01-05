@@ -57,6 +57,7 @@ public class FirebaseConnection {
     }
 
     public void register(Activity activity, String email, String password, final FirebaseCallback callback) {
+        Log.e("Reg", email + " " + password);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(activity, task -> {
                     if (task.isSuccessful()) {
@@ -67,6 +68,8 @@ public class FirebaseConnection {
                 });
 
     }
+
+
 
     public void saveUser(String name,String username,String email, String usertype, String telefono,
                          String dni, String fecha, final FirebaseCallback callback) {
@@ -89,6 +92,7 @@ public class FirebaseConnection {
                         callback.onResponse(false);
                     }
                 });
+
 
     }
 
@@ -138,6 +142,7 @@ public class FirebaseConnection {
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
+                                        Log.e("TGT","SaveError");
                                         callback.onResponse(false);
                                     }
                                 });
