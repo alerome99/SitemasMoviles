@@ -18,7 +18,6 @@ import com.example.urclean.R;
 import com.example.urclean.direccionMapsActivity;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
-import com.example.urclean.model.Queja;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -112,19 +111,6 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                                         }
                                         connection.getDesperfectosPorEmail(email, correct2 -> {
                                             if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
-                                                connection.saveDesperfecto(asunto.getText().toString(), dir, descripcion.getText().toString(), new FirebaseCallback() {
-                                                    @Override
-                                                    public void onResponse(boolean correct) {
-                                                        if (correct) {
-                                                            asunto.setText("");
-                                                            direccion.setText("");
-                                                            descripcion.setText("");
-                                                            Snackbar.make(view, "Desperfecto enviado", Snackbar.LENGTH_LONG).show();
-                                                        } else {
-                                                            Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
-                                                        }
-                                                    }
-                                                });
                                             } else {
                                                 boolean bandera = true;
                                                 for (QueryDocumentSnapshot document : connection.getResponse()) {
