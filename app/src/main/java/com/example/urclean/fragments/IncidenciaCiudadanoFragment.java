@@ -146,6 +146,8 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                                                             }
                                                         }
                                                     });
+                                                }else{
+                                                    asunto.setError("YA HAS NOTIFICADO UN DESPERFECTO CON ESE TITULO");
                                                 }
                                             }
                                         });
