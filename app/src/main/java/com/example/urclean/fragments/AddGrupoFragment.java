@@ -5,20 +5,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.urclean.AdapterGrupo;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
-import com.example.urclean.model.CodigoPostal;
 import com.example.urclean.model.Grupo;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -35,6 +31,7 @@ public class AddGrupoFragment extends Fragment {
     private Button botonMostrarListaCodigos;
     private Spinner spinnerSeleccionarCodigo;
     private ArrayList<String> codigos;
+    private EditText editTextError;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +50,7 @@ public class AddGrupoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_grupo, container, false);
 
         editTextTextNumeroGrupo = view.findViewById(R.id.editTextTextNumeroGrupo);
+        editTextError = view.findViewById(R.id.editTextError);
         codigos = new ArrayList<>();
         spinnerSeleccionarCodigo = view.findViewById(R.id.spinnerSeleccionarCodigo);
         botonMostrarListaCodigos = view.findViewById(R.id.botonMostrarListaCodigos);
@@ -87,21 +85,50 @@ public class AddGrupoFragment extends Fragment {
         buttonAddGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Grupo g = new Grupo(editTextTextNumeroGrupo.getText().toString(), spinnerSeleccionarCodigo.getSelectedItem().toString());
-                connection.saveGrupo(g, new FirebaseCallback() {
-                    @Override
-                    public void onResponse(boolean correct) {
-                        if (correct) {
+                connection.getGrupos(correct -> {
+                    if (correct) {
+                        if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
                         } else {
-                            Log.e("SAVE", "Respuesta vacia");
-                            Snackbar.make(v, "Error al almacenar los datos", Snackbar.LENGTH_LONG).show();
+                            boolean bandera1 = true;
+                            boolean bandera2 = true;
+                            String numero = "";
+                            String codigo = "";
+                            for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                numero = (String) document.get("numero");
+                                codigo = (String) document.get("codigo");
+                                if (numero.equals(editTextTextNumeroGrupo.getText().toString())) {
+                                    bandera1 = false;
+                                }
+                                if (codigo.equals(spinnerSeleccionarCodigo.getSelectedItem().toString())) {
+                                    bandera2 = false;
+                                }
+                            }
+                            if(bandera1 || bandera2){
+                                Grupo g = new Grupo(editTextTextNumeroGrupo.getText().toString(), spinnerSeleccionarCodigo.getSelectedItem().toString());
+                                connection.saveGrupo(g, new FirebaseCallback() {
+                                    @Override
+                                    public void onResponse(boolean correct) {
+                                        if (correct) {
+                                        } else {
+                                            Log.e("SAVE", "Respuesta vacia");
+                                            Snackbar.make(v, "Error al almacenar los datos", Snackbar.LENGTH_LONG).show();
+                                        }
+                                        Fragment selectedFragment;
+                                        selectedFragment = new MenuSupervisorFragment();
+                                        getActivity().getSupportFragmentManager().beginTransaction().
+                                                replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
+                                    }
+                                }); // fin save use
+                            }
+                            if(!bandera1){
+                                editTextTextNumeroGrupo.setError("YA EXISTE UN GRUPO CON ESE NUMERO");
+                            }
+                            if(!bandera2){
+                                editTextError.setError("ESE CODIGO POSTAL YA ESTA ASIGNADO A OTRO GRUPO");
+                            }
                         }
-                        Fragment selectedFragment;
-                        selectedFragment = new MenuSupervisorFragment();
-                        getActivity().getSupportFragmentManager().beginTransaction().
-                                replace(R.id.fragment_container, selectedFragment).commit();
                     }
-                }); // fin save use
+                });
             }
         });
 

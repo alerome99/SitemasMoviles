@@ -15,19 +15,14 @@ import com.example.urclean.firebase.FirebaseConnection;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+public class DetallesDesperfectoFragment extends Fragment {
 
-public class DetallesQuejaFragment extends Fragment {
-
-
-    Button marcarQuejaLeida;
-    Button marcarQuejaCompletada;
+    Button marcarDesperfectoLeida;
+    Button marcarDesperfectoCompletada;
     private FirebaseConnection connection;
-    EditText editTextTituloQueja;
-    EditText editTextDescripcionQueja;
-
-    public DetallesQuejaFragment() {
-
-    }
+    EditText editTextTituloDesperfecto;
+    EditText editTextDescripcionDesperfecto;
+    EditText editTextDireccionDesperfecto;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,25 +35,27 @@ public class DetallesQuejaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v =  inflater.inflate(R.layout.fragment_detalles_queja, container, false);
+        View v =  inflater.inflate(R.layout.fragment_detalles_desperfecto, container, false);
 
         Bundle bundle = getArguments();
 
-        marcarQuejaLeida = v.findViewById(R.id.marcarQuejaLeida);
-        marcarQuejaCompletada = v.findViewById(R.id.marcarQuejaCompletada);
-        editTextTituloQueja = v.findViewById(R.id.editTextTituloQueja);
-        editTextDescripcionQueja = v.findViewById(R.id.editTextDescripcionQueja);
-        editTextTituloQueja.setText(getArguments().getString("TITULO"));
-        editTextDescripcionQueja.setText(getArguments().getString("DESCRIPCION"));
+        marcarDesperfectoLeida = v.findViewById(R.id.marcarDesperfectoLeida);
+        marcarDesperfectoCompletada = v.findViewById(R.id.marcarDesperfectoCompletada);
+        editTextTituloDesperfecto = v.findViewById(R.id.editTextTituloDesperfecto);
+        editTextDescripcionDesperfecto = v.findViewById(R.id.editTextDescripcionDesperfecto);
+        editTextDireccionDesperfecto = v.findViewById(R.id.editTextDireccionDesperfecto);
+        editTextTituloDesperfecto.setText(getArguments().getString("TITULO"));
+        editTextDescripcionDesperfecto.setText(getArguments().getString("DESCRIPCION"));
+        editTextDireccionDesperfecto.setText(getArguments().getString("DIRECCION"));
 
         if(getArguments().getString("ESTADO").equals("RECIBIDA")){
-            marcarQuejaLeida.setVisibility(View.INVISIBLE);
+            marcarDesperfectoLeida.setVisibility(View.INVISIBLE);
         }
 
-        marcarQuejaLeida.setOnClickListener(new View.OnClickListener() {
+        marcarDesperfectoLeida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                connection.getQuejaPorEmailTitulo(getArguments().getString("EMAIL"), getArguments().getString("TITULO"), correct -> {
+                connection.getDesperfectoPorEmailTitulo(getArguments().getString("EMAIL"), getArguments().getString("TITULO"), correct -> {
                     if (correct){
                         if (connection.getResponse().isEmpty() || connection.getResponse() == null){
                         }else{
@@ -66,7 +63,7 @@ public class DetallesQuejaFragment extends Fragment {
                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                 id = (String) document.getId();
                             }
-                            connection.cambiarEstadoQueja(id, "1", new FirebaseCallback() {
+                            connection.cambiarEstadoDesperfecto(id, "1", new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
                                     if (correct) {
@@ -75,7 +72,7 @@ public class DetallesQuejaFragment extends Fragment {
                                         Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
                                     }
                                     Fragment selectedFragment;
-                                    selectedFragment = new QuejasSupervisorFragment();
+                                    selectedFragment = new DesperfectosSupervisorFragment();
                                     getActivity().getSupportFragmentManager().beginTransaction().
                                             replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                                 }
@@ -87,10 +84,10 @@ public class DetallesQuejaFragment extends Fragment {
             }
         });
 
-        marcarQuejaCompletada.setOnClickListener(new View.OnClickListener() {
+        marcarDesperfectoCompletada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                connection.getQuejaPorEmailTitulo(getArguments().getString("EMAIL"), getArguments().getString("TITULO"), correct -> {
+                connection.getDesperfectoPorEmailTitulo(getArguments().getString("EMAIL"), getArguments().getString("TITULO"), correct -> {
                     if (correct) {
                         if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
                         } else {
@@ -99,7 +96,7 @@ public class DetallesQuejaFragment extends Fragment {
                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                 id = (String) document.getId();
                             }
-                            connection.cambiarEstadoQueja(id, "2", new FirebaseCallback() {
+                            connection.cambiarEstadoDesperfecto(id, "2", new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
 
@@ -109,7 +106,7 @@ public class DetallesQuejaFragment extends Fragment {
                                         Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
                                     }
                                     Fragment selectedFragment;
-                                    selectedFragment = new QuejasSupervisorFragment();
+                                    selectedFragment = new DesperfectosSupervisorFragment();
                                     getActivity().getSupportFragmentManager().beginTransaction().
                                             replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                                 }

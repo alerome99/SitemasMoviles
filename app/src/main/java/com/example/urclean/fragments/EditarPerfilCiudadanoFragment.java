@@ -1,6 +1,5 @@
 package com.example.urclean.fragments;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -89,13 +87,13 @@ public class EditarPerfilCiudadanoFragment extends Fragment implements View.OnTo
         switch (view.getId()) {
             case R.id.botonCancelar:
                 selectedFragment = new PerfilCiudadanoFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                 break;
             case R.id.botonAceptar:
                 connection.modificarPersona(editTextUsername.getText().toString(), editTextName.getText().toString(), editTextDni.getText().toString(),
                         editTextTelefono.getText().toString(), editTextEmail.getText().toString());
                 selectedFragment = new PerfilCiudadanoFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                 break;
         }
         return false;

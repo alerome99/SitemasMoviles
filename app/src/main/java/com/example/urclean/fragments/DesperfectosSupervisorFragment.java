@@ -9,29 +9,23 @@ import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.urclean.AdapterQueja;
+import com.example.urclean.AdapterDesperfecto;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseConnection;
-import com.example.urclean.model.Queja;
+import com.example.urclean.model.Desperfecto;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
-
-public class QuejasSupervisorFragment extends Fragment {
+public class DesperfectosSupervisorFragment extends Fragment {
 
     private ListView listViewQuejas;
     private BottomNavigationView bottom_navigation;
 
     private FirebaseConnection connection;
 
-    private ArrayList<Queja> quejas;
-
-    public QuejasSupervisorFragment() {
-        // Required empty public constructor
-    }
-
+    private ArrayList<Desperfecto> desperfectos;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,9 +42,9 @@ public class QuejasSupervisorFragment extends Fragment {
 
         listViewQuejas = v.findViewById(R.id.listViewQuejas);
         bottom_navigation = v.findViewById(R.id.bottom_navigation);
-        quejas = new ArrayList<>();
+        desperfectos = new ArrayList<>();
 
-        connection.getQuejas(correct -> {
+        connection.getDesperfectos(correct -> {
             if (correct){
                 if (connection.getResponse().isEmpty() || connection.getResponse() == null){
 
@@ -59,30 +53,33 @@ public class QuejasSupervisorFragment extends Fragment {
                     String descripcion = "";
                     String estado = "";
                     String titulo = "";
+                    String direccion = "";
                     for (QueryDocumentSnapshot document : connection.getResponse()){
                         email = (String) document.get("email");
                         descripcion = (String) document.get("descripcion");
                         estado = (String) document.get("estado");
                         titulo = (String) document.get("titulo");
+                        direccion = (String) document.get("direccion");
                         if(estado!=null && !estado.equals("SOLUCIONADA")) {
-                            Queja q = new Queja(descripcion, email, titulo);
-                            q.setEstado(estado);
-                            quejas.add(q);
+                            Desperfecto d = new Desperfecto(descripcion, email, titulo, direccion);
+                            d.setEstado(estado);
+                            desperfectos.add(d);
                         }
                     }
-                    AdapterQueja adaptador = new AdapterQueja(getActivity(), quejas);
+                    AdapterDesperfecto adaptador = new AdapterDesperfecto(getActivity(), desperfectos);
                     listViewQuejas.setAdapter(adaptador);
 
                     listViewQuejas.setOnItemClickListener( new AdapterView.OnItemClickListener(){
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Fragment selectedFragment;
-                            selectedFragment = new DetallesQuejaFragment();
+                            selectedFragment = new DetallesDesperfectoFragment();
                             Bundle bundle = new Bundle();
-                            bundle.putString("TITULO", quejas.get(position).getTitulo());
-                            bundle.putString("DESCRIPCION", quejas.get(position).getDescripcion());
-                            bundle.putString("EMAIL", quejas.get(position).getEmail());
-                            bundle.putString("ESTADO", quejas.get(position).getEstado().toString());
+                            bundle.putString("TITULO", desperfectos.get(position).getTitulo());
+                            bundle.putString("DESCRIPCION", desperfectos.get(position).getDescripcion());
+                            bundle.putString("EMAIL", desperfectos.get(position).getEmail());
+                            bundle.putString("ESTADO", desperfectos.get(position).getEstado().toString());
+                            bundle.putString("DIRECCION", desperfectos.get(position).getDireccion().toString());
                             selectedFragment.setArguments(bundle);
                             getActivity().getSupportFragmentManager().beginTransaction().
                                     replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();

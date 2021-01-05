@@ -24,9 +24,9 @@ import java.util.Locale;
 public class direccionMapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
 
     private GoogleMap mMap;
-    private double lat, lng;
     private String dir, cod;
     private TextView tvCoordenadas, tvDireccion;
+    private String asunto, tipo, descripcion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +37,37 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle.getString("asunto")!=null) {
+            asunto = bundle.getString("asunto");
+        }
+
+        tipo = bundle.getString("tipo");
+
+        if(bundle.getString("descripcion")!=null) {
+            descripcion = bundle.getString("descripcion");
+        }
+
         tvCoordenadas = findViewById(R.id.textViewCoordenadas);
         tvDireccion = findViewById((R.id.textViewDireccion));
 
         findViewById(R.id.botonAceptarCoordenadas).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Intent intent = new Intent (direccionMapsActivity.this, MenuCiudadanoActivity.class);
 
                 Bundle b = new Bundle();
-                b.putString("lat", String.format(Locale.getDefault(), "%1$.4f", lat));
-                b.putString("lng", String.format(Locale.getDefault(), "%1$.4f", lng));
                 b.putString("dir", dir);
                 b.putString("cod", cod);
+                b.putString("tipo", tipo);
+                if(asunto!=null) {
+                    b.putString("asunto", asunto);
+                }
+                if(descripcion!=null) {
+                    b.putString("descripcion", descripcion);
+                }
 
                 intent.putExtras(b);
 
@@ -98,8 +116,8 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
     @Override
     public void onMarkerDragEnd(Marker marker) {
         // Toast.makeText(this, "finish", Toast.LENGTH_SHORT).show();
-        lat = marker.getPosition().latitude;
-        lng = marker.getPosition().longitude;
+        double lat = marker.getPosition().latitude;
+        double lng = marker.getPosition().longitude;
 
         Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
         try {

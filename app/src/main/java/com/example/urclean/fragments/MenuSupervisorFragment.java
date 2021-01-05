@@ -2,13 +2,12 @@ package com.example.urclean.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.urclean.AccesoActivity;
 import com.example.urclean.R;
@@ -24,6 +23,7 @@ public class MenuSupervisorFragment extends Fragment {
     private Button buttonAddBarrendero;
     private Button buttonCrearGrupo;
     private Button buttonListaQuejas;
+    private Button buttonListaDesperfectos;
 
     public MenuSupervisorFragment() {
         // Required empty public constructor
@@ -47,6 +47,7 @@ public class MenuSupervisorFragment extends Fragment {
         buttonAddBarrendero = v.findViewById(R.id.buttonAddBarrendero);
         buttonCrearGrupo = v.findViewById(R.id.buttonCrearGrupo);
         buttonListaQuejas = v.findViewById(R.id.buttonListaQuejas);
+        buttonListaDesperfectos = v.findViewById(R.id.buttonListaDesperfectos);
 
         Logoutsupervisor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -77,7 +78,17 @@ public class MenuSupervisorFragment extends Fragment {
                 Fragment selectedFragment;
                 selectedFragment = new QuejasSupervisorFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, selectedFragment).commit();
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
+            }
+        });
+
+        buttonListaDesperfectos.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //startActivity(new Intent( MenuSupervisorFragment.this.getActivity(), quejasSupervisor.class));
+                Fragment selectedFragment;
+                selectedFragment = new DesperfectosSupervisorFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 
@@ -86,7 +97,7 @@ public class MenuSupervisorFragment extends Fragment {
                 Fragment selectedFragment;
                 selectedFragment = new ListaBarrenderosFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, selectedFragment).commit();
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 
@@ -99,7 +110,7 @@ public class MenuSupervisorFragment extends Fragment {
                 selectedFragment = new AddGrupoFragment();
                 selectedFragment.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, selectedFragment).commit();
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 
