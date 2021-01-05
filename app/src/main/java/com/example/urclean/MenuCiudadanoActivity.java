@@ -19,7 +19,6 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menuciudadano);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation_ciudadano);
-        bottomNav.setSelectedItemId(R.id.nav_menu);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         Bundle bundle = this.getIntent().getExtras();
@@ -40,11 +39,13 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
             IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
             fragment.setArguments(args);
 
+            bottomNav.setSelectedItemId(R.id.nav_incidencias);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    fragment).commit();
+                    fragment).addToBackStack(null).commit();
         }else if (savedInstanceState == null) {
+            bottomNav.setSelectedItemId(R.id.nav_menu);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new MenuCiudadanoFragment()).commit();
+                    new MenuCiudadanoFragment()).addToBackStack(null).commit();
         }
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -68,7 +69,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
+                            selectedFragment).addToBackStack(null).commit();
 
                     return true;
                 }

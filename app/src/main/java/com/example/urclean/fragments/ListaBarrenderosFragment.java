@@ -1,9 +1,6 @@
 package com.example.urclean.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseConnection;
@@ -72,7 +71,7 @@ public class ListaBarrenderosFragment extends Fragment {
                             bundle.putString("TELEFONO", extra[position][2]);
                             selectedFragment.setArguments(bundle);
                             getActivity().getSupportFragmentManager().beginTransaction().
-                                    replace(R.id.fragment_container, selectedFragment).commit();
+                                    replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                         }
                     });
                 }
@@ -118,7 +117,7 @@ public class ListaBarrenderosFragment extends Fragment {
                                     bundle.putString("TELEFONO", extra[position][2]);
                                     selectedFragment.setArguments(bundle);
                                     getActivity().getSupportFragmentManager().beginTransaction().
-                                            replace(R.id.fragment_container, selectedFragment).commit();
+                                            replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                                 }
                             });
                         }

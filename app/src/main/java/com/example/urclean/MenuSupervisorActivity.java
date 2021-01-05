@@ -1,20 +1,18 @@
 package com.example.urclean;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-
-import android.os.Bundle;
-import android.view.MenuItem;
-
+import com.example.urclean.firebase.FirebaseConnection;
 import com.example.urclean.fragments.IncidenciaCiudadanoFragment;
 import com.example.urclean.fragments.ListaNotificacionesSupervisorFragment;
 import com.example.urclean.fragments.MenuSupervisorFragment;
 import com.example.urclean.fragments.PerfilCiudadanoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import com.example.urclean.firebase.FirebaseConnection;
 
 public class MenuSupervisorActivity extends AppCompatActivity  {
 
@@ -58,7 +56,7 @@ public class MenuSupervisorActivity extends AppCompatActivity  {
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
+                            selectedFragment).addToBackStack(null).commit();
 
                     return true;
                 }
