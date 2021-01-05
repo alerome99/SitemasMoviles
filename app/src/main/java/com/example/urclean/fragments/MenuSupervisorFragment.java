@@ -78,7 +78,7 @@ public class MenuSupervisorFragment extends Fragment {
                 Fragment selectedFragment;
                 selectedFragment = new QuejasSupervisorFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, selectedFragment).commit();
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 
@@ -88,7 +88,7 @@ public class MenuSupervisorFragment extends Fragment {
                 Fragment selectedFragment;
                 selectedFragment = new DesperfectosSupervisorFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, selectedFragment).commit();
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 
@@ -97,7 +97,7 @@ public class MenuSupervisorFragment extends Fragment {
                 Fragment selectedFragment;
                 selectedFragment = new ListaBarrenderosFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, selectedFragment).commit();
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 
@@ -110,7 +110,7 @@ public class MenuSupervisorFragment extends Fragment {
                 selectedFragment = new AddGrupoFragment();
                 selectedFragment.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, selectedFragment).commit();
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 

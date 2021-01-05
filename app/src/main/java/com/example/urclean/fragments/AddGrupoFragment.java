@@ -5,21 +5,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.urclean.AdapterGrupo;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
-import com.example.urclean.model.CodigoPostal;
 import com.example.urclean.model.Grupo;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -121,7 +116,7 @@ public class AddGrupoFragment extends Fragment {
                                         Fragment selectedFragment;
                                         selectedFragment = new MenuSupervisorFragment();
                                         getActivity().getSupportFragmentManager().beginTransaction().
-                                                replace(R.id.fragment_container, selectedFragment).commit();
+                                                replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                                     }
                                 }); // fin save use
                             }

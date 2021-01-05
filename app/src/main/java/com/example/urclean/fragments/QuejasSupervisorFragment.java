@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.urclean.AdapterQueja;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseConnection;
@@ -86,7 +88,7 @@ public class QuejasSupervisorFragment extends Fragment {
                             bundle.putString("ESTADO", quejas.get(position).getEstado().toString());
                             selectedFragment.setArguments(bundle);
                             getActivity().getSupportFragmentManager().beginTransaction().
-                                    replace(R.id.fragment_container, selectedFragment).commit();
+                                    replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                         }
                     });
                 }

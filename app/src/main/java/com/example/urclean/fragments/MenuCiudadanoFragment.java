@@ -23,7 +23,7 @@ public class MenuCiudadanoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Fragment selectedFragment = new QuejasFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 
@@ -38,7 +38,7 @@ public class MenuCiudadanoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Fragment selectedFragment = new HistorialQuejasFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 
@@ -46,7 +46,7 @@ public class MenuCiudadanoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Fragment selectedFragment = new HistorialDesperfectosFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 
@@ -54,7 +54,7 @@ public class MenuCiudadanoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Fragment selectedFragment = new HistorialIncidenciasFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
         });
 

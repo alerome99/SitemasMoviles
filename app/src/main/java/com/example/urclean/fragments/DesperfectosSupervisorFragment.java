@@ -82,7 +82,7 @@ public class DesperfectosSupervisorFragment extends Fragment {
                             bundle.putString("DIRECCION", desperfectos.get(position).getDireccion().toString());
                             selectedFragment.setArguments(bundle);
                             getActivity().getSupportFragmentManager().beginTransaction().
-                                    replace(R.id.fragment_container, selectedFragment).commit();
+                                    replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                         }
                     });
                 }

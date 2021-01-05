@@ -1,87 +1,62 @@
 package com.example.urclean.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.urclean.AdapterHistorialDesperfectos;
 import com.example.urclean.R;
-import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
+import com.example.urclean.model.Desperfecto;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
 public class HistorialDesperfectosFragment extends Fragment {
 
-    private ArrayList<String> desperfectos;
+    private ArrayList<Desperfecto> desperfectos;
     private FirebaseConnection connection;
-    private ListView lista;
-    private String email;
+    private ListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_historial_desperfectos, container, false);
+        View view = inflater.inflate(R.layout.fragment_lista_quejas, container, false);
 
         connection = FirebaseConnection.getInstance();
 
-        desperfectos = new ArrayList<String>();
-        lista = view.findViewById(R.id.listViewHistorialDesperfectos);
+        listView = view.findViewById(R.id.listViewQuejas);
+        desperfectos = new ArrayList<>();
 
-        connection.getPersona(new FirebaseCallback() {
-            @Override
-            public void onResponse(boolean correct) {
-                if (correct) {
-                    if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
-                        Log.e("vacio", "esta vacio");
-                    } else {
-                        for (QueryDocumentSnapshot document : connection.getResponse()) {
-                            email = (String) document.get("email");
-
-                        }
-
-                        connection.getDesperfecto(email, new FirebaseCallback() {
-                            @Override
-                            public void onResponse(boolean correct) {
-                                if (correct){
-                                    if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
-
-                                    }else{
-
-                                        // Rellenar arraylist de desperfectos.
-                                        //for que recorre los desperfectos.
-                                        for (QueryDocumentSnapshot document : connection.getResponse()) {
-                                            String descripcion = (String) document.get("descripcion");
-                                            String direccion = (String) document.get("direccion");
-                                            desperfectos.add("\nDIRECCIÓN: " + direccion + "\nDESCRIPCIÓN: " + descripcion);
-                                        }
-
-
-                                        ArrayAdapter adaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1 , desperfectos);
-                                        lista.setAdapter(adaptador);
-
-                                        lista.setOnItemClickListener( new AdapterView.OnItemClickListener(){
-                                            @Override
-                                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                                            }
-                                        });
-                                    }
-
-                                }
-                            }
-                        });
-                    }
+        connection.getDesperfectoPorEmail(correct -> {
+            if (correct) {
+                if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
 
                 } else {
-                    Log.e("fail", "fail conection");
+                    String descripcion = "";
+                    String email = "";
+                    String titulo = "";
+                    String direccion = "";
+                    String estado = "";
+
+                    for (QueryDocumentSnapshot document : connection.getResponse()) {
+                        descripcion = (String) document.get("descripcion");
+                        email = (String) document.get("email");
+                        titulo = (String) document.get("titulo");
+                        direccion = (String) document.get("direccion");
+                        estado = (String) document.get("estado");
+
+                        Desperfecto d = new Desperfecto(descripcion,email,titulo,direccion);
+                        d.setEstado(estado);
+                        desperfectos.add(d);
+
+                    }
+                    AdapterHistorialDesperfectos adaptador = new AdapterHistorialDesperfectos(getActivity(), desperfectos);
+                    listView.setAdapter(adaptador);
                 }
             }
         });

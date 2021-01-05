@@ -33,13 +33,30 @@
         android:layout_marginStart="10sp"
         android:text="Direccion: " />
 
-    <Button
-        android:id="@+id/botonAceptarCoordenadas"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="Aceptar" />
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <Button
+            android:id="@+id/botonAtras"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="Atrás" />
+        <Button
+            android:id="@+id/botonUbicacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Ubicación"/>
+
+        <Button
+            android:id="@+id/botonAceptarCoordenadas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Aceptar" />
+    </FrameLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.urclean.AdapterGrupo;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseConnection;
@@ -76,7 +78,7 @@ public class ListaCodigoPostal extends Fragment {
                             bundle.putString("CODIGO", codigos.get(position).getCodigo());
                             selectedFragment.setArguments(bundle);
                             getActivity().getSupportFragmentManager().beginTransaction().
-                                    replace(R.id.fragment_container, selectedFragment).commit();
+                                    replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                         }
                     });
                 }

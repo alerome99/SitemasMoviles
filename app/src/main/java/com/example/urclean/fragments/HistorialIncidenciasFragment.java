@@ -1,86 +1,62 @@
 package com.example.urclean.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.urclean.AdapterHistorialTareas;
 import com.example.urclean.R;
-import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
+import com.example.urclean.model.Tarea;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
 public class HistorialIncidenciasFragment  extends Fragment {
-    private ArrayList<String> incidencias;
+    private ArrayList<Tarea> tareas;
     private FirebaseConnection connection;
-    private ListView lista;
-    private String email;
+    private ListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_historial_desperfectos, container, false);
+        View view = inflater.inflate(R.layout.fragment_lista_quejas, container, false);
 
         connection = FirebaseConnection.getInstance();
 
-        incidencias = new ArrayList<String>();
-        lista = view.findViewById(R.id.listViewHistorialDesperfectos);
+        listView = view.findViewById(R.id.listViewQuejas);
+        tareas = new ArrayList<>();
 
-        connection.getPersona(new FirebaseCallback() {
-            @Override
-            public void onResponse(boolean correct) {
-                if (correct) {
-                    if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
-                        Log.e("vacio", "esta vacio");
-                    } else {
-                        for (QueryDocumentSnapshot document : connection.getResponse()) {
-                            email = (String) document.get("email");
-
-                        }
-
-                        connection.getIncidenciaLimpieza(email, new FirebaseCallback() {
-                            @Override
-                            public void onResponse(boolean correct) {
-                                if (correct){
-                                    if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
-
-                                    }else{
-                                        // Rellenar arraylist de desperfectos.
-                                        //for que recorre los desperfectos.
-                                        for (QueryDocumentSnapshot document : connection.getResponse()) {
-                                            String nombre = (String) document.get("Nombre");
-                                            String descripcion = (String) document.get("Descripcion");
-                                            String direccion = (String) document.get("Calle");
-                                            String estado = (String) document.get("Estado");
-                                            incidencias.add("\nASUNTO: " + nombre + "\nDESCRIPCIÓN: "+descripcion+"\nDIRECCIÓN: " + direccion+"\nESTADO: "+estado);
-                                        }
-
-                                        ArrayAdapter adaptador = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1 , incidencias);
-                                        lista.setAdapter(adaptador);
-
-                                        lista.setOnItemClickListener( new AdapterView.OnItemClickListener(){
-                                            @Override
-                                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                                            }
-                                        });
-                                    }
-
-                                }
-                            }
-                        });
-                    }
+        connection.getIncidenciaPorEmail(correct -> {
+            if (correct) {
+                if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
 
                 } else {
-                    Log.e("fail", "fail conection");
+                    String name = "";
+                    String descripcion = "";
+                    String estado = "";
+                    String responsable = "";
+                    String calle = "";
+                    String id = "";
+
+                    for (QueryDocumentSnapshot document : connection.getResponse()) {
+                        name = (String) document.get("Nombre");
+                        descripcion = (String) document.get("Descripcion");
+                        estado = (String) document.get("Estado");
+                        responsable = (String) document.get("Responsable");
+                        calle = (String) document.get("Calle");
+                        id = (String) document.get("Id");
+
+                        Tarea t = new Tarea(name,descripcion,estado,responsable,calle,id);
+                        tareas.add(t);
+
+                    }
+                    AdapterHistorialTareas adaptador = new AdapterHistorialTareas(getActivity(), tareas);
+                    listView.setAdapter(adaptador);
                 }
             }
         });

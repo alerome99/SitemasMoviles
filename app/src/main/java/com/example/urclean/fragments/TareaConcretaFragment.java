@@ -1,15 +1,14 @@
 package com.example.urclean.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
@@ -71,7 +70,7 @@ public class TareaConcretaFragment extends Fragment {
 
                             Fragment selectedFragment = new MenuBarrenderoFragment();
                             getActivity().getSupportFragmentManager().beginTransaction().
-                                    replace(R.id.fragment_container, selectedFragment).commit();
+                                    replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
 
                         } else {
                             Snackbar.make(v, "No se ha podido asignar a ti la tarea", Snackbar.LENGTH_LONG).show();

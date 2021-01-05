@@ -23,25 +23,29 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
 
         Bundle bundle = this.getIntent().getExtras();
         if(bundle != null){
-            String lat = bundle.getString("lat");
-            String lng = bundle.getString("lng");
             String dir = bundle.getString("dir");
             String cod = bundle.getString("cod");
+            String tipo = bundle.getString("tipo");
+            String asunto = bundle.getString("asunto");
+            String descripcion = bundle.getString("descripcion");
 
             Bundle args = new Bundle();
-            args.putString("lat", lat);
-            args.putString("lng",lng);
             args.putString("dir", dir);
             args.putString("cod", cod);
+            args.putString("tipo", tipo);
+            args.putString("asunto", asunto);
+            args.putString("descripcion", descripcion);
 
             IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
             fragment.setArguments(args);
 
+            bottomNav.setSelectedItemId(R.id.nav_incidencias);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    fragment).commit();
+                    fragment).addToBackStack(null).commit();
         }else if (savedInstanceState == null) {
+            bottomNav.setSelectedItemId(R.id.nav_menu);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new MenuCiudadanoFragment()).commit();
+                    new MenuCiudadanoFragment()).addToBackStack(null).commit();
         }
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -56,7 +60,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
                         case R.id.nav_incidencias:
                             selectedFragment = new IncidenciaCiudadanoFragment();
                             break;
-                        case R.id.nav_quejas:
+                        case R.id.nav_menu:
                             selectedFragment = new MenuCiudadanoFragment();
                             break;
                         case R.id.nav_notificaciones:
@@ -65,7 +69,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
+                            selectedFragment).addToBackStack(null).commit();
 
                     return true;
                 }
