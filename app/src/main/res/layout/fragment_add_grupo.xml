@@ -86,4 +86,19 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextCodigoPostal"
         app:layout_constraintVertical_bias="0.1" />
 
+    <EditText
+        android:id="@+id/editTextError"
+        android:layout_width="28dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="142dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddGrupo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintStart_toEndOf="@+id/spinnerSeleccionarCodigo"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCodigoPostal"
+        app:layout_constraintVertical_bias="0.666" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

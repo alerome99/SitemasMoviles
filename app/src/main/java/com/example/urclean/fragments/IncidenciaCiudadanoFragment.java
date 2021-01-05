@@ -18,6 +18,7 @@ import com.example.urclean.R;
 import com.example.urclean.direccionMapsActivity;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
+import com.example.urclean.model.Queja;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -101,16 +102,55 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                             });
                             break;
                         case "Desperfecto":
-                            connection.saveDesperfecto(asunto.getText().toString(), dir, descripcion.getText().toString(), new FirebaseCallback() {
-                                @Override
-                                public void onResponse(boolean correct) {
-                                    if(correct){
-                                        asunto.setText("");
-                                        direccion.setText("");
-                                        descripcion.setText("");
-                                        Snackbar.make(view, "Desperfecto enviado", Snackbar.LENGTH_LONG).show();
-                                    }else{
-                                        Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                            connection.getCurrentUser(correct -> {
+                                if (correct) {
+                                    if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                                    } else {
+                                        String email = "";
+                                        for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                            email = (String) document.get("email");
+                                        }
+                                        connection.getDesperfectosPorEmail(email, correct2 -> {
+                                            if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                                                connection.saveDesperfecto(asunto.getText().toString(), dir, descripcion.getText().toString(), new FirebaseCallback() {
+                                                    @Override
+                                                    public void onResponse(boolean correct) {
+                                                        if (correct) {
+                                                            asunto.setText("");
+                                                            direccion.setText("");
+                                                            descripcion.setText("");
+                                                            Snackbar.make(view, "Desperfecto enviado", Snackbar.LENGTH_LONG).show();
+                                                        } else {
+                                                            Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                                                        }
+                                                    }
+                                                });
+                                            } else {
+                                                boolean bandera = true;
+                                                for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                                    if (document.get("titulo").equals(asunto.getText().toString())) {
+                                                        bandera = false;
+                                                    }
+                                                }
+                                                if (bandera) {
+                                                    connection.saveDesperfecto(asunto.getText().toString(), dir, descripcion.getText().toString(), new FirebaseCallback() {
+                                                        @Override
+                                                        public void onResponse(boolean correct) {
+                                                            if (correct) {
+                                                                asunto.setText("");
+                                                                direccion.setText("");
+                                                                descripcion.setText("");
+                                                                Snackbar.make(view, "Desperfecto enviado", Snackbar.LENGTH_LONG).show();
+                                                            } else {
+                                                                Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                                                            }
+                                                        }
+                                                    });
+                                                }else{
+                                                    asunto.setError("YA HAS NOTIFICADO UN DESPERFECTO CON ESE TITULO");
+                                                }
+                                            }
+                                        });
                                     }
                                 }
                             });

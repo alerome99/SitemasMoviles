@@ -300,6 +300,40 @@ public class FirebaseConnection {
                 });
     }
 
+    public void getQuejasPorEmail(String email, final FirebaseCallback callback){
+        db.collection("Queja")
+                .whereEqualTo("email", email).whereEqualTo("estado", "NOTIFICADA")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
+    public void getDesperfectosPorEmail(String email, final FirebaseCallback callback){
+        db.collection("Desperfecto")
+                .whereEqualTo("email", email).whereEqualTo("estado", "NOTIFICADA")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            response = task.getResult();
+                            callback.onResponse(true);
+                        } else {
+                            callback.onResponse(false);
+                        }
+                    }
+                });
+    }
+
     public void getNotificacionBarrenderosPorEmail(String email, final FirebaseCallback callback){
         db.collection("Respuesta")
                 .whereEqualTo("estado", "NOVISTO").whereEqualTo("emailBarrendero", email)
