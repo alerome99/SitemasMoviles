@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.example.urclean.model.Grupo;
 import com.example.urclean.model.Notificacion;
+import com.example.urclean.model.NotificacionCiudadano;
 import com.example.urclean.model.Queja;
 import com.example.urclean.model.Respuesta;
 import com.example.urclean.model.estadoQueja;
@@ -601,9 +602,10 @@ public class FirebaseConnection {
                 });
     }
 
-    public void getDesperfecto(String email, final FirebaseCallback callback){
-        db.collection("Desperfecto")
-                .whereEqualTo("email",email)
+    public void getNotificacionesCiudadano(final FirebaseCallback callback){
+        db.collection("NotificacionCiudadano")
+                .whereEqualTo("email", mAuth.getCurrentUser().getEmail())
+                .whereEqualTo("leida", "false")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -618,19 +620,18 @@ public class FirebaseConnection {
                 });
     }
 
-    public void getIncidenciaLimpieza(String email, final FirebaseCallback callback){
-        db.collection("Tareas")
-                .whereEqualTo("email",email)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    public void leerNotificacionCiudadano(String id, final FirebaseCallback callback){
+        db.collection("NotificacionCiudadano").document(id).update("leida","true")
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            response = task.getResult();
-                            callback.onResponse(true);
-                        } else {
-                            callback.onResponse(false);
-                        }
+                    public void onSuccess(Void documentReference)  {
+                        callback.onResponse(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
                     }
                 });
     }
@@ -850,29 +851,6 @@ public class FirebaseConnection {
 
     }
 
-    public void modificarDatos(String id, String username, String tlf, String email, FirebaseCallback callback){
-
-        Map<String,Object> persona = new HashMap<>();
-        persona.put("telefono", tlf);
-        persona.put("username", username);
-        persona.put("email", email);
-
-        DocumentReference ref = db.collection("Persona").document(id);
-        ref.update(persona)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void documentReference)  {
-                        callback.onResponse(true);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        callback.onResponse(false);
-                    }
-                });
-    }
-
     public void saveDesperfecto(String titulo, String direccion, String descripcion, final FirebaseCallback callback){
         Map<String,Object> desperfecto = new HashMap<>();
         desperfecto.put("titulo", titulo);
@@ -942,8 +920,34 @@ public class FirebaseConnection {
                 });;
     }
 
-    public void marcarCompletadaTarea(String id, FirebaseCallback callback){
+    public void crearNotificacionCiudadano(NotificacionCiudadano n, final FirebaseCallback callback){
+        DocumentReference doc = db.collection("NotificacionCiudadano").document();
+        Map<String,Object> notificacion = new HashMap<>();
+        notificacion.put("id", doc.getId());
+        notificacion.put("tipo", n.getTipo());
+        notificacion.put("leida", n.getLeida());
+        notificacion.put("descripcion", n.getDescripcion());
+        notificacion.put("email", n.getEmail());
+        notificacion.put("estado", n.getEstado());
+        notificacion.put("titulo",n.getTitulo());
+        if(n.getTipo().equals("Desperfecto")){
+            notificacion.put("direccion",n.getDireccion());
+        }
+        if(n.getTipo().equals("Incidencia")){
+            notificacion.put("direccion",n.getDireccion());
+            notificacion.put("grupo",n.getGrupo());
+        }
+        db.collection("NotificacionCiudadano").document(doc.getId()).set(notificacion)
+                .addOnSuccessListener(documentReference -> callback.onResponse(true))
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onResponse(false);
+                    }
+                });;
+    }
 
+    public void marcarCompletadaTarea(String id, FirebaseCallback callback){
         DocumentReference ref = db.collection("Tareas").document(id);
         ref.update("Estado","Completada")
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

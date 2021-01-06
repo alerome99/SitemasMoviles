@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.urclean.R;
-import com.example.urclean.direccionMapsActivity;
+import com.example.urclean.DireccionMapsActivity;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.google.android.material.snackbar.Snackbar;
@@ -168,7 +168,7 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                 bundle.putString("tipo", spinner.getSelectedItem().toString());
                 bundle.putString("usuario",usuario);
 
-                Intent intent = new Intent(getActivity().getApplicationContext(), direccionMapsActivity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), DireccionMapsActivity.class);
                 intent.putExtras(bundle);
 
                 startActivity(intent);

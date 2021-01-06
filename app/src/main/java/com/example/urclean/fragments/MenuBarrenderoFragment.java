@@ -1,6 +1,5 @@
 package com.example.urclean.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,7 +14,6 @@ import com.example.urclean.AccesoActivity;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
-import com.example.urclean.menuBarrendero;
 
 
 public class MenuBarrenderoFragment extends Fragment {
