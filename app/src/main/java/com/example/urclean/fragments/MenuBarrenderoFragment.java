@@ -18,7 +18,7 @@ import com.example.urclean.firebase.FirebaseConnection;
 
 public class MenuBarrenderoFragment extends Fragment {
 
-    private Button buttonLogout,botonHistorial,SolicitarCambioGrupo;
+    private Button buttonLogout,botonHistorial,SolicitarCambioGrupo,botonFichar;
     private FirebaseConnection connection;
 
     public MenuBarrenderoFragment() {
@@ -41,6 +41,7 @@ public class MenuBarrenderoFragment extends Fragment {
         buttonLogout = v.findViewById(R.id.Logoutbarrendero);
         botonHistorial = v.findViewById(R.id.BotonHistorialBarrendero);
         SolicitarCambioGrupo = v.findViewById(R.id.SolicitarCambioGrupo);
+        botonFichar = v.findViewById(R.id.ButtonFichar);
 
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -63,6 +64,9 @@ public class MenuBarrenderoFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().
                         replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
+
+
+
         });
 
         SolicitarCambioGrupo.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +78,17 @@ public class MenuBarrenderoFragment extends Fragment {
             }
         });
 
+        botonFichar.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Fragment selectedFragment;
+                selectedFragment = new InformacionBarrenderoFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
+            }
 
+
+
+        });
 
         return v;
     }
