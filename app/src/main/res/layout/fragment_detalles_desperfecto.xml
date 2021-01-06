@@ -27,14 +27,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="68dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:focusable="false"
         android:inputType="textPersonName"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintHorizontal_bias="0.725"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTituloDesperfecto" />
 
@@ -43,16 +43,16 @@
         android:layout_width="193dp"
         android:layout_height="65dp"
         android:layout_marginTop="493dp"
-        android:layout_marginEnd="155dp"
+        android:layout_marginEnd="100dp"
         android:layout_marginBottom="600dp"
-        android:text="Marcar Leido"
         android:backgroundTint="#5462b0"
+        android:text="Marcar Leido"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintHorizontal_bias="0.559"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescripcionDesperfecto"
-        app:layout_constraintVertical_bias="0.554" />
+        app:layout_constraintVertical_bias="0.562" />
 
     <Button
         android:id="@+id/marcarDesperfectoCompletada"
@@ -61,14 +61,14 @@
         android:layout_marginTop="493dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="600dp"
-        android:text="Marcar Completado"
         android:backgroundTint="#5462b0"
+        android:text="Marcar Completado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.288"
+        app:layout_constraintHorizontal_bias="0.559"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescripcionDesperfecto"
-        app:layout_constraintVertical_bias="0.427" />
+        app:layout_constraintVertical_bias="0.421" />
 
     <TextView
         android:id="@+id/textView8"
@@ -109,14 +109,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:focusable="false"
         android:inputType="textPersonName"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintHorizontal_bias="0.705"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescripcionDesperfecto" />
 
