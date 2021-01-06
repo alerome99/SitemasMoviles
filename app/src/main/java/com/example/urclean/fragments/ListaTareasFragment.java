@@ -107,12 +107,9 @@ public class ListaTareasFragment extends Fragment {
 
                                             if (estado.equals("EnCurso") && responsable.equals(idPersona)) {
 
-
-                                    
-
                                                 tareas.add(0, new Tarea(name, descripcion, estado, responsable, calle, id,grupo,email,lat,lng));
 
-
+                                                
                                             } else if (estado.equals("SinAsignar")) {
 
                                                 tareas.add(new Tarea(name, descripcion, estado, responsable, calle, id,grupo,email,lat,lng));
