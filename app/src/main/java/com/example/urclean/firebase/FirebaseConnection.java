@@ -113,7 +113,7 @@ public class FirebaseConnection {
                 });
     }
 
-    public void saveTarea(String email,String asunto,String direccion, String codPostal, String descripcion, final FirebaseCallback callback){
+    public void saveTarea(String email,String asunto,String direccion, String codPostal, String descripcion, String lat, String lng, final FirebaseCallback callback){
         getGrupo(codPostal, new FirebaseCallback() {
             @Override
             public void onResponse(boolean correct) {
@@ -136,6 +136,8 @@ public class FirebaseConnection {
                         tarea.put("Responsable", "");
                         tarea.put("Id", doc.getId());
                         tarea.put("email", email);
+                        tarea.put("lat", lat);
+                        tarea.put("lng", lng);
                         
                         db.collection("Tareas").document(doc.getId())
                                 .set(tarea)

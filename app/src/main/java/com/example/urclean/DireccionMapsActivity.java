@@ -1,6 +1,7 @@
 package com.example.urclean;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -34,6 +35,7 @@ public class DireccionMapsActivity extends AppCompatActivity implements OnMapRea
     private TextView tvCoordenadas, tvDireccion;
     private String asunto, tipo, descripcion, usuario;
     private Marker marker;
+    private double lat, lng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class DireccionMapsActivity extends AppCompatActivity implements OnMapRea
         tvDireccion = findViewById((R.id.textViewDireccion));
 
         findViewById(R.id.botonAceptarCoordenadas).setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("DefaultLocale")
             @Override
             public void onClick(View view) {
 
@@ -84,7 +87,8 @@ public class DireccionMapsActivity extends AppCompatActivity implements OnMapRea
                     b.putString("descripcion", descripcion);
                 }
                 b.putString("usuario",usuario);
-
+                b.putString("lat", String.format("%1$.4f", lat));
+                b.putString("lng", String.format("%1$.4f", lng));
                 intent.putExtras(b);
 
                 startActivity(intent);
@@ -131,8 +135,8 @@ public class DireccionMapsActivity extends AppCompatActivity implements OnMapRea
                 if(myLocation!=null){
                     Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
                     try {
-                        double lat = myLocation.getLatitude();
-                        double lng = myLocation.getLongitude();
+                        lat = myLocation.getLatitude();
+                        lng = myLocation.getLongitude();
                         LatLng latLng = new LatLng(lat,lng);
                         marker.setPosition(latLng);
                         List<Address> direccion = geocoder.getFromLocation(lat, lng, 1);
@@ -189,8 +193,8 @@ public class DireccionMapsActivity extends AppCompatActivity implements OnMapRea
     @Override
     public void onMarkerDragEnd(Marker marker) {
         // Toast.makeText(this, "finish", Toast.LENGTH_SHORT).show();
-        double lat = marker.getPosition().latitude;
-        double lng = marker.getPosition().longitude;
+        lat = marker.getPosition().latitude;
+        lng = marker.getPosition().longitude;
 
         Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
         try {

@@ -39,6 +39,8 @@ public class MenuBarrenderoActivity extends AppCompatActivity  {
             String asunto = bundle.getString("asunto");
             String descripcion = bundle.getString("descripcion");
             String usuario = bundle.getString("usuario");
+            String lat = bundle.getString("lat");
+            String lng = bundle.getString("lng");
 
             Bundle args = new Bundle();
             args.putString("dir", dir);
@@ -47,15 +49,16 @@ public class MenuBarrenderoActivity extends AppCompatActivity  {
             args.putString("asunto", asunto);
             args.putString("descripcion", descripcion);
             args.putString("usuario", usuario);
+            args.putString("lat", lat);
+            args.putString("lng", lng);
 
             IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
             fragment.setArguments(args);
 
-            navigation.setSelectedItemId(R.id.navigation_list_ciudadano);
+            navigation.setSelectedItemId(R.id.navigation_incidencia_ciudadano);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     fragment).addToBackStack(null).commit();
         }else if (savedInstanceState == null) {
-            navigation.setSelectedItemId(R.id.navigation_list_ciudadano);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new MenuBarrenderoFragment()).commit();
         }
