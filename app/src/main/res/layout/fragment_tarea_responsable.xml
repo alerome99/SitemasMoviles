@@ -10,15 +10,11 @@
         android:id="@+id/botonCompletadoTarea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="#5462b0"
         android:text="Marcar tarea como completa"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
@@ -28,9 +24,6 @@
         android:layout_height="110dp"
         android:layout_marginStart="72dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="101dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombreCalleResp" />
 
@@ -38,13 +31,12 @@
         android:id="@+id/nombreCalleResp"
         android:layout_width="170dp"
         android:layout_height="22dp"
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="160dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="25dp"
         android:text="Nombre calle"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/mapViewResp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,12 +45,10 @@
         android:layout_width="246dp"
         android:layout_height="82dp"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="89dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/bordesedittext"
         android:inputType="textMultiLine"
         android:text="Descripcion de lo que ocurre"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -67,10 +57,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="196dp"
+        android:layout_marginTop="30dp"
         android:text="Descripcion de la tarea"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapViewResp" />
 
@@ -78,11 +67,10 @@
         android:id="@+id/solucionResp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="79dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="155dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="30dp"
         android:text="Describa la solucion tomada"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descripcionResp" />
 
@@ -90,11 +78,9 @@
         android:id="@+id/editText"
         android:layout_width="247dp"
         android:layout_height="79dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="91dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="15dp"
         android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/solucionResp" />
 
