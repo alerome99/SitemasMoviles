@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -21,9 +21,9 @@ public class DetallesDesperfectoFragment extends Fragment {
     Button marcarDesperfectoLeida;
     Button marcarDesperfectoCompletada;
     private FirebaseConnection connection;
-    EditText editTextTituloDesperfecto;
-    EditText editTextDescripcionDesperfecto;
-    EditText editTextDireccionDesperfecto;
+    TextView editTextTituloDesperfecto;
+    TextView editTextDescripcionDesperfecto;
+    TextView editTextDireccionDesperfecto;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
