@@ -101,7 +101,6 @@ public class FirebaseConnection {
         Map<String,Object> grupo = new HashMap<>();
         grupo.put("numero",g.getNumero());
         grupo.put("codigo", g.getCodigoPostal());
-        //grupo.put("idUser", mAuth.getCurrentUser().getUid());
         db.collection("Grupo")
                 .add(grupo)
                 .addOnSuccessListener(documentReference -> callback.onResponse(true))
