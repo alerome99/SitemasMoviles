@@ -30,6 +30,8 @@ public class DetallesNotificacionFragment extends Fragment {
     EditText editTextJustificacion;
     TextView textViewGrupoActual;
     TextView textViewGrupoDestino;
+    private String email;
+    private String idBarrendero;
     private String id;
 
     public DetallesNotificacionFragment() {
@@ -77,34 +79,55 @@ public class DetallesNotificacionFragment extends Fragment {
                                 if (correct2) {
                                     if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
                                     } else {
-                                        String email = "";
+                                        email = "";
                                         for (QueryDocumentSnapshot document : connection.getResponse()) {
                                             email = (String) document.get("email");
                                         }
-                                        Respuesta r = new Respuesta("Concedido", editTextJustificacion.getText().toString(), email,
-                                                getArguments().getString("EMAIL"));
-                                        connection.crearRespuesta(r, new FirebaseCallback() {
-                                            @Override
-                                            public void onResponse(boolean correct) {
-                                                if (correct) {
-                                                    Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
+                                        connection.getUsuarioPorEmail(getArguments().getString("EMAIL"), correct3 -> {
+                                            if (correct3) {
+                                                if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
                                                 } else {
-                                                    Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
+                                                    idBarrendero = "";
+                                                    for (QueryDocumentSnapshot document : connection.getResponse()) {
+                                                        idBarrendero = (String) document.getId();
+                                                    }
+                                                    Respuesta r = new Respuesta("Concedido", editTextJustificacion.getText().toString(), email,
+                                                            getArguments().getString("EMAIL"));
+                                                    connection.crearRespuesta(r, new FirebaseCallback() {
+                                                        @Override
+                                                        public void onResponse(boolean correct) {
+                                                            if (correct) {
+                                                                Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
+                                                            } else {
+                                                                Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
+                                                            }
+                                                        }
+                                                    });
+                                                    connection.asignarGrupo(idBarrendero, textViewGrupoDestino.getText().toString(), new FirebaseCallback() {
+                                                        @Override
+                                                        public void onResponse(boolean correct) {
+                                                            if (correct) {
+                                                                Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
+                                                            } else {
+                                                                Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
+                                                            }
+                                                        }
+                                                    });
+                                                    connection.actualizarEstadoNotificacionBarrendero(id, "CONCEDIDO", new FirebaseCallback() {
+                                                        @Override
+                                                        public void onResponse(boolean correct) {
+                                                            if (correct) {
+                                                                //Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
+                                                            } else {
+                                                                //Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
+                                                            }
+                                                            Fragment selectedFragment;
+                                                            selectedFragment = new ListaNotificacionesSupervisorFragment();
+                                                            getActivity().getSupportFragmentManager().beginTransaction().
+                                                                    replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
+                                                        }
+                                                    });
                                                 }
-                                            }
-                                        });
-                                        connection.actualizarEstadoNotificacionBarrendero(id, "CONCEDIDO", new FirebaseCallback() {
-                                            @Override
-                                            public void onResponse(boolean correct) {
-                                                if (correct) {
-                                                    //Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
-                                                } else {
-                                                    //Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
-                                                }
-                                                Fragment selectedFragment;
-                                                selectedFragment = new ListaNotificacionesSupervisorFragment();
-                                                getActivity().getSupportFragmentManager().beginTransaction().
-                                                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                                             }
                                         });
                                     }
