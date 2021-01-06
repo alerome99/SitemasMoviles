@@ -6,29 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <TextView
         android:id="@+id/editTextTituloDesperfecto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
         android:focusable="false"
         android:inputType="textPersonName"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.685"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextDescripcionDesperfecto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
         android:focusable="false"
         android:inputType="textPersonName"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.76"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,9 +74,11 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="Titulo desperfecto"
+        android:layout_marginTop="70dp"
+        android:text="Titulo: "
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/editTextTituloDesperfecto"
+        app:layout_constraintHorizontal_bias="0.295"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,8 +86,9 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="Descripcion desperfecto"
+        android:layout_marginTop="65dp"
+        android:text="Descripcion: "
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/editTextDescripcionDesperfecto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -90,21 +97,27 @@
         android:id="@+id/textViewDireccionDesperfecto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        android:text="Direccion desperfecto"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="68dp"
+        android:text="Dirección: "
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextDireccionDesperfecto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/textViewDireccionDesperfecto"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescripcionDesperfecto" />
 
 
