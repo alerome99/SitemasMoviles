@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class direccionMapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
+public class DireccionMapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
 
     private GoogleMap mMap;
     private String dir, cod;
@@ -66,11 +66,11 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
 
                 Intent intent;
                 if(usuario.equals("ciudadano")) {
-                    intent = new Intent(direccionMapsActivity.this, MenuCiudadanoActivity.class);
+                    intent = new Intent(DireccionMapsActivity.this, MenuCiudadanoActivity.class);
                 }else if(usuario.equals("barrendero")){
-                    intent = new Intent(direccionMapsActivity.this, menuBarrendero.class);
+                    intent = new Intent(DireccionMapsActivity.this, MenuBarrenderoActivity.class);
                 }else{
-                    intent = new Intent(direccionMapsActivity.this, MenuSupervisorActivity.class);
+                    intent = new Intent(DireccionMapsActivity.this, MenuSupervisorActivity.class);
                 }
 
                 Bundle b = new Bundle();
@@ -97,14 +97,21 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
             public void onClick(View view) {
                 Intent intent;
                 if(usuario.equals("ciudadano")) {
-                    intent = new Intent(direccionMapsActivity.this, MenuCiudadanoActivity.class);
+                    intent = new Intent(DireccionMapsActivity.this, MenuCiudadanoActivity.class);
                 }else if(usuario.equals("barrendero")){
-                    intent = new Intent(direccionMapsActivity.this, menuBarrendero.class);
+                    intent = new Intent(DireccionMapsActivity.this, MenuBarrenderoActivity.class);
                 }else{
-                    intent = new Intent(direccionMapsActivity.this, MenuSupervisorActivity.class);
+                    intent = new Intent(DireccionMapsActivity.this, MenuSupervisorActivity.class);
                 }
                 Bundle b = new Bundle();
                 b.putString("usuario",usuario);
+                b.putString("tipo", tipo);
+                if (asunto != null) {
+                    b.putString("asunto", asunto);
+                }
+                if (descripcion != null) {
+                    b.putString("descripcion", descripcion);
+                }
 
                 intent.putExtras(b);
 
@@ -116,8 +123,8 @@ public class direccionMapsActivity extends AppCompatActivity implements OnMapRea
             @Override
             public void onClick(View view) {
                 LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                if (ActivityCompat.checkSelfPermission(direccionMapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(direccionMapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(DireccionMapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(DireccionMapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
                 Location myLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);

@@ -5,13 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
+import com.example.urclean.model.NotificacionCiudadano;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -20,9 +21,9 @@ public class DetallesDesperfectoFragment extends Fragment {
     Button marcarDesperfectoLeida;
     Button marcarDesperfectoCompletada;
     private FirebaseConnection connection;
-    EditText editTextTituloDesperfecto;
-    EditText editTextDescripcionDesperfecto;
-    EditText editTextDireccionDesperfecto;
+    TextView editTextTituloDesperfecto;
+    TextView editTextDescripcionDesperfecto;
+    TextView editTextDireccionDesperfecto;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,17 +61,32 @@ public class DetallesDesperfectoFragment extends Fragment {
                         if (connection.getResponse().isEmpty() || connection.getResponse() == null){
                         }else{
                             String id = "";
+                            String descripcion = "";
+                            String email = "";
+                            String estado = "";
+                            String titulo = "";
+                            String direccion = "";
                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                 id = (String) document.getId();
+                                descripcion = document.getString("descripcion");
+                                email = document.getString("email");
+                                estado = document.getString("estado");
+                                titulo = document.getString("titulo");
+                                direccion = document.getString("direccion");
                             }
+                            NotificacionCiudadano n = new NotificacionCiudadano(descripcion,email,estado,titulo,direccion);
                             connection.cambiarEstadoDesperfecto(id, "1", new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
                                     if (correct) {
-                                        Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
+                                       Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
                                     } else {
                                         Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
                                     }
+                                    n.setEstado("RECIBIDA");
+                                    connection.crearNotificacionCiudadano(n, new FirebaseCallback() {
+                                        @Override
+                                        public void onResponse(boolean correct) {}});
                                     Fragment selectedFragment;
                                     selectedFragment = new DesperfectosSupervisorFragment();
                                     getActivity().getSupportFragmentManager().beginTransaction().
@@ -92,19 +108,33 @@ public class DetallesDesperfectoFragment extends Fragment {
                         if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
                         } else {
                             String id = "";
+                            String descripcion = "";
+                            String email = "";
+                            String estado = "";
+                            String titulo = "";
+                            String direccion = "";
 
                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                 id = (String) document.getId();
+                                descripcion = document.getString("descripcion");
+                                email = document.getString("email");
+                                estado = document.getString("estado");
+                                titulo = document.getString("titulo");
+                                direccion = document.getString("direccion");
                             }
+                            NotificacionCiudadano n = new NotificacionCiudadano(descripcion,email,estado,titulo,direccion);
                             connection.cambiarEstadoDesperfecto(id, "2", new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
-
                                     if (correct) {
                                         Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
                                     } else {
                                         Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
                                     }
+                                    n.setEstado("SOLUCIONADA");
+                                    connection.crearNotificacionCiudadano(n, new FirebaseCallback() {
+                                        @Override
+                                        public void onResponse(boolean correct) {}});
                                     Fragment selectedFragment;
                                     selectedFragment = new DesperfectosSupervisorFragment();
                                     getActivity().getSupportFragmentManager().beginTransaction().

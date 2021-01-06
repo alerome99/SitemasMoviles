@@ -5,13 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
+import com.example.urclean.model.NotificacionCiudadano;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -22,8 +23,8 @@ public class DetallesQuejaFragment extends Fragment {
     Button marcarQuejaLeida;
     Button marcarQuejaCompletada;
     private FirebaseConnection connection;
-    EditText editTextTituloQueja;
-    EditText editTextDescripcionQueja;
+    TextView editTextTituloQueja;
+    TextView editTextDescripcionQueja;
 
     public DetallesQuejaFragment() {
 
@@ -63,9 +64,18 @@ public class DetallesQuejaFragment extends Fragment {
                         if (connection.getResponse().isEmpty() || connection.getResponse() == null){
                         }else{
                             String id = "";
+                            String descripcion = "";
+                            String email = "";
+                            String estado = "";
+                            String titulo = "";
                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                 id = (String) document.getId();
+                                descripcion = document.getString("descripcion");
+                                email = document.getString("email");
+                                estado = document.getString("estado");
+                                titulo = document.getString("titulo");
                             }
+                            NotificacionCiudadano n = new NotificacionCiudadano(descripcion,email,estado,titulo);
                             connection.cambiarEstadoQueja(id, "1", new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
@@ -74,6 +84,12 @@ public class DetallesQuejaFragment extends Fragment {
                                     } else {
                                         Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
                                     }
+                                    n.setEstado("RECIBIDA");
+                                    connection.crearNotificacionCiudadano(n, new FirebaseCallback() {
+                                        @Override
+                                        public void onResponse(boolean correct) {
+                                        }
+                                    });
                                     Fragment selectedFragment;
                                     selectedFragment = new QuejasSupervisorFragment();
                                     getActivity().getSupportFragmentManager().beginTransaction().
@@ -95,19 +111,30 @@ public class DetallesQuejaFragment extends Fragment {
                         if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
                         } else {
                             String id = "";
-
+                            String descripcion = "";
+                            String email = "";
+                            String estado = "";
+                            String titulo = "";
                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                 id = (String) document.getId();
+                                descripcion = document.getString("descripcion");
+                                email = document.getString("email");
+                                estado = document.getString("estado");
+                                titulo = document.getString("titulo");
                             }
+                            NotificacionCiudadano n = new NotificacionCiudadano(descripcion,email,estado,titulo);
                             connection.cambiarEstadoQueja(id, "2", new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
-
                                     if (correct) {
                                         Snackbar.make(v, "Update realizado", Snackbar.LENGTH_LONG).show();
                                     } else {
                                         Snackbar.make(v, "No se ha podido realizar el update", Snackbar.LENGTH_LONG).show();
                                     }
+                                    n.setEstado("SOLUCIONADA");
+                                    connection.crearNotificacionCiudadano(n, new FirebaseCallback() {
+                                        @Override
+                                        public void onResponse(boolean correct) {}});
                                     Fragment selectedFragment;
                                     selectedFragment = new QuejasSupervisorFragment();
                                     getActivity().getSupportFragmentManager().beginTransaction().

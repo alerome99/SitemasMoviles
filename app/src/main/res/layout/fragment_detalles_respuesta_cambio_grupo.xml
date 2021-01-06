@@ -22,17 +22,19 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextJustificacion"
         app:layout_constraintVertical_bias="1.0" />
 
-    <EditText
-        android:id="@+id/editTextJustificacion"
-        android:layout_width="300dp"
-        android:layout_height="?attr/listPreferredItemHeight"
+    <TextView
+        android:id="@+id/textViewJustificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="50dp"
         android:gravity="center_vertical"
         android:text=""
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
         tools:ignore="MissingConstraints" />
@@ -44,9 +46,10 @@
         android:layout_marginTop="100dp"
         android:layout_marginBottom="10dp"
         android:text="Respuesta:"
-        app:layout_constraintBottom_toTopOf="@+id/editTextRespuesta"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewRespuesta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,38 +57,30 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="32dp"
         android:text="Justificación:"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRespuesta" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewRespuesta" />
 
-    <EditText
-        android:id="@+id/editTextRespuesta"
-        android:layout_width="300dp"
-        android:layout_height="?attr/listPreferredItemHeight"
+    <TextView
+        android:id="@+id/textViewRespuesta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="50dp"
         android:gravity="center_vertical"
         android:text=""
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16"
         tools:ignore="MissingConstraints" />
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="410dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <!-- Main content -->
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,15 +1,14 @@
 package com.example.urclean.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.urclean.AdapterTarea;
 import com.example.urclean.R;
@@ -83,15 +82,26 @@ public class ListaTareasFragment extends Fragment {
 
                                         Log.e("IDP", ""+idPersona);
 
+                                        String name = "";
+                                        String calle = "";
+                                        String descripcion = "";
+                                        String estado = "";
+                                        String responsable = "";
+                                        String id = "";
+                                        String grupo = "";
+                                        String email ="";
+
                                         for (QueryDocumentSnapshot document : connection.getResponse()) {
 
 
-                                            String name = (String) document.get("Nombre");
-                                            String calle = (String) document.get("Calle");
-                                            String descripcion = (String) document.get("Descripcion");
-                                            String estado = (String) document.get("Estado");
-                                            String responsable = (String) document.get("Responsable");
-                                            String id = (String) document.get("Id");
+                                            name = (String) document.get("Nombre");
+                                            calle = (String) document.get("Calle");
+                                            descripcion = (String) document.get("Descripcion");
+                                            estado = (String) document.get("Estado");
+                                            responsable = (String) document.get("Responsable");
+                                            id = (String) document.get("Id");
+                                            grupo = (String) document.get("Grupo");
+                                            email = (String) document.get("email");
 
                                             //Las que tiene activas se ponen antes.
                                             //Habria que mirar la eficiencia, pues este metodo
@@ -104,11 +114,11 @@ public class ListaTareasFragment extends Fragment {
 
                                                 Log.e("RESP", "Tarea con responsable.");
 
-                                                tareas.add(0, new Tarea(name, descripcion, estado, responsable, calle, id));
+                                                tareas.add(0, new Tarea(name, descripcion, estado, responsable, calle, id,grupo,email));
 
                                             } else if (estado.equals("SinAsignar")) {
 
-                                                tareas.add(new Tarea(name, descripcion, estado, responsable, calle, id));
+                                                tareas.add(new Tarea(name, descripcion, estado, responsable, calle, id,grupo,email));
 
                                             }
                                         }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -15,13 +16,15 @@ import com.example.urclean.firebase.FirebaseConnection;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import org.w3c.dom.Text;
+
 
 public class DetallesRespuestaFragment extends Fragment {
 
 
     private FirebaseConnection connection;
-    EditText editTextRespuesta;
-    EditText editTextJustificacion;
+    TextView textViewRespuesta;
+    TextView textViewJustificacion;
     Button botonConfirmarRespuesta;
 
     public DetallesRespuestaFragment() {
@@ -44,11 +47,11 @@ public class DetallesRespuestaFragment extends Fragment {
         Bundle bundle = getArguments();
 
         botonConfirmarRespuesta = v.findViewById(R.id.botonConfirmarRespuesta);
-        editTextJustificacion = v.findViewById(R.id.editTextJustificacion);
-        editTextRespuesta = v.findViewById(R.id.editTextRespuesta);
+        textViewJustificacion = v.findViewById(R.id.textViewJustificacion);
+        textViewRespuesta = v.findViewById(R.id.textViewRespuesta);
 
-        editTextRespuesta.setText(getArguments().getString("RESPUESTA"));
-        editTextJustificacion.setText(getArguments().getString("RAZON"));
+        textViewRespuesta.setText(getArguments().getString("RESPUESTA"));
+        textViewJustificacion.setText(getArguments().getString("RAZON"));
 
         botonConfirmarRespuesta.setOnClickListener(new View.OnClickListener() {
             @Override

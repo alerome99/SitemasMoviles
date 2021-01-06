@@ -1,6 +1,5 @@
 package com.example.urclean.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,12 +14,11 @@ import com.example.urclean.AccesoActivity;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
-import com.example.urclean.menuBarrendero;
 
 
 public class MenuBarrenderoFragment extends Fragment {
 
-    private Button buttonLogout,botonHistorial,SolicitarCambioGrupo;
+    private Button buttonLogout,botonHistorial,SolicitarCambioGrupo,botonFichar;
     private FirebaseConnection connection;
 
     public MenuBarrenderoFragment() {
@@ -43,6 +41,7 @@ public class MenuBarrenderoFragment extends Fragment {
         buttonLogout = v.findViewById(R.id.Logoutbarrendero);
         botonHistorial = v.findViewById(R.id.BotonHistorialBarrendero);
         SolicitarCambioGrupo = v.findViewById(R.id.SolicitarCambioGrupo);
+        botonFichar = v.findViewById(R.id.ButtonFichar);
 
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -65,6 +64,9 @@ public class MenuBarrenderoFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().
                         replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
             }
+
+
+
         });
 
         SolicitarCambioGrupo.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +78,17 @@ public class MenuBarrenderoFragment extends Fragment {
             }
         });
 
+        botonFichar.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Fragment selectedFragment;
+                selectedFragment = new InformacionBarrenderoFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
+            }
 
+
+
+        });
 
         return v;
     }

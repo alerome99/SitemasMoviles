@@ -76,6 +76,7 @@ public class ListaCodigoPostal extends Fragment {
                             selectedFragment = new AddGrupoFragment();
                             Bundle bundle = new Bundle();
                             bundle.putString("CODIGO", codigos.get(position).getCodigo());
+                            bundle.putString("NUMERO", getArguments().getString("NUMERO"));
                             selectedFragment.setArguments(bundle);
                             getActivity().getSupportFragmentManager().beginTransaction().
                                     replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();

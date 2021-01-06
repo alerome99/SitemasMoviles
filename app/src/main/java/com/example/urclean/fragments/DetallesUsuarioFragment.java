@@ -1,12 +1,15 @@
 package com.example.urclean.fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -15,6 +18,7 @@ import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -25,9 +29,10 @@ public class DetallesUsuarioFragment extends Fragment {
     Button buttonRegistrarBarrendero;
     Spinner spinner;
     private FirebaseConnection connection;
-    EditText editTextName;
-    EditText editTextPhone;
-    EditText editTextEmail;
+    TextView editTextName;
+    TextView editTextPhone;
+    TextView editTextEmail;
+    ImageView imageViewPhoto;
     ArrayList<String> listaGrupos;
 
     public DetallesUsuarioFragment() {
@@ -51,6 +56,7 @@ public class DetallesUsuarioFragment extends Fragment {
         Bundle bundle = getArguments();
 
         buttonRegistrarBarrendero = v.findViewById(R.id.buttonRegistrarBarrendero);
+        imageViewPhoto = v.findViewById(R.id.imageViewPhoto);
         spinner = v.findViewById(R.id.spinner);
         editTextName = v.findViewById(R.id.editTextName);
         editTextPhone = v.findViewById(R.id.editTextPhone);
@@ -60,6 +66,22 @@ public class DetallesUsuarioFragment extends Fragment {
         editTextEmail.setText(getArguments().getString("EMAIL"));
         editTextPhone.setText(getArguments().getString("TELEFONO"));
         editTextName.setText(getArguments().getString("NAME"));
+
+        connection.getUsuarioPorEmail(getArguments().getString("EMAIL"), correct -> {
+            if (correct) {
+                if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                } else {
+                    String url = "";
+                    for (QueryDocumentSnapshot document : connection.getResponse()) {
+                        url = (String) document.get("Foto");
+                    }
+                    if(url!=null){
+                        Uri path = Uri.parse(url);
+                        Picasso.get().load(path).into(imageViewPhoto);
+                    }
+                }
+            }
+        });
 
         buttonRegistrarBarrendero.setOnClickListener(new View.OnClickListener() {
             @Override

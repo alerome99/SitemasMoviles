@@ -57,24 +57,12 @@
         app:srcCompat="@drawable/ic_baseline_person_24"
         tools:ignore="MissingConstraints" />
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="410dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <!-- Main content -->
-
-    </FrameLayout>
-
-    <EditText
+    <TextView
         android:id="@+id/editTextEmail"
         android:layout_width="300dp"
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="36dp"
         android:gravity="center_vertical"
         android:text=""
         android:textColor="@color/white"
@@ -85,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextPhone"
         android:layout_width="153dp"
         android:layout_height="?attr/listPreferredItemHeight"
@@ -98,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextName"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextName"
         android:layout_width="155dp"
         android:layout_height="?attr/listPreferredItemHeight"

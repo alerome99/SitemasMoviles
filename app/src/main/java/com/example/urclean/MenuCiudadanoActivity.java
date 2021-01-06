@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.urclean.fragments.IncidenciaCiudadanoFragment;
 import com.example.urclean.fragments.MenuCiudadanoFragment;
-import com.example.urclean.fragments.NotificacionesCiudadanoFragment;
+import com.example.urclean.fragments.ListaNotificacionesCiudadanoFragment;
 import com.example.urclean.fragments.PerfilCiudadanoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -69,7 +69,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
                             selectedFragment = new MenuCiudadanoFragment();
                             break;
                         case R.id.nav_notificaciones:
-                            selectedFragment = new NotificacionesCiudadanoFragment();
+                            selectedFragment = new ListaNotificacionesCiudadanoFragment();
                             break;
                     }
 
