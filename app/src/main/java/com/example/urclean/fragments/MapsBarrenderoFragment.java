@@ -108,9 +108,6 @@ public class MapsBarrenderoFragment extends Fragment implements OnMapReadyCallba
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-        Log.e("tag",lat);
-        Log.e("tag",lng);
-
         double latd = Double.parseDouble(lat.replace(",","."));
         double lngd = Double.parseDouble(lng.replace(",","."));
 
@@ -127,8 +124,6 @@ public class MapsBarrenderoFragment extends Fragment implements OnMapReadyCallba
             @Override
             public void onComplete(@NonNull Task<Location> task) {
 
-                Log.e("LOC","ESTO");
-
                 Location location = task.getResult();
 
                 if(location != null ){
@@ -139,7 +134,7 @@ public class MapsBarrenderoFragment extends Fragment implements OnMapReadyCallba
                             .color(android.R.color.holo_red_dark));
 
                 }else{
-                    Log.e("NL","No Hay localizacion");
+
                 }
 
 
