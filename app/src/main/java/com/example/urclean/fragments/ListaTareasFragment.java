@@ -90,6 +90,8 @@ public class ListaTareasFragment extends Fragment {
                                         String id = "";
                                         String grupo = "";
                                         String email ="";
+                                        String lat="";
+                                        String lng="";
 
                                         for (QueryDocumentSnapshot document : connection.getResponse()) {
 
@@ -102,6 +104,9 @@ public class ListaTareasFragment extends Fragment {
                                             id = (String) document.get("Id");
                                             grupo = (String) document.get("Grupo");
                                             email = (String) document.get("email");
+                                            lat = (String) document.get("lat");
+                                            lng =  (String) document.get("lng");
+
 
                                             //Las que tiene activas se ponen antes.
                                             //Habria que mirar la eficiencia, pues este metodo
@@ -114,11 +119,11 @@ public class ListaTareasFragment extends Fragment {
 
                                                 Log.e("RESP", "Tarea con responsable.");
 
-                                                tareas.add(0, new Tarea(name, descripcion, estado, responsable, calle, id,grupo,email));
+                                                tareas.add(0, new Tarea(name, descripcion, estado, responsable, calle, id,grupo,email,lat,lng));
 
                                             } else if (estado.equals("SinAsignar")) {
 
-                                                tareas.add(new Tarea(name, descripcion, estado, responsable, calle, id,grupo,email));
+                                                tareas.add(new Tarea(name, descripcion, estado, responsable, calle, id,grupo,email,lat,lng));
 
                                             }
                                         }
