@@ -1,16 +1,13 @@
 package com.example.urclean;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.urclean.model.CodigoPostal;
-import com.example.urclean.model.Queja;
 
 import java.util.ArrayList;
 
@@ -34,7 +31,6 @@ public class AdapterGrupo extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Log.e("CONTEXTGW","Inside getView");
         final View vista = inflater.inflate(R.layout.elementolistacodigopostal,null);
         TextView zonaView = (TextView) vista.findViewById(R.id.textViewZona);
         TextView codigoView = (TextView) vista.findViewById(R.id.textViewCodigo);

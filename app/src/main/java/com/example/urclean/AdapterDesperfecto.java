@@ -1,7 +1,6 @@
 package com.example.urclean;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +33,6 @@ public class AdapterDesperfecto extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        Log.e("CONTEXTGW","Inside getView");
         final View vista = inflater.inflate(R.layout.elementolistadesperfecto,null);
         ImageView imagen = (ImageView) vista.findViewById(R.id.imageView5);
         TextView nombre = (TextView) vista.findViewById(R.id.textViewNameDesperfecto);

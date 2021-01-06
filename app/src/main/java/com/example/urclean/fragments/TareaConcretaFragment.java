@@ -57,13 +57,11 @@ public class TareaConcretaFragment extends Fragment {
         descripcion.setText(tarea.getDescripcion());
         calle.setText(tarea.getCalle());
         nombre.setText(tarea.getName());
-        Log.e("ASIGNAR",tarea.getId());
 
         NotificacionCiudadano n = new NotificacionCiudadano(tarea.getDescripcion(), tarea.getEmail(), tarea.getEstado(), tarea.getName(), tarea.getCalle(), tarea.getGrupo());
         tratarTarea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("ASIGNAR",tarea.getId());
                 connection.asignarResponsable(tarea.getId(), new FirebaseCallback() {
                     @Override
                     public void onResponse(boolean correct) {
