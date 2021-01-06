@@ -108,7 +108,6 @@ public class MapsBarrenderoFragment extends Fragment implements OnMapReadyCallba
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-
         double latd = Double.parseDouble(lat.replace(",","."));
         double lngd = Double.parseDouble(lng.replace(",","."));
 
@@ -124,8 +123,6 @@ public class MapsBarrenderoFragment extends Fragment implements OnMapReadyCallba
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
             @Override
             public void onComplete(@NonNull Task<Location> task) {
-
-
 
                 Location location = task.getResult();
 
