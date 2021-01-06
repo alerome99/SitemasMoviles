@@ -39,7 +39,6 @@ public class AdapterTarea extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Log.e("CONTEXTGW","Inside getView");
         final View vista = inflater.inflate(R.layout.elementolista,null);
         ImageView imagen = (ImageView) vista.findViewById(R.id.imageView5);
         TextView nombre = (TextView) vista.findViewById(R.id.textViewNameTarea);
@@ -61,14 +60,10 @@ public class AdapterTarea extends BaseAdapter {
 
             imagen.setImageResource(imagenes[1]);
 
-            // DEBE SER LA DEL USUARIO...
-
         } else if(condicion.equals("Completada")){
 
-            Log.e("TERMINADA","TAREA ESTA TERMINADA..");
-
         } else{
-            Log.e("ERRORTAREA","No condicion");
+
         }
 
         return vista;

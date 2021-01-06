@@ -72,7 +72,7 @@ public class AccesoActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s)  {
                 if (password.getText().toString().length() <= 0) {
-                    password.setError("Inserte el email");
+                    password.setError("Inserte la contraseña");
                 } else {
                     password.setError(null);
                 }
@@ -115,20 +115,15 @@ public class AccesoActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(boolean correct) {
                         if (correct) {
-
-                            Log.e("LOGIN","Login correcto");
                             connection.getPersona(new FirebaseCallback() {
                                 @Override
                                 public void onResponse(boolean correct) {
                                     if (correct) {
                                         if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
                                              Snackbar.make(v, "No existen datos", Snackbar.LENGTH_LONG).show();
-                                            Log.e("NAME",""+(String) connection.getUser().getUid());
                                         } else {
                                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                                 typeUser = (String) document.get("type");
-                                                Log.e("NAME",""+(String) document.get("name"));
-                                                Log.e("NAME",""+(String) document.get("type"));
                                             }
 
                                             if (typeUser.equals("ciudadano")) {
@@ -144,8 +139,6 @@ public class AccesoActivity extends AppCompatActivity {
                                                 startActivity(new Intent( AccesoActivity.this, MenuSupervisorActivity.class));
 
                                             }else{
-
-                                                Log.e("USERTYPE","No user type selected.");
 
                                             }
                                         }

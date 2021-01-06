@@ -1,7 +1,6 @@
 package com.example.urclean.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +50,6 @@ public class TareaResponsableFragment extends Fragment {
         gps = v.findViewById(R.id.gpsRes);
         descripcion.setText(tarea.getDescripcion());
         calle.setText(tarea.getCalle());
-        Log.e("RESP",tarea.getId());
 
         gps.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +66,6 @@ public class TareaResponsableFragment extends Fragment {
         tratarTarea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("COMPLETAR",tarea.getId());
                 connection.marcarCompletadaTarea(tarea.getId(), new FirebaseCallback() {
                     @Override
                     public void onResponse(boolean correct) {

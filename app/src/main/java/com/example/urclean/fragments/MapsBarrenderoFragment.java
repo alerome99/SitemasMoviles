@@ -8,14 +8,13 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +76,6 @@ public class MapsBarrenderoFragment extends Fragment implements OnMapReadyCallba
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }else{
-            Log.e("NL","null");
         }
 
 

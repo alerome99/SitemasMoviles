@@ -1,14 +1,12 @@
 package com.example.urclean.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+
 
 import androidx.fragment.app.Fragment;
 
@@ -22,7 +20,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 
 public class AddGrupoFragment extends Fragment {
-    //implements AdapterView.OnItemSelectedListener
 
     private EditText editTextTextNumeroGrupo;
     private Button buttonAddGrupo;
@@ -127,7 +124,6 @@ public class AddGrupoFragment extends Fragment {
                                     public void onResponse(boolean correct) {
                                         if (correct) {
                                         } else {
-                                            Log.e("SAVE", "Respuesta vacia");
                                             Snackbar.make(v, "Error al almacenar los datos", Snackbar.LENGTH_LONG).show();
                                         }
                                         Fragment selectedFragment;

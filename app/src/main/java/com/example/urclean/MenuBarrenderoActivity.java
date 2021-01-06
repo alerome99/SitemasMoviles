@@ -59,6 +59,7 @@ public class MenuBarrenderoActivity extends AppCompatActivity  {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     fragment).addToBackStack(null).commit();
         }else if (savedInstanceState == null) {
+            navigation.setSelectedItemId(R.id.navigation_list_ciudadano);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new MenuBarrenderoFragment()).commit();
         }

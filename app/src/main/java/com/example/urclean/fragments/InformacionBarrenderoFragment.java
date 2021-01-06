@@ -40,7 +40,6 @@ public class InformacionBarrenderoFragment extends Fragment {
 
         connection.getCurrentUser(correct -> {
             if (connection.getResponse().isEmpty() || connection.getResponse() == null){
-                Log.e("Grupo", "no tiene grupo");
             }else{
                 String grupo = "";
                 for (QueryDocumentSnapshot document : connection.getResponse()) {

@@ -2,7 +2,6 @@ package com.example.urclean.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,7 +87,6 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                                 public void onResponse(boolean correct) {
                                     if (correct) {
                                         if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
-                                            Log.e("vacio", "esta vacio");
                                         } else {
                                             String email="";
                                             for (QueryDocumentSnapshot document : connection.getResponse()) {

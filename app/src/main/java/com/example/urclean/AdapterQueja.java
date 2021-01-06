@@ -1,7 +1,6 @@
 package com.example.urclean;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.urclean.model.Queja;
-import com.example.urclean.model.Tarea;
 
 import java.util.ArrayList;
 
@@ -37,7 +35,6 @@ public class AdapterQueja extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Log.e("CONTEXTGW","Inside getView");
         final View vista = inflater.inflate(R.layout.elementolistaqueja,null);
         ImageView imagen = (ImageView) vista.findViewById(R.id.imageView5);
         TextView nombre = (TextView) vista.findViewById(R.id.textViewNameQueja);
