@@ -30,7 +30,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".direccionMapsActivity" />
+        <activity android:name=".DireccionMapsActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MenuSupervisorActivity" />
         <activity android:name=".AccesoActivity">
@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MenuCiudadanoActivity" />
-        <activity android:name=".menuBarrendero" />
+        <activity android:name=".MenuBarrenderoActivity" />
     </application>
 
 </manifest>

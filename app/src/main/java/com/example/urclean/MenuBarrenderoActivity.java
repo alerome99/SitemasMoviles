@@ -15,7 +15,7 @@ import com.example.urclean.fragments.MenuBarrenderoFragment;
 import com.example.urclean.fragments.PerfilCiudadanoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class menuBarrendero extends AppCompatActivity  {
+public class MenuBarrenderoActivity extends AppCompatActivity  {
 
     BottomNavigationView navigation;
 

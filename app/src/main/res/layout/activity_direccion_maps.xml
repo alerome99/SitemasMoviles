@@ -13,7 +13,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        tools:context=".direccionMapsActivity" />
+        tools:context=".DireccionMapsActivity" />
 
 
     <TextView

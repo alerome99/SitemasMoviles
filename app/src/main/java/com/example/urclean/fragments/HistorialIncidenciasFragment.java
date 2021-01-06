@@ -42,6 +42,8 @@ public class HistorialIncidenciasFragment  extends Fragment {
                     String responsable = "";
                     String calle = "";
                     String id = "";
+                    String grupo = "";
+                    String email = "";
 
                     for (QueryDocumentSnapshot document : connection.getResponse()) {
                         name = (String) document.get("Nombre");
@@ -50,8 +52,10 @@ public class HistorialIncidenciasFragment  extends Fragment {
                         responsable = (String) document.get("Responsable");
                         calle = (String) document.get("Calle");
                         id = (String) document.get("Id");
+                        grupo = (String) document.get("Grupo");
+                        email = (String) document.get("email");
 
-                        Tarea t = new Tarea(name,descripcion,estado,responsable,calle,id);
+                        Tarea t = new Tarea(name,descripcion,estado,responsable,calle,id,grupo,email);
                         tareas.add(t);
 
                     }
