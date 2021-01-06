@@ -113,6 +113,19 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                             connection.getCurrentUser(correct -> {
                                 if (correct) {
                                     if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                                        connection.saveDesperfecto(asunto.getText().toString(), dir, descripcion.getText().toString(), new FirebaseCallback() {
+                                            @Override
+                                            public void onResponse(boolean correct) {
+                                                if (correct) {
+                                                    asunto.setText("");
+                                                    direccion.setText("");
+                                                    descripcion.setText("");
+                                                    Snackbar.make(view, "Desperfecto enviado", Snackbar.LENGTH_LONG).show();
+                                                } else {
+                                                    Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                                                }
+                                            }
+                                        });
                                     } else {
                                         String email = "";
                                         for (QueryDocumentSnapshot document : connection.getResponse()) {
@@ -120,6 +133,19 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                                         }
                                         connection.getDesperfectosPorEmail(email, correct2 -> {
                                             if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                                                connection.saveDesperfecto(asunto.getText().toString(), dir, descripcion.getText().toString(), new FirebaseCallback() {
+                                                    @Override
+                                                    public void onResponse(boolean correct) {
+                                                        if (correct) {
+                                                            asunto.setText("");
+                                                            direccion.setText("");
+                                                            descripcion.setText("");
+                                                            Snackbar.make(view, "Desperfecto enviado", Snackbar.LENGTH_LONG).show();
+                                                        } else {
+                                                            Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                                                        }
+                                                    }
+                                                });
                                             } else {
                                                 boolean bandera = true;
                                                 for (QueryDocumentSnapshot document : connection.getResponse()) {
