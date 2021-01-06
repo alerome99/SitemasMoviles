@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
                         txtFecha.setText(dayOfMonth+ "/" +month+ "/" +year);
                     }
-                },dia,mes,anio);
+                },anio,mes,dia);
                 dpd.show();
             }
         });
