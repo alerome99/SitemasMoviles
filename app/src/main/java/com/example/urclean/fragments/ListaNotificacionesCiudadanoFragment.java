@@ -1,11 +1,14 @@
 package com.example.urclean.fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 
 public class ListaNotificacionesCiudadanoFragment extends Fragment {
 
+    EditText searchFilter;
     private FirebaseConnection connection;
     private ListView listViewNotificaciones;
     private ArrayAdapter adaptador;
@@ -37,6 +41,7 @@ public class ListaNotificacionesCiudadanoFragment extends Fragment {
         listViewNotificaciones = view.findViewById(R.id.listViewNotificaciones);
         connection = FirebaseConnection.getInstance();
         lista = new ArrayList<>();
+        searchFilter = view.findViewById(R.id.searchFilter);
 
         connection.getNotificacionesCiudadano(correct -> {
             if (correct) {
@@ -94,6 +99,21 @@ public class ListaNotificacionesCiudadanoFragment extends Fragment {
                         }
                     });
                 }
+            }
+        });
+
+        searchFilter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                (ListaNotificacionesCiudadanoFragment.this).adaptador.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
 

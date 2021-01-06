@@ -27,7 +27,7 @@ public class IncidenciaCiudadanoFragment extends Fragment {
     private EditText descripcion, asunto;
     private TextView direccion;
     private Spinner spinner;
-    private String dir,cod, usuario;
+    private String dir,cod, usuario, lat, lng;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,6 +51,9 @@ public class IncidenciaCiudadanoFragment extends Fragment {
         if(getArguments().getString("tipo")!=null){
             dir = getArguments().getString("dir");
             cod = getArguments().getString("cod");
+            lat = getArguments().getString("lat");
+            lng = getArguments().getString("lng");
+
 
             if(getArguments().getString("tipo").equals("Desperfecto"))
                 spinner.setSelection(1,true);
@@ -91,7 +94,7 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                                 email = (String) document.get("email");
                                             }
-                                            connection.saveTarea(email,asunto.getText().toString(),dir,cod, descripcion.getText().toString(), new FirebaseCallback() {
+                                            connection.saveTarea(email,asunto.getText().toString(),dir,cod, descripcion.getText().toString(), lat, lng, new FirebaseCallback() {
                                                 @Override
                                                 public void onResponse(boolean correct) {
                                                     if (correct) {

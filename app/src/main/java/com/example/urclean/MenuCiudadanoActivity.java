@@ -29,6 +29,8 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
             String asunto = bundle.getString("asunto");
             String descripcion = bundle.getString("descripcion");
             String usuario = bundle.getString("usuario");
+            String lat = bundle.getString("lat");
+            String lng = bundle.getString("lng");
 
             Bundle args = new Bundle();
             args.putString("dir", dir);
@@ -37,6 +39,8 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
             args.putString("asunto", asunto);
             args.putString("descripcion", descripcion);
             args.putString("usuario", usuario);
+            args.putString("lat", lat);
+            args.putString("lng", lng);
 
             IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
             fragment.setArguments(args);

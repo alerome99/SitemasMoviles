@@ -88,6 +88,21 @@ public class AddGrupoFragment extends Fragment {
                 connection.getGrupos(correct -> {
                     if (correct) {
                         if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                            Grupo g = new Grupo(editTextTextNumeroGrupo.getText().toString(), editTextCodigoPostal.getText().toString());
+                            connection.saveGrupo(g, new FirebaseCallback() {
+                                @Override
+                                public void onResponse(boolean correct) {
+                                    if (correct) {
+                                    } else {
+                                        Log.e("SAVE", "Respuesta vacia");
+                                        Snackbar.make(v, "Error al almacenar los datos", Snackbar.LENGTH_LONG).show();
+                                    }
+                                    Fragment selectedFragment;
+                                    selectedFragment = new MenuSupervisorFragment();
+                                    getActivity().getSupportFragmentManager().beginTransaction().
+                                            replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
+                                }
+                            }); // fin save use
                         } else {
                             boolean bandera1 = true;
                             boolean bandera2 = true;
@@ -96,11 +111,13 @@ public class AddGrupoFragment extends Fragment {
                             for (QueryDocumentSnapshot document : connection.getResponse()) {
                                 numero = (String) document.get("numero");
                                 codigo = (String) document.get("codigo");
-                                if (numero.equals(editTextTextNumeroGrupo.getText().toString())) {
-                                    bandera1 = false;
-                                }
-                                if (codigo.equals(editTextCodigoPostal.getText().toString().toString())) {
-                                    bandera2 = false;
+                                if(numero!=null && codigo!=null){
+                                    if (numero.equals(editTextTextNumeroGrupo.getText().toString())) {
+                                        bandera1 = false;
+                                    }
+                                    if (codigo.equals(editTextCodigoPostal.getText().toString())) {
+                                        bandera2 = false;
+                                    }
                                 }
                             }
                             if(bandera1 && bandera2){
