@@ -94,7 +94,7 @@
         app:srcCompat="@drawable/ic_baseline_email_24"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/EditTextEmail"
         android:layout_width="300dp"
         android:layout_height="?attr/listPreferredItemHeight"

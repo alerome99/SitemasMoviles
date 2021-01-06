@@ -18,7 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class TareaResponsableFragment extends Fragment {
 
-    private Button tratarTarea;
+    private Button tratarTarea, gps;
     private TextView descripcion,calle,distrito,nombre;
     private Tarea tarea;
     private FirebaseConnection connection;
@@ -47,10 +47,23 @@ public class TareaResponsableFragment extends Fragment {
 
         tratarTarea = v.findViewById(R.id.botonCompletadoTarea);
         descripcion = v.findViewById(R.id.descripcionResp);
-        calle = v.findViewById(R.id.nombreCalleResp);
+        calle = v.findViewById(R.id.CalleResp);
+        gps = v.findViewById(R.id.gpsRes);
         descripcion.setText(tarea.getDescripcion());
         calle.setText(tarea.getCalle());
         Log.e("RESP",tarea.getId());
+
+        gps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment selectedFragment = new MapsBarrenderoFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("ObjetoTarea", tarea);
+                selectedFragment.setArguments(bundle);
+                getActivity().getSupportFragmentManager().beginTransaction().
+                 replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
+            }
+        });
 
         tratarTarea.setOnClickListener(new View.OnClickListener() {
             @Override

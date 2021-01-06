@@ -59,11 +59,11 @@ public class ListaTareasFragment extends Fragment {
                         Log.e("vacio", "eta vacio");
                     } else {
                         for (QueryDocumentSnapshot document : connection.getResponse()) {
-                            grupoUser = (String) document.get("grupo");
+                            grupoUser = (String) document.get("Grupo");
                             idPersona = (String) document.get("idUser");
 
                             //Log.e("NAME",""+(String) document.get("name"));
-                            Log.e("NAME",""+(String) document.get("grupo"));
+                            Log.e("NAME",""+(String) document.get("Grupo"));
 
                         }
 
@@ -106,7 +106,7 @@ public class ListaTareasFragment extends Fragment {
 
                                                 tareas.add(0, new Tarea(name, descripcion, estado, responsable, calle, id));
 
-                                            } else if (estado.equals("SinRealizar")) {
+                                            } else if (estado.equals("SinAsignar")) {
 
                                                 tareas.add(new Tarea(name, descripcion, estado, responsable, calle, id));
 
@@ -124,10 +124,9 @@ public class ListaTareasFragment extends Fragment {
 
                                                 Fragment selectedFragment;
 
-                                                if(tareas.get(position).getEstado().equals("SinRealizar")) {
+                                                if(tareas.get(position).getEstado().equals("SinAsignar")) {
 
-                                                    Log.e("SINR","SinRealizar");
-
+                                                    Log.e("SINR","SinAsignar");
                                                     selectedFragment = new TareaConcretaFragment();
                                                     Bundle bundle = new Bundle();
                                                     bundle.putSerializable("ObjetoTarea", tareas.get(position));

@@ -22,29 +22,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapViewResp"
-        android:layout_width="216dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="101dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombreCalleResp" />
-
     <TextView
         android:id="@+id/nombreCalleResp"
         android:layout_width="170dp"
         android:layout_height="22dp"
         android:layout_marginStart="82dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="160dp"
-        android:layout_marginBottom="25dp"
         android:text="Nombre calle"
-        app:layout_constraintBottom_toTopOf="@+id/mapViewResp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,12 +54,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="29dp"
         android:layout_marginEnd="196dp"
         android:text="Descripcion de la tarea"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapViewResp" />
+        app:layout_constraintTop_toBottomOf="@+id/gpsRes" />
 
     <TextView
         android:id="@+id/solucionResp"
@@ -98,6 +85,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/solucionResp" />
 
+    <Button
+        android:id="@+id/gpsRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="221dp"
+        android:layout_marginBottom="29dp"
+        android:text="Ver en Maps"
+        android:backgroundTint="#5462b0"
+        app:layout_constraintBottom_toTopOf="@+id/textView17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CalleResp" />
+
+    <TextView
+        android:id="@+id/CalleResp"
+        android:layout_width="256dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="88dp"
+        android:text="CalleResp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreCalleResp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

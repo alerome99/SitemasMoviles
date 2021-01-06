@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -18,7 +19,8 @@ import com.squareup.picasso.Picasso;
 
 public class EditarPerfilCiudadanoFragment extends Fragment implements View.OnTouchListener{
 
-    private EditText editTextUsername, editTextName, editTextEmail, editTextDni, editTextTelefono;
+    private EditText editTextUsername, editTextName, editTextDni, editTextTelefono;
+    private TextView textTextEmail;
     private FirebaseConnection connection;
     ImageView imageViewPhoto;
 
@@ -32,7 +34,7 @@ public class EditarPerfilCiudadanoFragment extends Fragment implements View.OnTo
 
         editTextUsername = view.findViewById(R.id.EditTextUsername);
         editTextName = view.findViewById(R.id.EditTextName);
-        editTextEmail = view.findViewById(R.id.EditTextEmail);
+        textTextEmail = view.findViewById(R.id.EditTextEmail);
         editTextDni = view.findViewById(R.id.EditTextDni);
         editTextTelefono = view.findViewById(R.id.EditTextTelefono);
         imageViewPhoto = view.findViewById(R.id.imageViewPhotoEdit);
@@ -67,7 +69,7 @@ public class EditarPerfilCiudadanoFragment extends Fragment implements View.OnTo
                     editTextName.setText(name);
                     editTextTelefono.setText(phone);
                     editTextDni.setText(dni);
-                    editTextEmail.setText(email);
+                    textTextEmail.setText(email);
                 }
             }else{
 
@@ -91,7 +93,7 @@ public class EditarPerfilCiudadanoFragment extends Fragment implements View.OnTo
                 break;
             case R.id.botonAceptar:
                 connection.modificarPersona(editTextUsername.getText().toString(), editTextName.getText().toString(), editTextDni.getText().toString(),
-                        editTextTelefono.getText().toString(), editTextEmail.getText().toString());
+                        editTextTelefono.getText().toString(), textTextEmail.getText().toString());
                 selectedFragment = new PerfilCiudadanoFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                 break;
