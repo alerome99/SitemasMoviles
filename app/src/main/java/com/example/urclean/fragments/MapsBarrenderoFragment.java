@@ -4,14 +4,11 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +61,6 @@ public class MapsBarrenderoFragment extends Fragment implements OnMapReadyCallba
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }else{
-            Log.e("NL","null");
         }
 
 
@@ -125,9 +121,6 @@ public class MapsBarrenderoFragment extends Fragment implements OnMapReadyCallba
         try {
             address = geocoder.getFromLocationName(strAddress, 5);
             Address location = address.get(0);
-            Log.e("NL",location.getAddressLine(0));
-            Log.e("l1",""+location.getLatitude());
-            Log.e("l1",""+location.getLongitude());
             //  location.getLatitude();
             //  location.getLongitude();
             LatLng valladolid = new LatLng(location.getLatitude(), location.getLongitude());

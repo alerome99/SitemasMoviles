@@ -1,7 +1,6 @@
 package com.example.urclean.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,14 +54,10 @@ public class ListaTareasFragment extends Fragment {
             public void onResponse(boolean correct) {
                 if (correct) {
                     if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
-                        Log.e("vacio", "eta vacio");
                     } else {
                         for (QueryDocumentSnapshot document : connection.getResponse()) {
                             grupoUser = (String) document.get("Grupo");
                             idPersona = (String) document.get("idUser");
-
-                            //Log.e("NAME",""+(String) document.get("name"));
-                            Log.e("NAME",""+(String) document.get("Grupo"));
 
                         }
 
@@ -79,8 +74,6 @@ public class ListaTareasFragment extends Fragment {
 
                                         // Rellenar arraylist de tareas.
                                         //for que recorre las tareas de ese grupo.
-
-                                        Log.e("IDP", ""+idPersona);
 
                                         String name = "";
                                         String calle = "";
@@ -107,12 +100,7 @@ public class ListaTareasFragment extends Fragment {
                                             //Habria que mirar la eficiencia, pues este metodo
                                             //del connect coge las ya realizadas.
 
-                                            Log.e("EST", estado);
-
-
                                             if (estado.equals("EnCurso") && responsable.equals(idPersona)) {
-
-                                                Log.e("RESP", "Tarea con responsable.");
 
                                                 tareas.add(0, new Tarea(name, descripcion, estado, responsable, calle, id,grupo,email));
 
@@ -135,8 +123,6 @@ public class ListaTareasFragment extends Fragment {
                                                 Fragment selectedFragment;
 
                                                 if(tareas.get(position).getEstado().equals("SinAsignar")) {
-
-                                                    Log.e("SINR","SinAsignar");
                                                     selectedFragment = new TareaConcretaFragment();
                                                     Bundle bundle = new Bundle();
                                                     bundle.putSerializable("ObjetoTarea", tareas.get(position));
@@ -144,11 +130,7 @@ public class ListaTareasFragment extends Fragment {
                                                     getActivity().getSupportFragmentManager().beginTransaction().
                                                             replace(R.id.fragment_container, selectedFragment)
                                                     .addToBackStack(null).commit();
-
                                                 }else if(tareas.get(position).getEstado().equals("EnCurso")){
-
-                                                    Log.e("ENC","En curso");
-
                                                     selectedFragment = new TareaResponsableFragment();
                                                     Bundle bundle = new Bundle();
                                                     bundle.putSerializable("ObjetoTarea", tareas.get(position));
@@ -157,21 +139,16 @@ public class ListaTareasFragment extends Fragment {
                                                     getActivity().getSupportFragmentManager().beginTransaction().
                                                             replace(R.id.fragment_container, selectedFragment).
                                                             addToBackStack(null).commit();
-
                                                 } else {
-                                                    Log.e("feil", "Feil en el estado");
                                                 }
                                             }
                                         });
                                     }
-
                                 }
                             }
                         });
                     }
-
                 } else {
-                    Log.e("ffail", "fail conection");
                 }
             }
         });

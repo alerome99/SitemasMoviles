@@ -2,7 +2,6 @@ package com.example.urclean.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +52,6 @@ public class HistorialTareasFragment extends Fragment {
         idPersona="";
         lista = v.findViewById(R.id.listaHistorialTareas);
         num = v.findViewById(R.id.NumHistorialTareas);
-
-        Log.e("HTP", "aaa");
 
         connection.getTareasPersona( new FirebaseCallback() {
 
