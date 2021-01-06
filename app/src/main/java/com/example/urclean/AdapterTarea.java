@@ -53,7 +53,7 @@ public class AdapterTarea extends BaseAdapter {
         condicion = tarea.getEstado();
         imagen.setTag(position);
 
-        if(condicion.equals("SinRealizar")){
+        if(condicion.equals("SinAsignar")){
 
             imagen.setImageResource(imagenes[0]);
 

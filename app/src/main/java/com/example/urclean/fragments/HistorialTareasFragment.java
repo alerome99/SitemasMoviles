@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -25,6 +26,7 @@ public class HistorialTareasFragment extends Fragment {
     private FirebaseConnection connection;
     private String grupoUser;
     private String idPersona;
+    private TextView num;
     private ListView lista;
     private ArrayList<Tarea> tareas;
 
@@ -50,6 +52,7 @@ public class HistorialTareasFragment extends Fragment {
         grupoUser = "";
         idPersona="";
         lista = v.findViewById(R.id.listaHistorialTareas);
+        num = v.findViewById(R.id.NumHistorialTareas);
 
         Log.e("HTP", "aaa");
 
@@ -89,8 +92,10 @@ public class HistorialTareasFragment extends Fragment {
 
                         }
 
+                        num.setText(""+tareas.size());
                         AdapterTarea adaptador = new AdapterTarea(HistorialTareasFragment.this.getActivity(), tareas);
                         lista.setAdapter(adaptador);
+
 
                     }
                 } else{
