@@ -18,31 +18,50 @@
 
     </FrameLayout>
 
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text="Grupo actual:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/editTextGrupoActual"
+        android:layout_width="49dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="170dp"
+        android:layout_marginBottom="48dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewRazon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.926"
+        app:layout_constraintStart_toEndOf="@+id/textView21"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.653" />
+
     <EditText
         android:id="@+id/editTextRazon"
-        android:layout_width="300dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginTop="65dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="53dp"
         android:gravity="center_vertical"
         android:text=""
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextGrupoActual"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editTextGrupoActual"
-        android:layout_width="153dp"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginTop="12dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -74,32 +93,16 @@
         app:layout_constraintVertical_bias="0.087" />
 
     <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="1dp"
-        android:text="Grupo actual:"
-        app:layout_constraintBottom_toTopOf="@+id/editTextGrupoActual"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.836" />
-
-    <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="31dp"
-        android:layout_marginBottom="10dp"
         android:text="Razón:"
-        app:layout_constraintBottom_toTopOf="@+id/editTextRazon"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextGrupoActual"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextGrupoActual" />
 
     <TextView
         android:id="@+id/textViewError"
