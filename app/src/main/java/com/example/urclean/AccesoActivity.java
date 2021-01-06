@@ -72,7 +72,7 @@ public class AccesoActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s)  {
                 if (password.getText().toString().length() <= 0) {
-                    password.setError("Inserte el email");
+                    password.setError("Inserte la contraseña");
                 } else {
                     password.setError(null);
                 }
