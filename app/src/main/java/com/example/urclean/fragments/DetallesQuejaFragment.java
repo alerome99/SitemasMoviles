@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -22,8 +23,8 @@ public class DetallesQuejaFragment extends Fragment {
     Button marcarQuejaLeida;
     Button marcarQuejaCompletada;
     private FirebaseConnection connection;
-    EditText editTextTituloQueja;
-    EditText editTextDescripcionQueja;
+    TextView editTextTituloQueja;
+    TextView editTextDescripcionQueja;
 
     public DetallesQuejaFragment() {
 

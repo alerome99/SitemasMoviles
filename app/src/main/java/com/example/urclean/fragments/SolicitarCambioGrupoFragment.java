@@ -27,7 +27,7 @@ public class SolicitarCambioGrupoFragment extends Fragment {
 
     Spinner spinner;
     private FirebaseConnection connection;
-    EditText editTextGrupoActual;
+    TextView editTextGrupoActual;
     EditText editTextRazon;
     ArrayList<String> listaGrupos;
     Button buttonSolicitarCambio;

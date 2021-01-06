@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -16,6 +17,8 @@ import com.example.urclean.model.Respuesta;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import org.w3c.dom.Text;
+
 
 public class DetallesNotificacionFragment extends Fragment {
 
@@ -23,10 +26,10 @@ public class DetallesNotificacionFragment extends Fragment {
     Button buttonAceptarCambio;
     Button buttonRechazarCambio;
     private FirebaseConnection connection;
-    EditText editTextRazon;
+    TextView textViewRazon;
     EditText editTextJustificacion;
-    EditText editTextGrupoActual;
-    EditText editTextGrupoDestino;
+    TextView textViewGrupoActual;
+    TextView textViewGrupoDestino;
     private String id;
 
     public DetallesNotificacionFragment() {
@@ -48,16 +51,16 @@ public class DetallesNotificacionFragment extends Fragment {
 
         Bundle bundle = getArguments();
 
-        editTextGrupoDestino = v.findViewById(R.id.editTextGrupoDestino);
-        editTextGrupoActual = v.findViewById(R.id.editTextGrupoActual);
+        textViewGrupoDestino = v.findViewById(R.id.textViewGrupoDestino);
+        textViewGrupoActual = v.findViewById(R.id.textViewGrupoActual);
         editTextJustificacion = v.findViewById(R.id.editTextJustificacion);
-        editTextRazon = v.findViewById(R.id.editTextRazon);
+        textViewRazon = v.findViewById(R.id.textViewRazon);
         buttonRechazarCambio = v.findViewById(R.id.buttonRechazarCambio);
         buttonAceptarCambio = v.findViewById(R.id.buttonAceptarCambio);
 
-        editTextGrupoDestino.setText(getArguments().getString("GRUPODESTINO"));
-        editTextGrupoActual.setText(getArguments().getString("GRUPOACTUAL"));
-        editTextRazon.setText(getArguments().getString("RAZON"));
+        textViewGrupoDestino.setText(getArguments().getString("GRUPODESTINO"));
+        textViewGrupoActual.setText(getArguments().getString("GRUPOACTUAL"));
+        textViewRazon.setText(getArguments().getString("RAZON"));
 
         buttonAceptarCambio.setOnClickListener(new View.OnClickListener() {
             @Override

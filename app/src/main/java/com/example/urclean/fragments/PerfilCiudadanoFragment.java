@@ -85,9 +85,7 @@ public class PerfilCiudadanoFragment extends Fragment implements View.OnTouchLis
                     }
                     if(url!=null){
                         Uri path = Uri.parse(url);
-                        //imageViewPhoto.setImageURI(path);
                         Picasso.get().load(path).into(imageViewPhoto);
-                        //Glide.with(getActivity()).load(path).fitCenter().centerCrop().into(imageViewPhoto);
                     }
                     textViewEmail.setText(email);
                     textViewName.setText(name);

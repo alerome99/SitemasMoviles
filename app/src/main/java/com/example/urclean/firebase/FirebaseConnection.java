@@ -909,7 +909,7 @@ public class FirebaseConnection {
 
     public void crearRespuesta(Respuesta r, final FirebaseCallback callback){
         Map<String,Object> respuesta = new HashMap<>();
-        respuesta.put("justifacion", r.getRazon());
+        respuesta.put("justificacion", r.getRazon());
         respuesta.put("respuesta", r.getRespuesta());
         respuesta.put("email", r.getEmail());
         respuesta.put("emailBarrendero", r.getEmailBarrendero());
