@@ -21,10 +21,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/Button3"
+        android:id="@+id/ButtonFichar"
         android:layout_width="287dp"
         android:layout_height="55dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
         android:gravity="center"
         android:text="Fichar y opciones de turno"
         android:textSize="18sp"
@@ -42,7 +42,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button3" />
+        app:layout_constraintTop_toBottomOf="@+id/ButtonFichar" />
 
     <Button
         android:id="@+id/Logoutbarrendero"
