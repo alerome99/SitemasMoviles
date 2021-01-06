@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.urclean.R;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
+import com.example.urclean.model.NotificacionCiudadano;
 import com.example.urclean.model.Tarea;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -58,6 +59,7 @@ public class TareaConcretaFragment extends Fragment {
         nombre.setText(tarea.getName());
         Log.e("ASIGNAR",tarea.getId());
 
+        NotificacionCiudadano n = new NotificacionCiudadano(tarea.getDescripcion(), tarea.getEmail(), tarea.getEstado(), tarea.getName(), tarea.getCalle(), tarea.getGrupo());
         tratarTarea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +69,11 @@ public class TareaConcretaFragment extends Fragment {
                     public void onResponse(boolean correct) {
                         if (correct) {
                             Snackbar.make(v, "Tarea asignada a ti", Snackbar.LENGTH_LONG).show();
+
+                            n.setEstado("EnCurso");
+                            connection.crearNotificacionCiudadano(n, new FirebaseCallback() {
+                                @Override
+                                public void onResponse(boolean correct) {}});
 
                             Fragment selectedFragment = new MenuBarrenderoFragment();
                             getActivity().getSupportFragmentManager().beginTransaction().

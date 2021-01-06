@@ -2,14 +2,13 @@ package com.example.urclean.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.urclean.AdapterTarea;
 import com.example.urclean.R;
@@ -65,17 +64,28 @@ public class HistorialTareasFragment extends Fragment {
 
                     } else {
 
+                        String name = "";
+                        String calle = "";
+                        String descripcion = "";
+                        String estado = "";
+                        String responsable = "";
+                        String id = "";
+                        String grupo = "";
+                        String email ="";
+
                         for (QueryDocumentSnapshot document : connection.getResponse()) {
 
 
-                            String name = (String) document.get("Nombre");
-                            String calle = (String) document.get("Calle");
-                            String descripcion = (String) document.get("Descripcion");
-                            String estado = (String) document.get("Estado");
-                            String responsable = (String) document.get("Responsable");
-                            String id = (String) document.get("Id");
+                            name = (String) document.get("Nombre");
+                            calle = (String) document.get("Calle");
+                            descripcion = (String) document.get("Descripcion");
+                            estado = (String) document.get("Estado");
+                            responsable = (String) document.get("Responsable");
+                            id = (String) document.get("Id");
+                            grupo = (String) document.get("Grupo");
+                            email = (String) document.get("email");
 
-                            tareas.add(new Tarea(name, descripcion, estado, responsable, calle, id));
+                            tareas.add(new Tarea(name, descripcion, estado, responsable, calle, id,grupo, email));
 
                         }
 

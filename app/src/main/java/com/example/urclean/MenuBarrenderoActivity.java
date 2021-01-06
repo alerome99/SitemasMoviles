@@ -1,26 +1,21 @@
 package com.example.urclean;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-
-import android.app.FragmentManager;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-
+import com.example.urclean.firebase.FirebaseConnection;
 import com.example.urclean.fragments.IncidenciaCiudadanoFragment;
 import com.example.urclean.fragments.ListaNotificacionesBarrenderoFragment;
 import com.example.urclean.fragments.ListaTareasFragment;
 import com.example.urclean.fragments.MenuBarrenderoFragment;
-import com.example.urclean.fragments.NotificacionesCiudadanoFragment;
 import com.example.urclean.fragments.PerfilCiudadanoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import com.example.urclean.firebase.FirebaseConnection;
-
-public class menuBarrendero extends AppCompatActivity  {
+public class MenuBarrenderoActivity extends AppCompatActivity  {
 
     BottomNavigationView navigation;
 
@@ -36,7 +31,30 @@ public class menuBarrendero extends AppCompatActivity  {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation_barrendero);
         navigation.setOnNavigationItemSelectedListener(navListener);
 
-        if (savedInstanceState == null) {
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle != null){
+            String dir = bundle.getString("dir");
+            String cod = bundle.getString("cod");
+            String tipo = bundle.getString("tipo");
+            String asunto = bundle.getString("asunto");
+            String descripcion = bundle.getString("descripcion");
+            String usuario = bundle.getString("usuario");
+
+            Bundle args = new Bundle();
+            args.putString("dir", dir);
+            args.putString("cod", cod);
+            args.putString("tipo", tipo);
+            args.putString("asunto", asunto);
+            args.putString("descripcion", descripcion);
+            args.putString("usuario", usuario);
+
+            IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
+            fragment.setArguments(args);
+
+            navigation.setSelectedItemId(R.id.navigation_incidencia_ciudadano);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    fragment).addToBackStack(null).commit();
+        }else if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new MenuBarrenderoFragment()).commit();
         }
@@ -56,7 +74,10 @@ public class menuBarrendero extends AppCompatActivity  {
                             break;
 
                         case R.id.navigation_incidencia_ciudadano:
+                            Bundle b = new Bundle();
+                            b.putString("usuario","barrendero");
                             selectedFragment = new IncidenciaCiudadanoFragment();
+                            selectedFragment.setArguments(b);
                             break;
 
                         case R.id.navigation_list_ciudadano:

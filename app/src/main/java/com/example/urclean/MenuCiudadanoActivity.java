@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.urclean.fragments.IncidenciaCiudadanoFragment;
 import com.example.urclean.fragments.MenuCiudadanoFragment;
-import com.example.urclean.fragments.NotificacionesCiudadanoFragment;
+import com.example.urclean.fragments.ListaNotificacionesCiudadanoFragment;
 import com.example.urclean.fragments.PerfilCiudadanoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,6 +28,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
             String tipo = bundle.getString("tipo");
             String asunto = bundle.getString("asunto");
             String descripcion = bundle.getString("descripcion");
+            String usuario = bundle.getString("usuario");
 
             Bundle args = new Bundle();
             args.putString("dir", dir);
@@ -35,6 +36,7 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
             args.putString("tipo", tipo);
             args.putString("asunto", asunto);
             args.putString("descripcion", descripcion);
+            args.putString("usuario", usuario);
 
             IncidenciaCiudadanoFragment fragment = new IncidenciaCiudadanoFragment();
             fragment.setArguments(args);
@@ -58,13 +60,16 @@ public class MenuCiudadanoActivity extends AppCompatActivity {
                             selectedFragment = new PerfilCiudadanoFragment();
                             break;
                         case R.id.nav_incidencias:
+                            Bundle b = new Bundle();
+                            b.putString("usuario","ciudadano");
                             selectedFragment = new IncidenciaCiudadanoFragment();
+                            selectedFragment.setArguments(b);
                             break;
                         case R.id.nav_menu:
                             selectedFragment = new MenuCiudadanoFragment();
                             break;
                         case R.id.nav_notificaciones:
-                            selectedFragment = new NotificacionesCiudadanoFragment();
+                            selectedFragment = new ListaNotificacionesCiudadanoFragment();
                             break;
                     }
 

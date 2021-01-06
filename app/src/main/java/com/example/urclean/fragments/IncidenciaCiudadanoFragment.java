@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.urclean.R;
-import com.example.urclean.direccionMapsActivity;
+import com.example.urclean.DireccionMapsActivity;
 import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.google.android.material.snackbar.Snackbar;
@@ -27,7 +27,7 @@ public class IncidenciaCiudadanoFragment extends Fragment {
     private EditText descripcion, asunto;
     private TextView direccion;
     private Spinner spinner;
-    private String dir,cod;
+    private String dir,cod, usuario;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,7 +46,9 @@ public class IncidenciaCiudadanoFragment extends Fragment {
         descripcion = view.findViewById(R.id.editTextDescripcionIncidencia);
         asunto = view.findViewById(R.id.editTextAsunto);
 
-        if(getArguments()!=null){
+        usuario = getArguments().getString("usuario");
+
+        if(getArguments().getString("tipo")!=null){
             dir = getArguments().getString("dir");
             cod = getArguments().getString("cod");
 
@@ -111,6 +113,19 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                             connection.getCurrentUser(correct -> {
                                 if (correct) {
                                     if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                                        connection.saveDesperfecto(asunto.getText().toString(), dir, descripcion.getText().toString(), new FirebaseCallback() {
+                                            @Override
+                                            public void onResponse(boolean correct) {
+                                                if (correct) {
+                                                    asunto.setText("");
+                                                    direccion.setText("");
+                                                    descripcion.setText("");
+                                                    Snackbar.make(view, "Desperfecto enviado", Snackbar.LENGTH_LONG).show();
+                                                } else {
+                                                    Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                                                }
+                                            }
+                                        });
                                     } else {
                                         String email = "";
                                         for (QueryDocumentSnapshot document : connection.getResponse()) {
@@ -118,6 +133,19 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                                         }
                                         connection.getDesperfectosPorEmail(email, correct2 -> {
                                             if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                                                connection.saveDesperfecto(asunto.getText().toString(), dir, descripcion.getText().toString(), new FirebaseCallback() {
+                                                    @Override
+                                                    public void onResponse(boolean correct) {
+                                                        if (correct) {
+                                                            asunto.setText("");
+                                                            direccion.setText("");
+                                                            descripcion.setText("");
+                                                            Snackbar.make(view, "Desperfecto enviado", Snackbar.LENGTH_LONG).show();
+                                                        } else {
+                                                            Snackbar.make(view, "Ha habido un error", Snackbar.LENGTH_LONG).show();
+                                                        }
+                                                    }
+                                                });
                                             } else {
                                                 boolean bandera = true;
                                                 for (QueryDocumentSnapshot document : connection.getResponse()) {
@@ -164,7 +192,9 @@ public class IncidenciaCiudadanoFragment extends Fragment {
                     bundle.putString("descripcion", descripcion.getText().toString());
                 }
                 bundle.putString("tipo", spinner.getSelectedItem().toString());
-                Intent intent = new Intent(getActivity().getApplicationContext(), direccionMapsActivity.class);
+                bundle.putString("usuario",usuario);
+
+                Intent intent = new Intent(getActivity().getApplicationContext(), DireccionMapsActivity.class);
                 intent.putExtras(bundle);
 
                 startActivity(intent);

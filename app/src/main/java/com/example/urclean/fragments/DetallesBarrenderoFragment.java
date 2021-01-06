@@ -1,5 +1,6 @@
 package com.example.urclean.fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -16,6 +19,7 @@ import com.example.urclean.firebase.FirebaseCallback;
 import com.example.urclean.firebase.FirebaseConnection;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -26,11 +30,12 @@ public class DetallesBarrenderoFragment extends Fragment {
     Button buttonGrupo;
     Spinner spinner;
     private FirebaseConnection connection;
-    EditText editTextName;
-    EditText editTextPhone;
-    EditText editTextEmail;
+    TextView editTextName;
+    TextView editTextPhone;
+    TextView editTextEmail;
+    ImageView imageViewPhoto;
     ArrayList<String> listaGrupos;
-
+    TextView textViewGrupoActual;
 
     public DetallesBarrenderoFragment() {
 
@@ -53,6 +58,8 @@ public class DetallesBarrenderoFragment extends Fragment {
         Bundle bundle = getArguments();
 
         buttonGrupo = v.findViewById(R.id.buttonGrupo);
+        imageViewPhoto = v.findViewById(R.id.imageViewPhoto);
+        textViewGrupoActual = v.findViewById(R.id.textViewGrupoActual);
         spinner = v.findViewById(R.id.spinner);
         editTextName = v.findViewById(R.id.editTextName);
         editTextPhone = v.findViewById(R.id.editTextPhone);
@@ -62,6 +69,29 @@ public class DetallesBarrenderoFragment extends Fragment {
         editTextEmail.setText(getArguments().getString("EMAIL"));
         editTextPhone.setText(getArguments().getString("TELEFONO"));
         editTextName.setText(getArguments().getString("NAME"));
+
+        connection.getUsuarioPorEmail(getArguments().getString("EMAIL"), correct -> {
+            if (correct) {
+                if (connection.getResponse().isEmpty() || connection.getResponse() == null) {
+                } else {
+                    String grupo = "";
+                    String url = "";
+                    for (QueryDocumentSnapshot document : connection.getResponse()) {
+                        grupo = (String) document.get("Grupo");
+                        url = (String) document.get("Foto");
+                    }
+                    if(url!=null){
+                        Uri path = Uri.parse(url);
+                        Picasso.get().load(path).into(imageViewPhoto);
+                    }
+                    if(grupo!=null){
+                        textViewGrupoActual.setText(grupo);
+                    }else{
+                        textViewGrupoActual.setText("SIN ASIGNAR");
+                    }
+                }
+            }
+        });
 
         connection.getGrupos(correct -> {
             if (correct) {

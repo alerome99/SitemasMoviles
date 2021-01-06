@@ -57,24 +57,13 @@
         app:srcCompat="@drawable/ic_baseline_person_24"
         tools:ignore="MissingConstraints" />
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="410dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <!-- Main content -->
 
-    </FrameLayout>
-
-    <EditText
+    <TextView
         android:id="@+id/editTextEmail"
         android:layout_width="300dp"
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="36dp"
         android:gravity="center_vertical"
         android:text=""
         android:textColor="@color/white"
@@ -85,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextPhone"
         android:layout_width="153dp"
         android:layout_height="?attr/listPreferredItemHeight"
@@ -98,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextName"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextName"
         android:layout_width="155dp"
         android:layout_height="?attr/listPreferredItemHeight"
@@ -116,13 +105,13 @@
         android:layout_width="199dp"
         android:layout_height="70dp"
         android:layout_marginTop="100dp"
-        android:text="Añadir a grupo"
         android:backgroundTint="#5462b0"
+        android:text="Añadir a grupo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.334" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -131,10 +120,42 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="46dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginBottom="87dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonGrupo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="61dp"
+        android:text="Grupo actual : "
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.276"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewGrupoActual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="61dp"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
