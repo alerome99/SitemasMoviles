@@ -91,7 +91,6 @@ public class AddGrupoFragment extends Fragment {
                                 public void onResponse(boolean correct) {
                                     if (correct) {
                                     } else {
-                                        Log.e("SAVE", "Respuesta vacia");
                                         Snackbar.make(v, "Error al almacenar los datos", Snackbar.LENGTH_LONG).show();
                                     }
                                     Fragment selectedFragment;
